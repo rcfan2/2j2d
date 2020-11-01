@@ -2,9 +2,50 @@
 // https://freemycloud.pw
 // let cookie = process.env.FREE_MY_CLOUD_COOKIE;
 const $ = new Env('闪电签到');
-let cookie = process.env.FREE_MY_CLOUD_COOKIE;
+let username = process.env.FREE_MY_CLOUD_USERNAME;
+let password = process.env.FREE_MY_CLOUD_PASSWORD;
 
-const checkin = () => {
+const login = () => {
+    return new Promise(resolve => {
+        const option = {
+            url: `https://freemycloud.pw/auth/login`,
+            headers: {
+                "accept": "*/*",
+                "accept-encoding": "gzip, deflate, br",
+                "accept-language": "zh-CN,zh;q=0.9",
+                "cache-control": "no-cache",
+                "pragma": "no-cache",
+                "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1",
+            },
+            form: {
+                email: username,
+                passwd: password,
+                remember_me: 'on'
+            }
+        };
+        $.post(option, (err, resp, data) => {
+            try {
+                if (err) {
+                    console.log('\n闪电登录失败')
+                } else {
+                    data = JSON.parse(data)
+                    let ret = data.ret;
+                    if (data.ret === 1) {
+                        data = resp.headers['set-cookie']
+                    } else {
+                        console.log(`\n闪电登录失败 --> ${data.msg}`)
+                    }
+                }
+            } catch (e) {
+                $.logErr(e, resp)
+            } finally {
+                resolve(data);
+            }
+        })
+    })
+}
+
+const checkin = (cookies) => {
     return new Promise(resolve => {
         const option = {
             url: `https://freemycloud.pw/user/checkin`,
@@ -13,7 +54,7 @@ const checkin = () => {
                 "accept-encoding": "gzip, deflate, br",
                 "accept-language": "zh-CN,zh;q=0.9",
                 "cache-control": "no-cache",
-                "cookie": cookie,
+                "cookie": cookies,
                 "pragma": "no-cache",
                 "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1",
             }
@@ -34,14 +75,15 @@ const checkin = () => {
     })
 }
 
-checkin().then(data => {
-    let ret = data.ret;
-    let msg = data.msg;
-    if (ret === 1) {
-        console.log(`【签到成功】 --> ${msg}`)
-    } else {
-        console.log(`【签到失败】 --> ${msg}`)
-    }
+login().then(cookies => {
+    checkin(cookies)
+        .then(data => {
+            if (data.ret === 1) {
+                console.log(`\n闪电签到成功 --> ${data.msg}`)
+            } else {
+                console.log(`\n闪电签到失败 --> ${data.msg}`)
+            }
+        })
 })
 
 function Env(t, e) {
