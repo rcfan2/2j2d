@@ -6,7 +6,7 @@ name: 闪电签到
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 1 * * ? ' #北京时间0点运行，action会有延迟
+    - cron: '0 1 * * *' #北京时间0点运行，action会有延迟
   watch:
     types: started
   repository_dispatch:
