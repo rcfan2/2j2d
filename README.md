@@ -1,4 +1,4 @@
-## 特别声明: 
+## 特别声明:
 
 * 本仓库发布的Script项目中涉及的任何解锁和解密分析脚本，仅用于测试和学习研究，禁止用于商业用途，不能保证其合法性，准确性，完整性和有效性，请根据情况自行判断.
 
@@ -15,7 +15,7 @@
 * 任何以任何方式查看此项目的人或直接或间接使用该Script项目的任何脚本的使用者都应仔细阅读此声明。lxk0301 保留随时更改或补充此免责声明的权利。一旦使用并复制了任何相关脚本或Script项目的规则，则视为您已接受此免责声明.
 
  **您必须在下载后的24小时内从计算机或手机中完全删除以上内容.**  </br>
-> ***您使用或者复制了本仓库且本人制作的任何脚本，则视为`已接受`此声明，请仔细阅读*** 
+> ***您使用或者复制了本仓库且本人制作的任何脚本，则视为`已接受`此声明，请仔细阅读***
 
 ## Script脚本列表
 
@@ -58,11 +58,11 @@
   - 需自行有云服务器，云函数等
 
   - 腾云云函数使用 [简要说明](iCloud.md)
-        
+
 ### 方法三：GitHub Action（推荐）
 
  - 使用教程暂且可看 [这里](githubAction.md)
- 
+
 ### 方法四：Docker（NAS或VPS用户）
 
  - 可以精确控制任务运行时间，有三种办法：[docker办法一](https://github.com/lxk0301/scripts/tree/master/docker)、[docker办法二（和本地安装Node.js有点类似）](https://github.com/EvineDeng/jd-base)、[docker办法三](https://github.com/chinnkarahoi/jd-scripts-docker)
@@ -73,7 +73,7 @@
   - 如果使用方法一与方法二，需自行提供京东cookie填写到 [jdCookie.js](https://github.com/lxk0301/scripts/blob/master/jdCookie.js) 里面
 
   - 方法三京东cookie不要！不要！不要！填写到 [jdCookie.js](https://github.com/lxk0301/scripts/blob/master/jdCookie.js) 里面
-   
+
   - 获取京东cookie教程可参考 [浏览器获取京东cookie教程](https://github.com/lxk0301/scripts/blob/master/backUp/GetJdCookie.md) , [插件获取京东cookie教程](https://github.com/lxk0301/scripts/blob/master/backUp/GetJdCookie2.md)
 
   - 方法四Docker安装Cookie请见各自的说明。
@@ -82,7 +82,7 @@
 
 #### 以下内容只针对iOS用户
 
-#### ios使用多个京东账号，需要使用BoxJs保存多会话进行切换 
+#### ios使用多个京东账号，需要使用BoxJs保存多会话进行切换
 
 ##### BoxJs简单说明可看作者[BoxJs仓库地址](https://github.com/chavyleung/scripts/)
 
@@ -117,3 +117,5 @@
 
 
 * [@nzw9314](https://github.com/nzw9314)
+
+Action test
