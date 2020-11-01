@@ -2,7 +2,7 @@
 // https://freemycloud.pw
 // let cookie = process.env.FREE_MY_CLOUD_COOKIE;
 const $ = new Env('闪电签到');
-let cookie = '__cfduid=dc19081e11c8b2d48c65cf8b604fa0c3a1602742326; uid=120433; email=1398371419%40qq.com; key=589d1556735e770a524a657defea3752e629322fe3f3d; ip=759366f5734ac714a2eb9485c7791d25; expire_in=1604509012';
+let cookie = process.env.FREE_MY_CLOUD_COOKIE;
 
 const checkin = () => {
     return new Promise(resolve => {
