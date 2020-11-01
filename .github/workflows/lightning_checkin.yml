@@ -28,4 +28,5 @@ jobs:
         run: |
           node lightning_checkin.js
         env:
-          FREE_MY_CLOUD_COOKIE: ${{ secrets.FREE_MY_CLOUD_COOKIE }}
+          FREE_MY_CLOUD_USERNAME: ${{ secrets.FREE_MY_CLOUD_USERNAME }}
+          FREE_MY_CLOUD_PASSWORD: ${{ secrets.FREE_MY_CLOUD_PASSWORD }}
