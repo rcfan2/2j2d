@@ -2,6 +2,7 @@
 // https://freemycloud.pw
 // let cookie = process.env.FREE_MY_CLOUD_COOKIE;
 const $ = new Env('闪电签到');
+const notify = $.isNode() ? require('./sendNotify') : '';
 
 let usernames = process.env.FREE_MY_CLOUD_USERNAME.split('&')
 let passwords = process.env.FREE_MY_CLOUD_PASSWORD.split('&')
@@ -77,6 +78,8 @@ const checkin = (cookies) => {
 }
 
 console.log(`找到${usernames.length}个账号，开始签到`)
+let summary = ''
+let text = ''
 for (let i = 0; i < usernames.length; i++) {
     let username = usernames[i]
     let password = passwords[i]
@@ -85,13 +88,19 @@ for (let i = 0; i < usernames.length; i++) {
             .then(data => {
                 if (data.ret === 1) {
                     console.log(`\n【${username}】闪电签到成功 --> ${data.msg}`)
+                    summary = `【${username}】闪电签到成功 --> ${data.msg}`
+                    text = data.msg
                 } else {
+
                     console.log(`\n【${username}】闪电签到失败 --> ${data.msg}`)
+                    summary = `【${username}】闪电签到失败 --> ${data.msg}`
+                    text = data.msg
                 }
+                notify.sendNotify(text, summary).then(() => {
+                })
             })
     })
 }
-
 
 function Env(t, e) {
     class s {
