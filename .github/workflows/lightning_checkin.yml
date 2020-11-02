@@ -30,3 +30,5 @@ jobs:
         env:
           FREE_MY_CLOUD_USERNAME: ${{ secrets.FREE_MY_CLOUD_USERNAME }}
           FREE_MY_CLOUD_PASSWORD: ${{ secrets.FREE_MY_CLOUD_PASSWORD }}
+          WX_PUSHER_KEY: ${{ secrets.WX_PUSHER_KEY }}
+          WX_PUSHER_TOPIC_IDS: ${{ secrets.WX_PUSHER_TOPIC_IDS }}
