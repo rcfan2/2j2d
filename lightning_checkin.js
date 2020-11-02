@@ -2,10 +2,11 @@
 // https://freemycloud.pw
 // let cookie = process.env.FREE_MY_CLOUD_COOKIE;
 const $ = new Env('闪电签到');
-let username = process.env.FREE_MY_CLOUD_USERNAME;
-let password = process.env.FREE_MY_CLOUD_PASSWORD;
 
-const login = () => {
+let usernames = process.env.FREE_MY_CLOUD_USERNAME.split('&')
+let passwords = process.env.FREE_MY_CLOUD_PASSWORD.split('&')
+
+const login = (username, password) => {
     return new Promise(resolve => {
         const option = {
             url: `https://freemycloud.pw/auth/login`,
@@ -75,16 +76,22 @@ const checkin = (cookies) => {
     })
 }
 
-login().then(cookies => {
-    checkin(cookies)
-        .then(data => {
-            if (data.ret === 1) {
-                console.log(`\n闪电签到成功 --> ${data.msg}`)
-            } else {
-                console.log(`\n闪电签到失败 --> ${data.msg}`)
-            }
-        })
-})
+console.log(`找到${usernames.length}个账号，开始签到`)
+for (let i = 0; i < usernames.length; i++) {
+    let username = usernames[i]
+    let password = passwords[i]
+    login(username, password).then(cookies => {
+        checkin(cookies)
+            .then(data => {
+                if (data.ret === 1) {
+                    console.log(`\n【${username}】闪电签到成功 --> ${data.msg}`)
+                } else {
+                    console.log(`\n【${username}】闪电签到失败 --> ${data.msg}`)
+                }
+            })
+    })
+}
+
 
 function Env(t, e) {
     class s {
