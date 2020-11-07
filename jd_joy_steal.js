@@ -3,7 +3,7 @@ jd宠汪汪偷好友积分与狗粮,及给好友喂食
 偷好友积分上限是20个好友(即获得100积分)，帮好友喂食上限是20个好友(即获得200积分)，偷好友狗粮上限也是20个好友(最多获得120g狗粮)
 IOS用户支持京东双账号,NodeJs用户支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
-更新时间:2020-10-14
+更新时间:2020-11-03
 如果开启了给好友喂食功能，建议先凌晨0点运行jd_joy.js脚本获取狗粮后，再运行此脚本(jd_joy_steal.js)可偷好友积分，6点运行可偷好友狗粮
 注：如果使用Node.js, 需自行安装'crypto-js,got,http-server,tough-cookie'模块. 例: npm install crypto-js http-server tough-cookie got --save
 */
@@ -32,9 +32,9 @@ if ($.isNode()) {
   cookiesArr.push($.getdata('CookieJD'));
   cookiesArr.push($.getdata('CookieJD2'));
 }
-let message = '', subTitle = '', UserName = '';
+let message = '', subTitle = '';
 
-const jdNotify = $.getdata('jdJoyNotify');//是否关闭通知，false打开，true通知
+let jdNotify = false;//是否开启静默运行，false关闭静默运行(即通知)，true打开静默运行(即不通知)
 let jdJoyHelpFeed = false;//是否给好友喂食，false为不给喂食，true为给好友喂食，默认不给好友喂食
 let jdJoyStealCoin = true;//是否偷好友积分与狗粮，false为否，true为是，默认是偷
 const weAppUrl = 'https://draw.jdfcloud.com//pet';
@@ -47,12 +47,22 @@ const JD_API_HOST = 'https://jdjoy.jd.com/pet'
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
-      UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
+      $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
       $.index = i + 1;
-      console.log(`\n开始【京东账号${$.index}】${UserName}\n`);
+      $.isLogin = true;
+      $.nickName = '';
+      await TotalBean();
+      console.log(`\n开始【京东账号${$.index}】${$.nickName || $.UserName}\n`);
+      if (!$.isLogin) {
+        $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/`, {"open-url": "https://bean.m.jd.com/"});
+        $.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。
+        if ($.isNode()) await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
+        continue
+      }
       message = '';
       subTitle = '';
       await jdJoySteal();
+      await showMsg();
     }
   }
 })()
@@ -65,7 +75,7 @@ const JD_API_HOST = 'https://jdjoy.jd.com/pet'
 async function jdJoySteal() {
   await getFriends();
   if ($.getFriendsData && $.getFriendsData.success) {
-    message += `【京东账号${$.index}】${UserName}\n`;
+    message += `【京东账号${$.index}】${$.nickName}\n`;
     await getCoinChanges();
     if ($.getFriendsData && $.getFriendsData.datas && $.getFriendsData.datas.length  > 0) {
       const { lastPage } = $.getFriendsData.page;
@@ -91,25 +101,9 @@ async function jdJoySteal() {
         stealFriendsFood(),//偷好友狗粮
         helpFriendsFeed()//给好友喂食
       ])
-      await showMsg();
     }
   } else {
-    if ($.getFriendsData && $.getFriendsData.errorCode === 'B0001') {
-      $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${UserName}\n请重新登录获取\nhttps://bean.m.jd.com/`, {"open-url": "https://bean.m.jd.com/"});
-      if ($.index === 1) {
-        $.setdata('', 'CookieJD');//cookie失效，故清空cookie。
-      } else if ($.index === 2){
-        $.setdata('', 'CookieJD2');//cookie失效，故清空cookie。
-      }
-      if ($.isNode()) {
-        await notify.sendNotify(`${$.name}cookie已失效`, `京东账号${$.index} ${UserName}\n请重新登录获取cookie`);
-      }
-      // if ($.isNode()) {
-      //   await notify.BarkNotify(`${$.name}cookie已失效`, `京东账号${$.index} ${UserName}\n请重新登录获取cookie`);
-      // }
-    } else {
-      message += `${$.getFriendsData && $.getFriendsData.errorMessage}\n`;
-    }
+    message += `${$.getFriendsData && $.getFriendsData.errorMessage}\n`;
   }
 }
 async function stealFriendsFood() {
@@ -453,13 +447,58 @@ function showMsg() {
   message += $.stealFriendCoin;
   message += $.stealFood;
   message += $.helpFood;
-
-  $.log(`\n${message}\n`);
-  // if (!jdNotify || jdNotify === 'false') {
+  let ctrTemp;
+  if ($.getdata('jdJoyStealNotify')) {
+    ctrTemp = `${$.getdata('jdJoyStealNotify')}` === 'false';
+  } else {
+    ctrTemp = `${jdNotify}` === 'false';
+  }
+  if (ctrTemp) {
     $.msg($.name, '', message);
-  // }
+  } else {
+    $.log(`\n${message}\n`);
+  }
 }
-
+function TotalBean() {
+  return new Promise(async resolve => {
+    const options = {
+      "url": `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
+      "headers": {
+        "Accept": "application/json,text/plain, */*",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "zh-cn",
+        "Connection": "keep-alive",
+        "Cookie": cookie,
+        "Referer": "https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2",
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1"
+      }
+    }
+    $.post(options, (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (data) {
+            data = JSON.parse(data);
+            if (data['retcode'] === 13) {
+              $.isLogin = false; //cookie过期
+              return
+            }
+            $.nickName = data['base'].nickname;
+          } else {
+            console.log(`京东服务器返回空数据`)
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve();
+      }
+    })
+  })
+}
 function taskUrl(functionId, friendPin) {
   return {
     url: `${JD_API_HOST}/${functionId}?friendPin=${encodeURI(friendPin)}`,

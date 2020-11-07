@@ -354,7 +354,14 @@
           "name": "静默运行",
           "val": true,
           "type": "boolean",
-          "desc": "运行宠汪汪脚本时不发出系统弹窗通知"
+          "desc": "运行宠汪汪(jd_joy.js)脚本时不发出系统弹窗通知"
+        },
+        {
+          "id": "jdJoyStealNotify",
+          "name": "静默运行",
+          "val": false,
+          "type": "boolean",
+          "desc": "运行宠汪汪(jd_joy_steal.js)脚本时不发出系统弹窗通知"
         },
         {
           "id": "jdJoyHelpFeed",
@@ -436,7 +443,15 @@
             },
             {
               "key": "1",
-              "label": "兑换京豆"
+              "label": "兑换20京豆"
+            },
+            {
+              "key": "500",
+              "label": "兑换500京豆"
+            },
+            {
+              "key": "1000",
+              "label": "兑换1000京豆"
             }
           ]
         }
