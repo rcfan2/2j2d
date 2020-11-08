@@ -30,8 +30,7 @@ if ($.isNode()) {
   let cookiesData = $.getdata('CookiesJD') || "[]";
   cookiesData = jsonParse(cookiesData);
   cookiesArr = cookiesData.map(item => item.cookie);
-  cookiesArr.push($.getdata('CookieJD'));
-  cookiesArr.push($.getdata('CookieJD2'));
+  cookiesArr.push(...[$.getdata('CookieJD'), $.getdata('CookieJD2')]);
 }
 let jdNotify = true;//是否开启静默运行。默认true开启
 let message = '', subTitle = '';
@@ -90,8 +89,8 @@ function showMsg() {
 }
 function feedPets(feedNum) {
   return new Promise(resolve => {
-    console.log(`您设置的喂食数量:${FEED_NUM}g\n`);
-    console.log(`实际的喂食数量:${feedNum}g\n`);
+    console.log(`您设置的喂食数量::${FEED_NUM}g\n`);
+    console.log(`实际的喂食数量::${feedNum}g\n`);
     const options = {
       url: `${JD_API_HOST}/pet/feed?feedCount=${feedNum}`,
       headers: {
