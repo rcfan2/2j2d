@@ -1314,7 +1314,9 @@ function shareCodesFormat() {
     } else {
       console.log(`由于您未提供与京京东账号相对应的shareCode,下面助力将采纳本脚本自带的助力码\n`)
       const tempIndex = $.index > shareCodes.length ? (shareCodes.length - 1) : ($.index - 1);
-      newShareCodes = shareCodes[tempIndex].split('@');
+      if(shareCodes[tempIndex]) {
+        newShareCodes = shareCodes[tempIndex].split('@');
+      }
     }
     console.log(`格式化后第${$.index}个京东账号的助力码${JSON.stringify(newShareCodes)}`)
     resolve();
