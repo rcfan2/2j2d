@@ -1,5 +1,5 @@
 /*
- * @Author: lxk0301 https://github.com/lxk0301 
+ * @Author: lxk0301 https://github.com/lxk0301
  * @Date: 2020-11-03 09:25:47
  * @Last Modified by: lxk0301
  * @Last Modified time: 2020-11-02 09:26:12
@@ -49,7 +49,7 @@ if ($.isNode()) {
 }
 
 const JD_API_HOST = 'https://rdcseason.m.jd.com/api/';
-const activeEndTime = '2020/11/13 01:00:00';
+const activeEndTime = '2020/11/11 23:59:59+08:00';
 const addUrl = 'http://jd.turinglabs.net/helpcode/create/';
 const printUrl = `http://jd.turinglabs.net/helpcode/print/20/`;
 let helpCode = []
