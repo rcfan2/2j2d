@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【天天加速】'
         run: |
-          node jd_speed.js
+          npm run jd_speed
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}

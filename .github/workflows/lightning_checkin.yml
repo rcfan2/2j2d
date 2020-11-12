@@ -34,7 +34,7 @@ jobs:
           npm install
       - name: '运行 【闪电签到】'
         run: |
-          node lightning_checkin.js
+          npm run lightning_checkin
         env:
           FREE_MY_CLOUD_USERNAME: ${{ secrets.FREE_MY_CLOUD_USERNAME }}
           FREE_MY_CLOUD_PASSWORD: ${{ secrets.FREE_MY_CLOUD_PASSWORD }}

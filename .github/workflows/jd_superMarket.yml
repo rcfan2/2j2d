@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【京小超】'
         run: |
-          node jd_superMarket.js
+          npm run jd_superMarket
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}

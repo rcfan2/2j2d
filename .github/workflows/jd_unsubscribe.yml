@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【京东取关商品】'
         run: |
-          node jd_unsubscribe.js
+          npm run jd_unsubscribe
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
