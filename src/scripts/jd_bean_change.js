@@ -24,7 +24,7 @@ const {Env} = require('../utils/Env')
 const $ = new Env('京豆变动通知');
 const notify = $.isNode() ? require('../utils/sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../utils/jdCookie.js') : '';
+const jdCookieNode = $.isNode() ? require('../utils/jdCookie') : '';
 
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';

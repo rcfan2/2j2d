@@ -5,8 +5,22 @@ const {Env} = require('../utils/Env')
 const $ = new Env('闪电签到');
 const notify = $.isNode() ? require('../utils/sendNotify') : '';
 
-let usernames = process.env.FREE_MY_CLOUD_USERNAME.split('&')
-let passwords = process.env.FREE_MY_CLOUD_PASSWORD.split('&')
+let usernames = []
+let passwords = []
+if (process.env.FREE_MY_CLOUD_USERNAME && process.env.FREE_MY_CLOUD_PASSWORD) {
+  usernames = process.env.FREE_MY_CLOUD_USERNAME.split('&')
+  passwords = process.env.FREE_MY_CLOUD_PASSWORD.split('&')
+} else {
+  console.log('您未提供闪电账号及密码，即将退出签到')
+  return
+}
+
+if (usernames.length !== passwords.length) {
+  console.log('您提供的账号密码数量不匹配，即将退出签到')
+  return
+}
+
+console.log(`您提供了${usernames.length}个账号，即将开始签到`)
 
 const login = (username, password) => {
   return new Promise(resolve => {
@@ -78,7 +92,6 @@ const checkin = (cookies) => {
   })
 }
 
-console.log(`找到${usernames.length}个账号，开始签到`)
 let summary = ''
 let text = ''
 for (let i = 0; i < usernames.length; i++) {

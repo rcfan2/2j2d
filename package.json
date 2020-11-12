@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "京东活动脚本",
   "scripts": {
-    "jdFruitShareCodes": "node src/scripts/jdFruitShareCodes.js",
-    "jdPetShareCodes": "node src/scripts/jdPetShareCodes.js",
-    "jdPlantBeanShareCodes": "node src/scripts/jdPlantBeanShareCodes.js",
-    "jdSuperMarketShareCodes": "node src/scripts/jdSuperMarketShareCodes.js",
     "jd_bean_change": "node src/scripts/jd_bean_change.js",
     "jd_bean_sign": "node src/scripts/jd_bean_sign.js",
     "jd_blueCoin": "node src/scripts/jd_blueCoin.js",
@@ -16,7 +12,6 @@
     "jd_fruit": "node src/scripts/jd_fruit.js",
     "jd_joy": "node src/scripts/jd_joy.js",
     "jd_joy_feedPets": "node src/scripts/jd_joy_feedPets.js",
-    "jd_joy_help": "node src/scripts/jd_joy_help.js",
     "jd_joy_reward": "node src/scripts/jd_joy_reward.js",
     "jd_joy_run": "node src/scripts/jd_joy_run.js",
     "jd_joy_steal": "node src/scripts/jd_joy_steal.js",
