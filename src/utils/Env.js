@@ -188,7 +188,7 @@ function Env(t, e) {
       }, t => e(t)) : this.isNode() && (this.initGotEnv(t), this.got(t).on("redirect", (t, e) => {
         try {
           const s = t.headers["set-cookie"].map(this.cktough.Cookie.parse).toString();
-          this.ckjar.setCookieSync(s, null), e.cookieJar = this.ckjar
+          this.ckjar.setCookieSync(s, null, {ignoreError: true}), e.cookieJar = this.ckjar
         } catch (t) {
           this.logErr(t)
         }
