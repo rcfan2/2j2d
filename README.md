@@ -1,3 +1,14 @@
+## 说明
+
+在[原仓库](https://github.com/lxk0301/jd_scripts)基础上做了一些变更，只保留`Git Action`一种方式，其他方式请查看[原仓库](https://github.com/lxk0301/jd_scripts)
+
+变更包括但不仅限于
+
+- 目录优化，脚本位于`src/scripts`，辅助工具位于`src/utils`。
+- 一些复用性优化。
+- 助力码生成，[shareCodeHelper](https://github.com/gcdd1993/jd_scripts/blob/master/src/utils/shareCodesHelper.js)，提供多个账号的助力码，将生成填入到`Secrets`的字符串。
+- 随机助力码上车，[jd_shareCodes_boarding](https://github.com/gcdd1993/jd_scripts/blob/master/src/utils/jd_shareCodes_boarding.js)，每月1、10、20号0点自动上车。
+
 ## 不要fork! 不然下次GitHub还会继续封这个仓库
 
 ## 特别声明: 
@@ -67,19 +78,19 @@
   - 需自行有云服务器，云函数等
 
   - 腾云云函数使用 [教程说明](iCloud.md)
-       
- 
+    
+
 ### 方法三：Docker（NAS或VPS用户）
 
  - 可以精确控制任务运行时间，有三种办法：[docker办法一](https://github.com/lxk0301/jd_scripts/tree/master/docker)、[docker办法二（和本地安装Node.js类似）](https://github.com/EvineDeng/jd-base)、[docker办法三](https://github.com/chinnkarahoi/jd-scripts-docker)
  - [环境变量](https://github.com/lxk0301/jd_scripts/blob/master/githubAction.md#%E4%B8%8B%E6%96%B9%E6%8F%90%E4%BE%9B%E4%BD%BF%E7%94%A8%E5%88%B0%E7%9A%84-secrets%E5%85%A8%E9%9B%86%E5%90%88)
- 
+
 #### 注：以上三种运行机制都是Node.js，故您需仔细阅读下面几点
 
 
   - 如果使用方法一与方法二，需自行提供京东cookie填写到 [jdCookie.js](https://github.com/lxk0301/jd_scripts/blob/master/jdCookie.js) 里面
 
-   
+
   - 获取京东cookie教程可参考 [浏览器获取京东cookie教程](https://github.com/lxk0301/jd_scripts/blob/master/backUp/GetJdCookie.md) , [插件获取京东cookie教程](https://github.com/lxk0301/jd_scripts/blob/master/backUp/GetJdCookie2.md)
 
   - 方法三Docker安装Cookie请见各自的说明。
