@@ -29,7 +29,7 @@
     "jd_unsubscribe": "node src/scripts/jd_unsubscribe.js",
     "lightning_checkin": "node src/scripts/lightning_checkin.js",
     "jd_shareCodes_boarding": "node src/utils/jd_shareCodes_boarding.js",
-    "shareCodesHelper.js": "node src/utils/shareCodesHelper.js"
+    "shareCodesHelper": "node src/utils/shareCodesHelper.js"
   },
   "repository": {
     "type": "git",
