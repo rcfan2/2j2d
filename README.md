@@ -76,10 +76,9 @@
 ### 方法二：云服务器、腾讯云函数等等
 
   - 需自行有云服务器，云函数等
-
-  - 腾云云函数使用 [教程说明](iCloud.md)
+  - 腾讯云云函数 [快速部署教程](tencentscf.md)（免费）
+  - 腾讯云云函数控制台使用 [教程说明](iCloud.md)
     
-
 ### 方法三：Docker（NAS或VPS用户）
 
  - 可以精确控制任务运行时间，有三种办法：[docker办法一](https://github.com/lxk0301/jd_scripts/tree/master/docker)、[docker办法二（和本地安装Node.js类似）](https://github.com/EvineDeng/jd-base)、[docker办法三](https://github.com/chinnkarahoi/jd-scripts-docker)
