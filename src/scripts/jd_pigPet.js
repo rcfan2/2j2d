@@ -102,7 +102,7 @@ function pigPetUserBag() {
                     console.log(`${item.goodsName}      ${item.count}g`);
                   }
                   for (let item of data.resultData.resultData.goods) {
-                    if (item.count > 20) {
+                    if (item.count >= 20) {
                       console.log(`10秒后开始喂食${item.goodsName}，当前数量为${item.count}g`)
                       await $.wait(10000);
                       await pigPetAddFood(item.sku);
@@ -136,7 +136,7 @@ function pigPetAddFood(skuId) {
       "source": 0,
       "channelLV": "yqs",
       "riskDeviceParam": "{}",
-      "t": 1605073588888,
+      "t": Date.now(),
       skuId,
       "category": "1001"
     }
@@ -147,7 +147,7 @@ function pigPetAddFood(skuId) {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            // console.log(data)
+            console.log(`喂食结果：${data}`)
             JSON.parse(data);
           } else {
             console.log(`京东服务器返回空数据`)
@@ -227,7 +227,7 @@ function pigPetLotteryIndex() {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            console.log(data)
+            // console.log(data)
             data = JSON.parse(data);
             if (data.resultCode === 0) {
               if (data.resultData.resultCode === 0) {
@@ -269,13 +269,13 @@ function pigPetLotteryPlay() {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            console.log(data)
+            // console.log(data)
             data = JSON.parse(data);
             if (data.resultCode === 0) {
               if (data.resultData.resultCode === 0) {
                 if (data.resultData.resultData) {
                   // console.log(`当前大转盘剩余免费抽奖次数：：${data.resultData.resultData.currentCount}`);
-                  $.currentCount = data.resultData.resultData.currentCount;
+                  $.currentCount = data.resultData.resultData.currentCount;//抽奖后剩余的抽奖次数
                 }
               } else {
                 console.log(`其他情况：${JSON.stringify(data)}`)
