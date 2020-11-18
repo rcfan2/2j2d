@@ -216,7 +216,7 @@ function downloadUrl(url = 'https://raw.githubusercontent.com/NobyDa/Script/mast
 }
 function requireConfig() {
   return new Promise(resolve => {
-    const file = 'jd_bean_sign.js';
+    const file = 'src/scripts/jd_bean_sign.js';
     fs.access(file, fs.constants.W_OK, (err) => {
       resultPath = err ? '/tmp/result.txt' : resultPath;
       JD_DailyBonusPath = err ? '/tmp/JD_DailyBonus.js' : JD_DailyBonusPath;
