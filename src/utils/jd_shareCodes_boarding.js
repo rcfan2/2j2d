@@ -1,5 +1,7 @@
 // 京东助力码上车
 const BASE_BOARDING_URL = 'http://api.turinglabs.net/api/v1/jd/@type/create/@shareCode'
+const TIMEOUT = 2000
+const moment = require('moment')
 
 const {Env} = require('./Env')
 const $ = new Env('助力码上车')
@@ -9,7 +11,7 @@ const {shareCodes} = require('./ShareCode')
 const shareCodeMap = {
   bean: shareCodes.map(it => it.plantBean),
   farm: shareCodes.map(it => it.fruits),
-  pet: shareCodes.map(it => it.pet),
+  pet: shareCodes.map(it => it.pet)
 }
 
 const SHARE_CODE_DESC = {
@@ -49,11 +51,11 @@ const boarding = (shareCode, type) => {
       try {
         data = JSON.parse(data)
         if (data.code === 200) {
-          let msg = `助力码[${shareCode}]上车成功，上车时间：${new Date().Format("yyyy-MM-dd HH:mm:ss")}`
+          const msg = `助力码[${shareCode}]上车成功，上车时间：${moment().format('yyyy-MM-DD HH:mm:ss')}`
           $.msg(msg)
           message += `${msg}\n`
         } else {
-          let msg = `助力码[${shareCode}]上车失败，原因：${data.message}`
+          const msg = `助力码[${shareCode}]上车失败，原因：${data.message}`
           message += `${msg}\n`
           $.msg(msg)
         }
@@ -82,6 +84,9 @@ let message = ''
       for (let j = 0; j < shareCodes.length; j++) {
         let shareCode = shareCodes[j]
         await boarding(shareCode, type)
+        console.log('等待2s。。。')
+        // 延时2s
+        setTimeout(__ => __, TIMEOUT)
       }
       await notify.sendNotify(title, message)
     }
