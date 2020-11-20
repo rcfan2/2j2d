@@ -76,12 +76,10 @@ async function jd_moneyTree() {
   await sell();
   await myWealth();
   await stealFriendFruit()
-  await msgControl();
 
   $.log(`\n${message}\n`);
   if (!jdNotify || jdNotify === 'false') {
     $.msg($.name, subTitle, message);
-    $.setdata('0', $.treeMsgTime);
   }
 }
 
