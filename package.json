@@ -29,6 +29,7 @@
     "jd_unsubscribe": "node src/scripts/jd/jd_unsubscribe.js",
     "jd_necklace": "node src/scripts/jd/jd_necklace.js",
     "jd_baitiao": "node src/scripts/jd/jd_baitiao.js",
+    "jd_woHome": "node src/scripts/jd/jd_woHome.js",
     "jd_shareCodes_boarding": "node src/utils/jd_shareCodes_boarding.js",
     "shareCodesHelper": "node src/utils/shareCodesHelper.js",
     "lightning_checkin": "node src/scripts/checkin/lightning_checkin.js",
