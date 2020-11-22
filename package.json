@@ -32,7 +32,7 @@
     "shareCodesHelper": "node src/utils/shareCodesHelper.js",
     "lightning_checkin": "node src/scripts/checkin/lightning_checkin.js",
     "j.mr_checkin": "node src/scripts/checkin/j.mr_checkin.js",
-    "v2ex_checkin": "node src/scripts/checkin/v2ex_checkin.js"
+    "v2ex_checkin": "node src/scripts/checkin/v2ex_checkin.js",
   },
   "repository": {
     "type": "git",
