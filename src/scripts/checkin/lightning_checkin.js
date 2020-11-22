@@ -1,4 +1,4 @@
-// 闪电签到
+// 签到
 // https://freemycloud.pw
 // let cookie = process.env.FREE_MY_CLOUD_COOKIE;
 const HOST_NAME = 'https://freemycloud.pw'
@@ -12,7 +12,7 @@ if (process.env.FREE_MY_CLOUD_USERNAME && process.env.FREE_MY_CLOUD_PASSWORD) {
   usernames = process.env.FREE_MY_CLOUD_USERNAME.split('&')
   passwords = process.env.FREE_MY_CLOUD_PASSWORD.split('&')
 } else {
-  console.log('您未提供闪电账号及密码，即将退出签到')
+  console.log('您未提供账号及密码，即将退出签到')
   return
 }
 
@@ -44,14 +44,13 @@ const login = (username, password) => {
     $.post(option, (err, resp, data) => {
       try {
         if (err) {
-          console.log('\n闪电登录失败')
         } else {
           data = JSON.parse(data)
           let ret = data.ret;
           if (data.ret === 1) {
             data = resp.headers['set-cookie']
           } else {
-            console.log(`\n闪电登录失败 --> ${data.msg}`)
+            $.message = `\n登录失败 --> ${data.msg}`
           }
         }
       } catch (e) {
@@ -80,7 +79,7 @@ const checkin = (cookies) => {
     $.post(option, (err, resp, data) => {
       try {
         if (err) {
-          console.log('\n闪电签到失败')
+          $.message += '\n签到失败'
         } else {
           data = JSON.parse(data);
         }
@@ -93,8 +92,6 @@ const checkin = (cookies) => {
   })
 }
 
-let summary = ''
-let text = ''
 for (let i = 0; i < usernames.length; i++) {
   let username = usernames[i]
   let password = passwords[i]
@@ -102,17 +99,11 @@ for (let i = 0; i < usernames.length; i++) {
     checkin(cookies)
       .then(data => {
         if (data.ret === 1) {
-          let msg = `【${username}】闪电签到成功 --> ${data.msg}`
-          console.log(`\n${msg}`)
-          summary = `${msg}`
-          text = data.msg
+          $.message = `【${username}】签到成功 --> ${data.msg}`
         } else {
-          let msg = `【${username}】闪电签到失败 --> ${data.msg}`
-          console.log(`\n${msg}`)
-          summary = `${msg}`
-          text = data.msg
+          $.message = `【${username}】签到失败 --> ${data.msg}`
         }
-        notify.sendNotify(text, summary).then(() => {
+        notify.sendNotify(`${$.name}-`, $.message).then(() => {
         })
       })
   })
