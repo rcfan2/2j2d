@@ -23,7 +23,7 @@ cron "10 0,20 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_sc
 点点券 = type=cron,cronexp="10 0,20 * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_necklace.js
 
 ============小火箭=========
-东东农场 = type=cron,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_necklace.js, cronexpr="10 0,20 * * *", timeout=200, enable=true
+点点券 = type=cron,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_necklace.js, cronexpr="10 0,20 * * *", timeout=200, enable=true
  */
 const { Env } = require('../../utils/Env')
 const $ = new Env('点点券')
@@ -33,7 +33,8 @@ const notify = require('../../utils/sendNotify')
 const jdCookieNode = require('../../utils/jdCookie.js')
 
 // IOS等用户直接用NobyDa的jd cookie
-const cookiesArr = []; let cookie = ''
+const cookiesArr = []
+let cookie = ''
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -270,7 +271,7 @@ function taskPostUrl(function_id, body = {}) {
 }
 
 function TotalBean() {
-  return new Promise(async resolve => {
+  return new Promise(resolve => {
     const options = {
       'url': `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
       'headers': {

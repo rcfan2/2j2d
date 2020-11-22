@@ -6,7 +6,7 @@ name: 东东小窝
 on:
   workflow_dispatch:
   schedule:
-    - cron: '11 0 * * *'
+    - cron: '16 0 * * *'
   watch:
     types: started
   repository_dispatch:
@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【东东小窝】'
         run: |
-          npm run jd_woHome
+          npm run jd_small_home
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
