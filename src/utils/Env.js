@@ -25,7 +25,16 @@ function Env(t, e) {
 
   return new class {
     constructor(t, e) {
-      this.name = t, this.http = new s(this), this.data = null, this.dataFile = "box.dat", this.logs = [], this.isMute = !1, this.logSeparator = "\n", this.startTime = (new Date).getTime(), Object.assign(this, e), this.log("", `\ud83d\udd14${this.name}, \u5f00\u59cb!`)
+      this.name = t
+      this.http = new s(this)
+      this.data = null
+      this.dataFile = "box.dat"
+      this.logs = []
+      this.isMute = !1
+      this.logSeparator = "\n"
+      this.startTime = (new Date).getTime()
+      Object.assign(this, e)
+      this.log("", `\ud83d\udd14${this.name}, \u5f00\u59cb!`)
     }
 
     isNode() {
@@ -47,7 +56,7 @@ function Env(t, e) {
     toObj(t, e = null) {
       try {
         return JSON.parse(t)
-      } catch {
+      } catch (e) {
         return e
       }
     }
@@ -55,7 +64,7 @@ function Env(t, e) {
     toStr(t, e = null) {
       try {
         return JSON.stringify(t)
-      } catch {
+      } catch (e) {
         return e
       }
     }
@@ -65,7 +74,7 @@ function Env(t, e) {
       const i = this.getdata(t);
       if (i) try {
         s = JSON.parse(this.getdata(t))
-      } catch {
+      } catch (e) {
       }
       return s
     }
@@ -73,7 +82,7 @@ function Env(t, e) {
     setjson(t, e) {
       try {
         return this.setdata(JSON.stringify(t), e)
-      } catch {
+      } catch (e) {
         return !1
       }
     }

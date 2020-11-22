@@ -20,7 +20,7 @@ const { Env } = require('../../utils/Env')
 const $ = new Env('取关京东店铺和商品')
 // Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : ''
-const notify = $.isNode() ? require('../../utils/sendNotify') : ''
+const notify = require('../../utils/sendNotify')
 
 // IOS等用户直接用NobyDa的jd cookie
 const cookiesArr = []; let cookie = ''

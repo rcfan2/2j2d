@@ -16,7 +16,7 @@ cron "0 0 0 * * *" script-path=https://raw.githubusercontent.com/lxk0301/scripts
  */
 const { Env } = require('../../utils/Env')
 const $ = new Env('京小超兑换奖品')
-const notify = $.isNode() ? require('../../utils/sendNotify') : ''
+const notify = require('../../utils/sendNotify')
 // Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : ''
 let coinToBeans = $.getdata('coinToBeans') || 20 // 兑换多少数量的京豆（20或者1000），0表示不兑换，默认兑换20京豆，如需兑换把0改成20或者1000，或者'商品名称'(商品名称放到单引号内)即可

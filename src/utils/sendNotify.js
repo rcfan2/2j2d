@@ -1,6 +1,7 @@
 const { Env } = require('../utils/Env')
-const tunnel = require('tunnel')
-const $ = new Env()
+// TG代理
+// const tunnel = require('tunnel')
+const $ = new Env('消息通知服务')
 
 // =======================================telegram机器人通知设置区域===========================================
 // 此处填你telegram bot 的Token，例如：1077xxx4424:AAFjv0FcqxxxxxxgEMGfi22B4yh15R5uw
@@ -31,17 +32,17 @@ function tgBotNotify(text, desp) {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       }
-      if (process.env.TG_PROXY_HOST && process.env.TG_PROXY_PORT) {
-        const agent = {
-          https: tunnel.httpsOverHttp({
-            proxy: {
-              host: process.env.TG_PROXY_HOST,
-              port: process.env.TG_PROXY_PORT * 1
-            }
-          })
-        }
-        Object.assign(options, { agent })
-      }
+      // if (process.env.TG_PROXY_HOST && process.env.TG_PROXY_PORT) {
+      //   const agent = {
+      //     https: tunnel.httpsOverHttp({
+      //       proxy: {
+      //         host: process.env.TG_PROXY_HOST,
+      //         port: process.env.TG_PROXY_PORT * 1
+      //       }
+      //     })
+      //   }
+      //   Object.assign(options, { agent })
+      // }
       $.post(options, (err, resp, data) => {
         try {
           if (err) {

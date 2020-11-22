@@ -49,8 +49,7 @@
     "http-server": "^0.12.3",
     "moment": "^2.29.1",
     "request": "^2.88.2",
-    "tough-cookie": "^4.0.0",
-    "tunnel": "0.0.6"
+    "tough-cookie": "^4.0.0"
   },
   "devDependencies": {
     "eslint": "^7.13.0"

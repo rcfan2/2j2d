@@ -28,7 +28,7 @@ cron "10 0,20 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_sc
 const { Env } = require('../../utils/Env')
 const $ = new Env('点点券')
 
-const notify = $.isNode() ? require('../../utils/sendNotify') : ''
+const notify = require('../../utils/sendNotify')
 // Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('../../utils/jdCookie.js') : ''
 

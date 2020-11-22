@@ -18,7 +18,7 @@ const $ = new Env('金融养猪')
 const cookiesArr = []; let cookie = ''
 const JD_API_HOST = 'https://ms.jr.jd.com/gw/generic/uc/h5/m'
 const MISSION_BASE_API = `https://ms.jr.jd.com/gw/generic/mission/h5/m`
-const notify = $.isNode() ? require('../../utils/sendNotify') : ''
+const notify = require('../../utils/sendNotify')
 // Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : ''
 if ($.isNode()) {

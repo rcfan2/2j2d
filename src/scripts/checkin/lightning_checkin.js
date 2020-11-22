@@ -4,7 +4,7 @@
 const HOST_NAME = 'https://freemycloud.pw'
 const {Env} = require('../../utils/Env')
 const $ = new Env('闪电签到');
-const notify = $.isNode() ? require('../../utils/sendNotify') : '';
+const notify = require('../../utils/sendNotify');
 
 let usernames = []
 let passwords = []
