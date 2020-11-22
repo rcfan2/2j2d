@@ -17,7 +17,7 @@ cron "11 9 * * *" script-path=https://raw.githubusercontent.com/yangtingxiao/Qua
 const { Env } = require('../../utils/Env')
 const $ = new Env('京东排行榜')
 // Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : ''
+const jdCookieNode = require('../../utils/jdCookie')
 const needSum = false // 是否需要显示汇总
 const STRSPLIT = '|'
 // IOS等用户直接用NobyDa的jd cookie

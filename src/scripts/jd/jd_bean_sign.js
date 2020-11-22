@@ -11,7 +11,7 @@ const { Env } = require('../../utils/Env')
 const $ = new Env('京豆签到')
 const notify = require('../../utils/sendNotify')
 // Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : ''
+const jdCookieNode = require('../../utils/jdCookie')
 const exec = require('child_process').execSync
 const fs = require('fs')
 const download = require('download')

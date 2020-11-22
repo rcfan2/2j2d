@@ -46,7 +46,7 @@ let run_pins = ['jd_6cd93e613b0e5,被折叠的记忆33,jd_704a2e5e28a66,jd_45a6b
 // $.LKYLToken = '76fe7794c475c18711e3b47185f114b5' || $.getdata('jdJoyRunToken');
 $.LKYLToken = $.getdata('jdJoyRunToken')
 // Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : ''
+const jdCookieNode = require('../../utils/jdCookie')
 // IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = []; let cookie = ''
 const headers = {

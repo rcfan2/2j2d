@@ -483,7 +483,7 @@ function requireConfig() {
     console.log('开始获取东东萌宠配置文件\n')
     notify = require('../../utils/sendNotify')
     // Node.js用户请在jdCookie.js处填写京东ck;
-    const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : ''
+    const jdCookieNode = require('../../utils/jdCookie')
     const jdPetShareCodes = $.isNode() ? require('./jdPetShareCodes.js') : ''
     // IOS等用户直接用NobyDa的jd cookie
     if ($.isNode()) {
