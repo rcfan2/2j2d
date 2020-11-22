@@ -3,10 +3,10 @@ const BASE_BOARDING_URL = 'http://api.turinglabs.net/api/v1/jd/@type/create/@sha
 const TIMEOUT = 2000
 const moment = require('moment')
 
-const {Env} = require('./Env')
+const { Env } = require('./Env')
 const $ = new Env('助力码上车')
 const notify = $.isNode() ? require('./sendNotify') : ''
-const {shareCodes} = require('./ShareCode')
+const { shareCodes } = require('./ShareCode')
 
 const shareCodeMap = {
   bean: shareCodes.map(it => it.plantBean),
@@ -71,18 +71,18 @@ const boarding = (shareCode, type) => {
 let title = ''
 let message = ''
 
-!(async () => {
+!(async() => {
   const types = Object.keys(shareCodeMap)
   for (let i = 0; i < types.length; i++) {
     const type = types[i]
     const taskName = SHARE_CODE_DESC[type]
-    let shareCodes = shareCodeMap[type]
+    const shareCodes = shareCodeMap[type]
     if (shareCodes) {
       $.msg(`您提供了[${taskName}]的${shareCodes.length}个助力码，开始上车`)
       title = `${taskName} - \n`
       message = ''
       for (let j = 0; j < shareCodes.length; j++) {
-        let shareCode = shareCodes[j]
+        const shareCode = shareCodes[j]
         await boarding(shareCode, type)
         console.log('等待2s。。。')
         // 延时2s
@@ -96,5 +96,5 @@ let message = ''
     $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
   })
   .finally(() => {
-    $.done();
+    $.done()
   })

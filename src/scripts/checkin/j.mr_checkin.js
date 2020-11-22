@@ -101,12 +101,12 @@ for (let i = 0; i < usernames.length; i++) {
     checkin(cookies)
       .then(data => {
         if (data.ret === 1) {
-          let msg = `【${username}】闪电签到成功 --> ${data.msg}，当前剩余流量：${data.traffic}`
+          let msg = `【${username}】签到成功 --> ${data.msg}，当前剩余流量：${data.traffic}`
           console.log(`\n${msg}`)
           summary = `${msg}`
           text = data.msg
         } else {
-          let msg = `【${username}】闪电签到失败 --> ${data.msg}`
+          let msg = `【${username}】签到失败 --> ${data.msg}`
           console.log(`\n${msg}`)
           summary = `${msg}`
           text = data.msg

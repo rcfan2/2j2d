@@ -9,53 +9,55 @@
 定时收鹅蛋,兑换金币
 先这样子吧
  */
-//0 */3 * * *
-const {Env} = require('../../utils/Env')
-const $ = new Env('天天提鹅');
-let cookiesArr = [], cookie = '';
-const JD_API_HOST = 'https://ms.jr.jd.com/gw/generic/uc/h5/m';
-const notify = $.isNode() ? require('../../utils/sendNotify') : '';
-//Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../../utils/jdCookie.js') : '';
+// 0 */3 * * *
+const { Env } = require('../../utils/Env')
+const $ = new Env('天天提鹅')
+const cookiesArr = []; let cookie = ''
+const JD_API_HOST = 'https://ms.jr.jd.com/gw/generic/uc/h5/m'
+const notify = $.isNode() ? require('../../utils/sendNotify') : ''
+// Node.js用户请在jdCookie.js处填写京东ck;
+const jdCookieNode = $.isNode() ? require('../../utils/jdCookie.js') : ''
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
   })
-  if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
-  };
+  if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') {
+    console.log = () => {
+    }
+  }
 } else {
   cookiesArr.push(...[$.getdata('CookieJD'), $.getdata('CookieJD2')])
 }
-!(async () => {
+!(async() => {
   if (!cookiesArr[0]) {
-    $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {"open-url": "https://bean.m.jd.com/"});
-    return;
+    $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', { 'open-url': 'https://bean.m.jd.com/' })
+    return
   }
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
-      cookie = cookiesArr[i];
+      cookie = cookiesArr[i]
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
-      $.index = i + 1;
-      $.isLogin = true;
-      $.nickName = '';
-      await TotalBean();
-      console.log(`\n***********开始【京东账号${$.index}】${$.nickName || $.UserName}********\n`);
+      $.index = i + 1
+      $.isLogin = true
+      $.nickName = ''
+      await TotalBean()
+      console.log(`\n***********开始【京东账号${$.index}】${$.nickName || $.UserName}********\n`)
       if (!$.isLogin) {
-        $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/`, {"open-url": "https://bean.m.jd.com/"});
+        $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/`, { 'open-url': 'https://bean.m.jd.com/' })
 
         if ($.isNode()) {
-          await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
+          await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`)
         } else {
-          $.setdata('', `CookieJD${i ? i + 1 : ""}`);//cookie失效，故清空cookie。$.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。
+          $.setdata('', `CookieJD${i ? i + 1 : ''}`)// cookie失效，故清空cookie。$.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。
         }
         continue
       }
-      message = '';
-      subTitle = '';
-      goodsUrl = '';
-      taskInfoKey = [];
-      option = {};
-      await jdDailyEgg();
+      message = ''
+      subTitle = ''
+      goodsUrl = ''
+      taskInfoKey = []
+      option = {}
+      await jdDailyEgg()
     }
   }
 })()
@@ -63,21 +65,21 @@ if ($.isNode()) {
     $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
   })
   .finally(() => {
-    $.done();
+    $.done()
   })
 
 async function jdDailyEgg() {
   await toDailyHome()
   await toWithdraw()
-  await toGoldExchange();
+  await toGoldExchange()
 }
 
 function toGoldExchange() {
   return new Promise(async resolve => {
     const body = {
-      "timeSign": 0,
-      "environment": "jrApp",
-      "riskDeviceInfo": "{}"
+      'timeSign': 0,
+      'environment': 'jrApp',
+      'riskDeviceInfo': '{}'
     }
     $.post(taskUrl('toGoldExchange', body), (err, resp, data) => {
       try {
@@ -87,11 +89,11 @@ function toGoldExchange() {
         } else {
           if (data) {
             // console.log(data)
-            data = JSON.parse(data);
+            data = JSON.parse(data)
             if (data.resultCode === 0) {
               if (data.resultData.code === '0000') {
-                console.log(`兑换金币:${data.resultData.data.cnumber}`);
-                console.log(`当前总金币:${data.resultData.data.goldTotal}`);
+                console.log(`兑换金币:${data.resultData.data.cnumber}`)
+                console.log(`当前总金币:${data.resultData.data.goldTotal}`)
               } else if (data.resultData.code !== '0000') {
                 console.log(`兑换金币失败:${data.resultData.msg}`)
               }
@@ -103,7 +105,7 @@ function toGoldExchange() {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
@@ -112,9 +114,9 @@ function toGoldExchange() {
 function toWithdraw() {
   return new Promise(async resolve => {
     const body = {
-      "timeSign": 0,
-      "environment": "jrApp",
-      "riskDeviceInfo": "{}"
+      'timeSign': 0,
+      'environment': 'jrApp',
+      'riskDeviceInfo': '{}'
     }
     $.post(taskUrl('toWithdraw', body), (err, resp, data) => {
       try {
@@ -124,11 +126,11 @@ function toWithdraw() {
         } else {
           if (data) {
             // console.log(data)
-            data = JSON.parse(data);
+            data = JSON.parse(data)
             if (data.resultCode === 0) {
               if (data.resultData.code === '0000') {
-                console.log(`收取鹅蛋:${data.resultData.data.eggTotal}个成功`);
-                console.log(`当前总鹅蛋数量:${data.resultData.data.userLevelDto.userHaveEggNum}`);
+                console.log(`收取鹅蛋:${data.resultData.data.eggTotal}个成功`)
+                console.log(`当前总鹅蛋数量:${data.resultData.data.userLevelDto.userHaveEggNum}`)
               } else if (data.resultData.code !== '0000') {
                 console.log(`收取鹅蛋失败:${data.resultData.msg}`)
               }
@@ -140,7 +142,7 @@ function toWithdraw() {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
@@ -149,9 +151,9 @@ function toWithdraw() {
 function toDailyHome() {
   return new Promise(async resolve => {
     const body = {
-      "timeSign": 0,
-      "environment": "jrApp",
-      "riskDeviceInfo": "{}"
+      'timeSign': 0,
+      'environment': 'jrApp',
+      'riskDeviceInfo': '{}'
     }
     $.post(taskUrl('toDailyHome', body), (err, resp, data) => {
       try {
@@ -161,7 +163,7 @@ function toDailyHome() {
         } else {
           if (data) {
             // console.log(data)
-            data = JSON.parse(data);
+            data = JSON.parse(data)
           } else {
             console.log(`京东服务器返回空数据`)
           }
@@ -169,7 +171,7 @@ function toDailyHome() {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
@@ -178,16 +180,16 @@ function toDailyHome() {
 function TotalBean() {
   return new Promise(async resolve => {
     const options = {
-      "url": `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
-      "headers": {
-        "Accept": "application/json,text/plain, */*",
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Accept-Language": "zh-cn",
-        "Connection": "keep-alive",
-        "Cookie": cookie,
-        "Referer": "https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2",
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1"
+      'url': `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
+      'headers': {
+        'Accept': 'application/json,text/plain, */*',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'zh-cn',
+        'Connection': 'keep-alive',
+        'Cookie': cookie,
+        'Referer': 'https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2',
+        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1'
       }
     }
     $.post(options, (err, resp, data) => {
@@ -197,12 +199,12 @@ function TotalBean() {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            data = JSON.parse(data);
+            data = JSON.parse(data)
             if (data['retcode'] === 13) {
-              $.isLogin = false; //cookie过期
+              $.isLogin = false // cookie过期
               return
             }
-            $.nickName = data['base'].nickname;
+            $.nickName = data['base'].nickname
           } else {
             console.log(`京东服务器返回空数据`)
           }
@@ -210,7 +212,7 @@ function TotalBean() {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })

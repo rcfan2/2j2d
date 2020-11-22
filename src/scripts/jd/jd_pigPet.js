@@ -13,47 +13,49 @@
 完成分享任务得猪粮
 12 * * * *
  */
-const {Env} = require('../../utils/Env')
-const $ = new Env('金融养猪');
-let cookiesArr = [], cookie = '';
-const JD_API_HOST = 'https://ms.jr.jd.com/gw/generic/uc/h5/m';
-const MISSION_BASE_API = `https://ms.jr.jd.com/gw/generic/mission/h5/m`;
-const notify = $.isNode() ? require('../../utils/sendNotify') : '';
-//Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : '';
+const { Env } = require('../../utils/Env')
+const $ = new Env('金融养猪')
+const cookiesArr = []; let cookie = ''
+const JD_API_HOST = 'https://ms.jr.jd.com/gw/generic/uc/h5/m'
+const MISSION_BASE_API = `https://ms.jr.jd.com/gw/generic/mission/h5/m`
+const notify = $.isNode() ? require('../../utils/sendNotify') : ''
+// Node.js用户请在jdCookie.js处填写京东ck;
+const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : ''
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
   })
-  if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
-  };
+  if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') {
+    console.log = () => {
+    }
+  }
 } else {
   cookiesArr.push(...[$.getdata('CookieJD'), $.getdata('CookieJD2')])
 }
-!(async () => {
+!(async() => {
   if (!cookiesArr[0]) {
-    $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {"open-url": "https://bean.m.jd.com/"});
-    return;
+    $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', { 'open-url': 'https://bean.m.jd.com/' })
+    return
   }
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
-      cookie = cookiesArr[i];
+      cookie = cookiesArr[i]
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
-      $.index = i + 1;
-      $.isLogin = true;
-      $.nickName = '';
-      await TotalBean();
-      console.log(`\n开始【京东账号${$.index}】${$.nickName || $.UserName}\n`);
+      $.index = i + 1
+      $.isLogin = true
+      $.nickName = ''
+      await TotalBean()
+      console.log(`\n开始【京东账号${$.index}】${$.nickName || $.UserName}\n`)
       if (!$.isLogin) {
-        $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/`, {"open-url": "https://bean.m.jd.com/"});
+        $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/`, { 'open-url': 'https://bean.m.jd.com/' })
         if ($.isNode()) {
-          await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
+          await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`)
         } else {
-          $.setdata('', `CookieJD${i ? i + 1 : ""}`);//cookie失效，故清空cookie。$.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。
+          $.setdata('', `CookieJD${i ? i + 1 : ''}`)// cookie失效，故清空cookie。$.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。
         }
         continue
       }
-      await jdPigPet();
+      await jdPigPet()
     }
   }
 })()
@@ -61,32 +63,32 @@ if ($.isNode()) {
     $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
   })
   .finally(() => {
-    $.done();
+    $.done()
   })
 
 async function jdPigPet() {
-  await pigPetLogin();
+  await pigPetLogin()
   if (!$.hasPig) return
-  await pigPetSignIndex();
-  await pigPetSign();
-  await pigPetOpenBox();
-  await pigPetLotteryIndex();
-  await pigPetLottery();
-  await pigPetMissionList();
-  await missions();
-  await pigPetUserBag();
+  await pigPetSignIndex()
+  await pigPetSign()
+  await pigPetOpenBox()
+  await pigPetLotteryIndex()
+  await pigPetLottery()
+  await pigPetMissionList()
+  await missions()
+  await pigPetUserBag()
 }
 
 async function pigPetLottery() {
   if ($.currentCount > 0) {
     for (let i = 0; i < $.currentCount; i++) {
-      await pigPetLotteryPlay();
+      await pigPetLotteryPlay()
     }
   }
 }
 async function pigPetSign() {
   if (!$.sign) {
-    await pigPetSignOne();
+    await pigPetSignOne()
   } else {
     console.log(`第${$.no}天已签到\n`)
   }
@@ -94,10 +96,10 @@ async function pigPetSign() {
 function pigPetSignOne() {
   return new Promise(async resolve => {
     const body = {
-      "source":2,
-      "channelLV":"juheye",
-      "riskDeviceParam": "{}",
-      "no": $.no
+      'source': 2,
+      'channelLV': 'juheye',
+      'riskDeviceParam': '{}',
+      'no': $.no
     }
     $.post(taskUrl('pigPetSignOne', body), (err, resp, data) => {
       try {
@@ -106,7 +108,7 @@ function pigPetSignOne() {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            console.log('签到结果',data)
+            console.log('签到结果', data)
             // data = JSON.parse(data);
             // if (data.resultCode === 0) {
             //   if (data.resultData.resultCode === 0) {
@@ -126,42 +128,42 @@ function pigPetSignOne() {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
 }
-//查询背包食物
+// 查询背包食物
 function pigPetUserBag() {
   return new Promise(async resolve => {
     const body = {
-      "source": 0,
-      "channelLV": "yqs",
-      "riskDeviceParam": "{}",
-      "t": Date.now(),
-      "skuId": "1001003004",
-      "category": "1001"
-    };
-    $.post(taskUrl('pigPetUserBag', body), async (err, resp, data) => {
+      'source': 0,
+      'channelLV': 'yqs',
+      'riskDeviceParam': '{}',
+      't': Date.now(),
+      'skuId': '1001003004',
+      'category': '1001'
+    }
+    $.post(taskUrl('pigPetUserBag', body), async(err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            data = JSON.parse(data);
+            data = JSON.parse(data)
             if (data.resultCode === 0) {
               if (data.resultData.resultCode === 0) {
                 if (data.resultData.resultData && data.resultData.resultData.goods) {
-                  console.log(`\n食物名称     数量`);
-                  for (let item of data.resultData.resultData.goods) {
-                    console.log(`${item.goodsName}      ${item.count}g`);
+                  console.log(`\n食物名称     数量`)
+                  for (const item of data.resultData.resultData.goods) {
+                    console.log(`${item.goodsName}      ${item.count}g`)
                   }
-                  for (let item of data.resultData.resultData.goods) {
+                  for (const item of data.resultData.resultData.goods) {
                     if (item.count >= 20) {
                       console.log(`10秒后开始喂食${item.goodsName}，当前数量为${item.count}g`)
-                      await $.wait(10000);
-                      await pigPetAddFood(item.sku);
+                      await $.wait(10000)
+                      await pigPetAddFood(item.sku)
                     }
                   }
                 } else {
@@ -178,24 +180,24 @@ function pigPetUserBag() {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
 }
 
-//喂食
+// 喂食
 function pigPetAddFood(skuId) {
   return new Promise(async resolve => {
     console.log(`skuId::::${skuId}`)
     const body = {
-      "source": 0,
-      "channelLV": "yqs",
-      "riskDeviceParam": "{}",
-      "skuId":
+      'source': 0,
+      'channelLV': 'yqs',
+      'riskDeviceParam': '{}',
+      'skuId':
       skuId.toString(),
-      "category": "1001"
-    ,
+      'category': '1001'
+
     }
     // const body = {
     //   "source": 2,
@@ -211,7 +213,7 @@ function pigPetAddFood(skuId) {
         } else {
           if (data) {
             console.log(`喂食结果：${data}`)
-            JSON.parse(data);
+            JSON.parse(data)
           } else {
             console.log(`京东服务器返回空数据`)
           }
@@ -219,7 +221,7 @@ function pigPetAddFood(skuId) {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
@@ -227,21 +229,21 @@ function pigPetAddFood(skuId) {
 function pigPetLogin() {
   return new Promise(async resolve => {
     const body = {
-      "source":2,
-      "channelLV":"juheye",
-      "riskDeviceParam":"{}",
+      'source': 2,
+      'channelLV': 'juheye',
+      'riskDeviceParam': '{}'
     }
-    $.post(taskUrl('pigPetLogin', body), async (err, resp, data) => {
+    $.post(taskUrl('pigPetLogin', body), async(err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            data = JSON.parse(data);
+            data = JSON.parse(data)
             if (data.resultCode === 0) {
               if (data.resultData.resultCode === 0) {
-                $.hasPig = data.resultData.resultData.hasPig;
+                $.hasPig = data.resultData.resultData.hasPig
                 if (!$.hasPig) {
                   console.log(`\n京东账号${$.index} ${$.nickName} 未开启养猪活动,请手动去京东金融APP开启此活动\n`)
                 }
@@ -256,24 +258,24 @@ function pigPetLogin() {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
 }
 
-//开宝箱
+// 开宝箱
 function pigPetOpenBox() {
   return new Promise(async resolve => {
     const body = {
-      "source": 0,
-      "channelLV": "yqs",
-      "riskDeviceParam": "{}",
-      "no": 5,
-      "category": "1001",
-      "t": Date.now()
+      'source': 0,
+      'channelLV': 'yqs',
+      'riskDeviceParam': '{}',
+      'no': 5,
+      'category': '1001',
+      't': Date.now()
     }
-    $.post(taskUrl('pigPetOpenBox', body), async (err, resp, data) => {
+    $.post(taskUrl('pigPetOpenBox', body), async(err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
@@ -281,17 +283,16 @@ function pigPetOpenBox() {
         } else {
           if (data) {
             // console.log(data)
-            data = JSON.parse(data);
+            data = JSON.parse(data)
             if (data.resultCode === 0) {
               if (data.resultData.resultCode === 0) {
                 if (data.resultData.resultData && data.resultData.resultData.award) {
-                  console.log(`开宝箱获得${data.resultData.resultData.award.content}，数量：${data.resultData.resultData.award.count}`);
-
+                  console.log(`开宝箱获得${data.resultData.resultData.award.content}，数量：${data.resultData.resultData.award.count}`)
                 } else {
                   console.log(`开宝箱暂无奖励`)
                 }
-                await $.wait(2000);
-                await pigPetOpenBox();
+                await $.wait(2000)
+                await pigPetOpenBox()
               } else if (data.resultData.resultCode === 420) {
                 console.log(`开宝箱失败:${data.resultData.resultMsg}`)
               } else {
@@ -305,20 +306,20 @@ function pigPetOpenBox() {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
 }
 
-//查询大转盘的次数
+// 查询大转盘的次数
 function pigPetLotteryIndex() {
-  $.currentCount = 0;
+  $.currentCount = 0
   return new Promise(async resolve => {
     const body = {
-      "source": 0,
-      "channelLV": "juheye",
-      "riskDeviceParam": "{}"
+      'source': 0,
+      'channelLV': 'juheye',
+      'riskDeviceParam': '{}'
     }
     $.post(taskUrl('pigPetLotteryIndex', body), (err, resp, data) => {
       try {
@@ -328,12 +329,12 @@ function pigPetLotteryIndex() {
         } else {
           if (data) {
             // console.log(data)
-            data = JSON.parse(data);
+            data = JSON.parse(data)
             if (data.resultCode === 0) {
               if (data.resultData.resultCode === 0) {
                 if (data.resultData.resultData) {
-                  console.log(`当前大转盘剩余免费抽奖次数：：${data.resultData.resultData.currentCount}`);
-                  $.currentCount = data.resultData.resultData.currentCount;
+                  console.log(`当前大转盘剩余免费抽奖次数：：${data.resultData.resultData.currentCount}`)
+                  $.currentCount = data.resultData.resultData.currentCount
                 }
               } else {
                 console.log(`查询大转盘的次数：${JSON.stringify(data)}`)
@@ -346,19 +347,19 @@ function pigPetLotteryIndex() {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
 }
-//查询签到情况
+// 查询签到情况
 function pigPetSignIndex() {
-  $.sign = true;
+  $.sign = true
   return new Promise(async resolve => {
     const body = {
-      "source":2,
-      "channelLV":"juheye",
-      "riskDeviceParam": "{}"
+      'source': 2,
+      'channelLV': 'juheye',
+      'riskDeviceParam': '{}'
     }
     $.post(taskUrl('pigPetSignIndex', body), (err, resp, data) => {
       try {
@@ -368,12 +369,12 @@ function pigPetSignIndex() {
         } else {
           if (data) {
             // console.log(data)
-            data = JSON.parse(data);
+            data = JSON.parse(data)
             if (data.resultCode === 0) {
               if (data.resultData.resultCode === 0) {
                 if (data.resultData.resultData) {
-                  $.sign = data.resultData.resultData.sign;
-                  $.no = data.resultData.resultData.today;
+                  $.sign = data.resultData.resultData.sign
+                  $.no = data.resultData.resultData.today
                 }
               } else {
                 console.log(`查询签到情况异常：${JSON.stringify(data)}`)
@@ -386,21 +387,21 @@ function pigPetSignIndex() {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
 }
 
-//抽奖
+// 抽奖
 function pigPetLotteryPlay() {
   return new Promise(async resolve => {
     const body = {
-      "source": 0,
-      "channelLV": "juheye",
-      "riskDeviceParam": "{}",
-      "t": Date.now(),
-      "type": 0,
+      'source': 0,
+      'channelLV': 'juheye',
+      'riskDeviceParam': '{}',
+      't': Date.now(),
+      'type': 0
     }
     $.post(taskUrl('pigPetLotteryPlay', body), (err, resp, data) => {
       try {
@@ -410,12 +411,12 @@ function pigPetLotteryPlay() {
         } else {
           if (data) {
             // console.log(data)
-            data = JSON.parse(data);
+            data = JSON.parse(data)
             if (data.resultCode === 0) {
               if (data.resultData.resultCode === 0) {
                 if (data.resultData.resultData) {
                   // console.log(`当前大转盘剩余免费抽奖次数：：${data.resultData.resultData.currentCount}`);
-                  $.currentCount = data.resultData.resultData.currentCount;//抽奖后剩余的抽奖次数
+                  $.currentCount = data.resultData.resultData.currentCount// 抽奖后剩余的抽奖次数
                 }
               } else {
                 console.log(`其他情况：${JSON.stringify(data)}`)
@@ -428,24 +429,24 @@ function pigPetLotteryPlay() {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
 }
 async function missions() {
-  for (let item of $.missions) {
+  for (const item of $.missions) {
     if (item.status === 4) {
       console.log(`\n${item.missionName}任务已做完,开始领取奖励`)
-      await pigPetDoMission(item.mid);
-    } else if (item.status === 5){
+      await pigPetDoMission(item.mid)
+    } else if (item.status === 5) {
       console.log(`\n${item.missionName}已领取`)
-    } else if (item.status === 3){
+    } else if (item.status === 3) {
       console.log(`\n${item.missionName}未完成`)
       if (item.mid === 'CPD01') {
-        await pigPetDoMission(item.mid);
+        await pigPetDoMission(item.mid)
       } else {
-        //TODO
+        // TODO
         // await pigPetDoMission(item.mid);
         // await queryMissionReceiveAfterStatus(item.mid);
         // await finishReadMission(item.mid);
@@ -453,13 +454,13 @@ async function missions() {
     }
   }
 }
-//领取做完任务的奖品
+// 领取做完任务的奖品
 function pigPetDoMission(mid) {
   return new Promise(async resolve => {
     const body = {
-      "source":0,
-      "channelLV":"",
-      "riskDeviceParam":"{}",
+      'source': 0,
+      'channelLV': '',
+      'riskDeviceParam': '{}',
       mid
     }
     $.post(taskUrl('pigPetDoMission', body), (err, resp, data) => {
@@ -469,8 +470,8 @@ function pigPetDoMission(mid) {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            console.log('pigPetDoMission',data)
-            data = JSON.parse(data);
+            console.log('pigPetDoMission', data)
+            data = JSON.parse(data)
             if (data.resultCode === 0) {
               if (data.resultData.resultCode === 0) {
                 if (data.resultData.resultData) {
@@ -489,18 +490,18 @@ function pigPetDoMission(mid) {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
 }
-//查询任务列表
+// 查询任务列表
 function pigPetMissionList() {
   return new Promise(async resolve => {
     const body = {
-      "source":0,
-      "channelLV":"",
-      "riskDeviceParam":"{}",
+      'source': 0,
+      'channelLV': '',
+      'riskDeviceParam': '{}'
     }
     $.post(taskUrl('pigPetMissionList', body), (err, resp, data) => {
       try {
@@ -510,11 +511,11 @@ function pigPetMissionList() {
         } else {
           if (data) {
             // console.log(data)
-            data = JSON.parse(data);
+            data = JSON.parse(data)
             if (data.resultCode === 0) {
               if (data.resultData.resultCode === 0) {
                 if (data.resultData.resultData) {
-                  $.missions = data.resultData.resultData.missions;//抽奖后剩余的抽奖次数
+                  $.missions = data.resultData.resultData.missions// 抽奖后剩余的抽奖次数
                 }
               } else {
                 console.log(`其他情况：${JSON.stringify(data)}`)
@@ -527,26 +528,26 @@ function pigPetMissionList() {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
 }
 function queryMissionReceiveAfterStatus(missionId) {
   return new Promise(resolve => {
-    const body = {"missionId": missionId.toString()};
+    const body = { 'missionId': missionId.toString() }
     const options = {
-      "url": `${MISSION_BASE_API}/queryMissionReceiveAfterStatus?reqData=%7B%2522missionId%2522:%2522${Number(missionId)}%2522%7D`,
-      "headers": {
-        "Accept": "*/*",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Accept-Language": "zh-CN,zh;q=0.9",
-        "Connection": "keep-alive",
-        "Host": "ms.jr.jd.com",
-        "Cookie": cookie,
-        "Origin": "https://jdjoy.jd.com",
-        "Referer": "https://jdjoy.jd.com/",
-        "User-Agent": "jdapp;android;8.5.12;9;network/wifi;model/GM1910;addressid/1302541636;aid/ac31e03386ddbec6;oaid/;osVer/28;appBuild/73078;adk/;ads/;pap/JA2015_311210|8.5.12|ANDROID 9;osv/9;pv/117.24;jdv/0|kong|t_1000217905_|jingfen|644e9b005c8542c1ac273da7763971d8|1589905791552|1589905794;ref/com.jingdong.app.mall.WebActivity;partner/oppo;apprpd/Home_Main;Mozilla/5.0 (Linux; Android 9; GM1910 Build/PKQ1.190110.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044942 Mobile Safari/537.36 Edg/86.0.4240.111"
+      'url': `${MISSION_BASE_API}/queryMissionReceiveAfterStatus?reqData=%7B%2522missionId%2522:%2522${Number(missionId)}%2522%7D`,
+      'headers': {
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'zh-CN,zh;q=0.9',
+        'Connection': 'keep-alive',
+        'Host': 'ms.jr.jd.com',
+        'Cookie': cookie,
+        'Origin': 'https://jdjoy.jd.com',
+        'Referer': 'https://jdjoy.jd.com/',
+        'User-Agent': 'jdapp;android;8.5.12;9;network/wifi;model/GM1910;addressid/1302541636;aid/ac31e03386ddbec6;oaid/;osVer/28;appBuild/73078;adk/;ads/;pap/JA2015_311210|8.5.12|ANDROID 9;osv/9;pv/117.24;jdv/0|kong|t_1000217905_|jingfen|644e9b005c8542c1ac273da7763971d8|1589905791552|1589905794;ref/com.jingdong.app.mall.WebActivity;partner/oppo;apprpd/Home_Main;Mozilla/5.0 (Linux; Android 9; GM1910 Build/PKQ1.190110.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044942 Mobile Safari/537.36 Edg/86.0.4240.111'
       }
     }
     $.get(options, (err, resp, data) => {
@@ -556,7 +557,7 @@ function queryMissionReceiveAfterStatus(missionId) {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            console.log('queryMissionReceiveAfterStatus',data)
+            console.log('queryMissionReceiveAfterStatus', data)
             // data = JSON.parse(data);
             // if (data.resultCode === 0) {
             //   if (data.resultData.resultCode === 0) {
@@ -575,27 +576,27 @@ function queryMissionReceiveAfterStatus(missionId) {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
 }
-//做完浏览任务发送信息API
+// 做完浏览任务发送信息API
 function finishReadMission(missionId) {
   return new Promise(async resolve => {
-    const body = {"missionId": missionId.toString(),"readTime":10};
+    const body = { 'missionId': missionId.toString(), 'readTime': 10 }
     const options = {
-      "url": `${MISSION_BASE_API}/finishReadMission?reqData=%7B%2522missionId%2522:%2522${Number(missionId)}%2522,%2522readTime%2522:10%7D`,
-      "headers": {
-        "Accept": "*/*",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Accept-Language": "zh-CN,zh;q=0.9",
-        "Connection": "keep-alive",
-        "Host": "ms.jr.jd.com",
-        "Cookie": cookie,
-        "Origin": "https://jdjoy.jd.com",
-        "Referer": "https://jdjoy.jd.com/",
-        "User-Agent": "jdapp;android;8.5.12;9;network/wifi;model/GM1910;addressid/1302541636;aid/ac31e03386ddbec6;oaid/;osVer/28;appBuild/73078;adk/;ads/;pap/JA2015_311210|8.5.12|ANDROID 9;osv/9;pv/117.24;jdv/0|kong|t_1000217905_|jingfen|644e9b005c8542c1ac273da7763971d8|1589905791552|1589905794;ref/com.jingdong.app.mall.WebActivity;partner/oppo;apprpd/Home_Main;Mozilla/5.0 (Linux; Android 9; GM1910 Build/PKQ1.190110.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044942 Mobile Safari/537.36 Edg/86.0.4240.111"
+      'url': `${MISSION_BASE_API}/finishReadMission?reqData=%7B%2522missionId%2522:%2522${Number(missionId)}%2522,%2522readTime%2522:10%7D`,
+      'headers': {
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'zh-CN,zh;q=0.9',
+        'Connection': 'keep-alive',
+        'Host': 'ms.jr.jd.com',
+        'Cookie': cookie,
+        'Origin': 'https://jdjoy.jd.com',
+        'Referer': 'https://jdjoy.jd.com/',
+        'User-Agent': 'jdapp;android;8.5.12;9;network/wifi;model/GM1910;addressid/1302541636;aid/ac31e03386ddbec6;oaid/;osVer/28;appBuild/73078;adk/;ads/;pap/JA2015_311210|8.5.12|ANDROID 9;osv/9;pv/117.24;jdv/0|kong|t_1000217905_|jingfen|644e9b005c8542c1ac273da7763971d8|1589905791552|1589905794;ref/com.jingdong.app.mall.WebActivity;partner/oppo;apprpd/Home_Main;Mozilla/5.0 (Linux; Android 9; GM1910 Build/PKQ1.190110.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044942 Mobile Safari/537.36 Edg/86.0.4240.111'
       }
     }
     $.get(options, (err, resp, data) => {
@@ -605,7 +606,7 @@ function finishReadMission(missionId) {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            console.log('finishReadMission',data)
+            console.log('finishReadMission', data)
             // data = JSON.parse(data);
             // if (data.resultCode === 0) {
             //   if (data.resultData.resultCode === 0) {
@@ -624,7 +625,7 @@ function finishReadMission(missionId) {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
@@ -633,16 +634,16 @@ function finishReadMission(missionId) {
 function TotalBean() {
   return new Promise(async resolve => {
     const options = {
-      "url": `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
-      "headers": {
-        "Accept": "application/json,text/plain, */*",
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Accept-Language": "zh-cn",
-        "Connection": "keep-alive",
-        "Cookie": cookie,
-        "Referer": "https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2",
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1"
+      'url': `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
+      'headers': {
+        'Accept': 'application/json,text/plain, */*',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'zh-cn',
+        'Connection': 'keep-alive',
+        'Cookie': cookie,
+        'Referer': 'https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2',
+        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1'
       }
     }
     $.post(options, (err, resp, data) => {
@@ -652,12 +653,12 @@ function TotalBean() {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            data = JSON.parse(data);
+            data = JSON.parse(data)
             if (data['retcode'] === 13) {
-              $.isLogin = false; //cookie过期
+              $.isLogin = false // cookie过期
               return
             }
-            $.nickName = data['base'].nickname;
+            $.nickName = data['base'].nickname
           } else {
             console.log(`京东服务器返回空数据`)
           }
@@ -665,7 +666,7 @@ function TotalBean() {
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve()
       }
     })
   })
@@ -684,7 +685,7 @@ function taskUrl(function_id, body) {
       'Host': `ms.jr.jd.com`,
       'Connection': `keep-alive`,
       // 'User-Agent': `jdapp;iPhone;9.0.0;13.4.1;e35caf0a69be42084e3c97eef56c3af7b0262d01;network/4g;ADID/F75E8AED-CB48-4EAC-A213-E8CE4018F214;supportApplePay/3;hasUPPay/0;pushNoticeIsOpen/1;model/iPhone11,8;addressid/2005183373;hasOCPay/0;appBuild/167237;supportBestPay/0;jdSupportDarkMode/0;pv/1287.19;apprpd/MyJD_GameMain;ref/https%3A%2F%2Fuua.jr.jd.com%2Fuc-fe-wxgrowing%2Fmoneytree%2Findex%2F%3Fchannel%3Dyxhd%26lng%3D113.325843%26lat%3D23.204628%26sid%3D2d98e88cf7d182f60d533476c2ce777w%26un_area%3D19_1601_50258_51885;psq/1;ads/;psn/e35caf0a69be42084e3c97eef56c3af7b0262d01|3485;jdv/0|kong|t_1000170135|tuiguang|notset|1593059927172|1593059927;adk/;app_device/IOS;pap/JA2015_311210|9.0.0|IOS 13.4.1;Mozilla/5.0 (iPhone; CPU iPhone OS 13_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1`,
-      'User-Agent' : `jdapp;android;8.5.12;9;network/wifi;model/GM1910;addressid/1302541636;aid/ac31e03386ddbec6;oaid/;osVer/28;appBuild/73078;adk/;ads/;pap/JA2015_311210|8.5.12|ANDROID 9;osv/9;pv/117.24;jdv/0|kong|t_1000217905_|jingfen|644e9b005c8542c1ac273da7763971d8|1589905791552|1589905794;ref/com.jingdong.app.mall.WebActivity;partner/oppo;apprpd/Home_Main;Mozilla/5.0 (Linux; Android 9; GM1910 Build/PKQ1.190110.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044942 Mobile Safari/537.36 Edg/86.0.4240.111`,
+      'User-Agent': `jdapp;android;8.5.12;9;network/wifi;model/GM1910;addressid/1302541636;aid/ac31e03386ddbec6;oaid/;osVer/28;appBuild/73078;adk/;ads/;pap/JA2015_311210|8.5.12|ANDROID 9;osv/9;pv/117.24;jdv/0|kong|t_1000217905_|jingfen|644e9b005c8542c1ac273da7763971d8|1589905791552|1589905794;ref/com.jingdong.app.mall.WebActivity;partner/oppo;apprpd/Home_Main;Mozilla/5.0 (Linux; Android 9; GM1910 Build/PKQ1.190110.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044942 Mobile Safari/537.36 Edg/86.0.4240.111`,
       'Referer': `https://u.jr.jd.com/`,
       'Accept-Language': `zh-cn`
     }
