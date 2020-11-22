@@ -24,21 +24,17 @@ const { Env } = require('../../utils/Env')
 const $ = new Env('东东超市')
 // Node.js用户请在jdCookie.js处填写京东ck;
 // IOS等用户直接用NobyDa的jd cookie
-const cookiesArr = []; let cookie = ''; const jdSuperMarketShareArr = []; let notify; let newShareCodes
+const cookiesArr = []
+let cookie = ''
+let notify
 
 let jdNotify = true// 用来是否关闭弹窗通知，true表示关闭，false表示开启。
 let superMarketUpgrade = true// 自动升级,顺序:解锁升级商品、升级货架,true表示自动升级,false表示关闭自动升级
 let businessCircleJump = true// 小于对方300热力值自动更换商圈队伍,true表示运行,false表示禁止
-let drawLotteryFlag = false// 是否用500蓝币去抽奖，true表示开启，false表示关闭。默认关闭
-let message = ''; let subTitle
+let drawLotteryFlag = true// 是否用500蓝币去抽奖，true表示开启，false表示关闭。默认关闭
+let message = ''
+let subTitle
 const JD_API_HOST = 'https://api.m.jd.com/api'
-
-// 助力好友分享码
-// 此此内容是IOS用户下载脚本到本地使用，填写互助码的地方，同一京东账号的好友互助码请使用@符号隔开。
-// 下面给出两个账号的填写示例（iOS只支持2个京东账号）
-const shareCodes = [ // IOS本地脚本用户这个列表填入你要助力的好友的shareCode
-  // 账号一的好友shareCode,不同好友的shareCode中间用@符号隔开
-]
 
 !(async() => {
   await requireConfig()
@@ -107,10 +103,10 @@ function showMsg() {
 
 // 抽奖功能(招财进宝)
 async function drawLottery() {
-  console.log(`\n注意⚠:京小超抽奖已改版,花费500蓝币抽奖一次,现在脚本默认已关闭抽奖功能\n`);
-  drawLotteryFlag = $.getdata('jdSuperMarketLottery') ? $.getdata('jdSuperMarketLottery') : drawLotteryFlag;
+  console.log(`\n注意⚠:京小超抽奖已改版,花费500蓝币抽奖一次,现在脚本默认已关闭抽奖功能\n`)
+  drawLotteryFlag = $.getdata('jdSuperMarketLottery') ? $.getdata('jdSuperMarketLottery') : drawLotteryFlag
   if ($.isNode() && process.env.SUPERMARKET_LOTTERY) {
-    drawLotteryFlag = process.env.SUPERMARKET_LOTTERY;
+    drawLotteryFlag = process.env.SUPERMARKET_LOTTERY
   }
   if (`${drawLotteryFlag}` === 'true') {
     const smtg_lotteryIndexRes = await smtg_lotteryIndex()
@@ -127,15 +123,6 @@ async function drawLottery() {
     }
   } else {
     console.log(`设置的为不抽奖`)
-  }
-}
-
-async function help() {
-  console.log(`\n开始助力好友`)
-  for (const code of newShareCodes) {
-    if (!code) continue
-    const res = await smtgDoAssistPkTask(code)
-    console.log(`助力好友${JSON.stringify(res)}`)
   }
 }
 
@@ -307,19 +294,19 @@ async function businessCircleActivity() {
   // console.log(`\n商圈PK奖励,次日商圈大战开始的时候自动领领取\n`)
   const smtg_getTeamPkDetailInfoRes = await smtg_getTeamPkDetailInfo()
   if (smtg_getTeamPkDetailInfoRes && smtg_getTeamPkDetailInfoRes.data.bizCode === 0) {
-    const { joinStatus, pkStatus, inviteCount, inviteCode, currentUserPkInfo, pkUserPkInfo, prizeInfo, pkActivityId, teamId } = smtg_getTeamPkDetailInfoRes.data.result;
-    console.log(`joinStatus:${joinStatus}`);
-    console.log(`pkStatus:${pkStatus}`);
-    console.log(`inviteCode: [${inviteCode}]`);
-    console.log(`PK队伍teamId: [${teamId}]`);
-    console.log(`PK队伍名称: [${currentUserPkInfo && currentUserPkInfo.teamName}]`);
-    await updatePkActivityId();
-    if (!$.updatePkActivityIdRes) await updatePkActivityIdCDN();
-    console.log(`\nupdatePkActivityId[pkActivityId]:::${$.updatePkActivityIdRes.pkActivityId}`);
-    console.log(`\n京东服务器返回的[pkActivityId] ${pkActivityId}`);
+    const { joinStatus, pkStatus, inviteCount, inviteCode, currentUserPkInfo, pkUserPkInfo, prizeInfo, pkActivityId, teamId } = smtg_getTeamPkDetailInfoRes.data.result
+    console.log(`joinStatus:${joinStatus}`)
+    console.log(`pkStatus:${pkStatus}`)
+    console.log(`inviteCode: [${inviteCode}]`)
+    console.log(`PK队伍teamId: [${teamId}]`)
+    console.log(`PK队伍名称: [${currentUserPkInfo && currentUserPkInfo.teamName}]`)
+    await updatePkActivityId()
+    if (!$.updatePkActivityIdRes) await updatePkActivityIdCDN()
+    console.log(`\nupdatePkActivityId[pkActivityId]:::${$.updatePkActivityIdRes.pkActivityId}`)
+    console.log(`\n京东服务器返回的[pkActivityId] ${pkActivityId}`)
     if (joinStatus === 0) {
-      await updatePkActivityId();
-      if (!$.updatePkActivityIdRes) await updatePkActivityIdCDN();
+      await updatePkActivityId()
+      if (!$.updatePkActivityIdRes) await updatePkActivityIdCDN()
       if ($.updatePkActivityIdRes && ($.updatePkActivityIdRes.pkActivityId === pkActivityId)) {
         let Teams = [
           {
@@ -363,8 +350,8 @@ async function businessCircleActivity() {
       }
     } else if (joinStatus === 1) {
       console.log(`我邀请的人数:${inviteCount}\n`)
-      console.log(`\n我方战队战队 [${currentUserPkInfo && currentUserPkInfo.teamName}]/【${currentUserPkInfo && currentUserPkInfo.teamCount}】`);
-      console.log(`对方战队战队 [${pkUserPkInfo && pkUserPkInfo.teamName}]/【${pkUserPkInfo && pkUserPkInfo.teamCount}】\n`);
+      console.log(`\n我方战队战队 [${currentUserPkInfo && currentUserPkInfo.teamName}]/【${currentUserPkInfo && currentUserPkInfo.teamCount}】`)
+      console.log(`对方战队战队 [${pkUserPkInfo && pkUserPkInfo.teamName}]/【${pkUserPkInfo && pkUserPkInfo.teamCount}】\n`)
     }
     if (pkStatus === 1) {
       console.log(`商圈PK进行中\n`)
@@ -395,7 +382,7 @@ async function businessCircleActivity() {
     console.log(`\n【您的商圈inviteCode互助码】：\n${inviteCode}\n\n`)
     const businessCircleIndexRes = await smtg_businessCircleIndex()
     const { result } = businessCircleIndexRes.data
-    const { pkPrizeStatus, pkStatus } = result
+    const { pkPrizeStatus } = result
     if (pkPrizeStatus === 2) {
       console.log(`开始领取商圈PK奖励`)
       const getPkPrizeRes = await smtg_getPkPrize()
@@ -552,7 +539,10 @@ async function upgrade() {
   console.log('目前没有平稳升级,只取倒数几个商品进行升级,普通货架取倒数4个商品,冰柜货架取倒数3个商品,水果货架取倒数2个商品')
   const smtgProductListRes = await smtg_productList()
   if (smtgProductListRes.data.bizCode === 0) {
-    const productType1 = []; let shelfCategory_1 = []; let shelfCategory_2 = []; let shelfCategory_3 = []
+    const productType1 = []
+    let shelfCategory_1 = []
+    let shelfCategory_2 = []
+    let shelfCategory_3 = []
     const { productList } = smtgProductListRes.data.result
     for (const item of productList) {
       if (item['productType'] === 1) {
@@ -631,7 +621,8 @@ async function manageProduct() {
       const productListRes = await smtg_shelfProductList(item.shelfId)// 查询该货架可以上架的商品
       if (productListRes.data.bizCode === 0) {
         const { productList } = productListRes.data.result
-        const productNow = []; const productList2 = []
+        const productNow = []
+        const productList2 = []
         for (const item1 of productList) {
           if (item1['groundStatus'] === 2) {
             productNow.push(item1)
@@ -855,24 +846,6 @@ function smtgHome() {
 
 // 查询商圈任务列表
 // PK邀请好友
-function smtgDoAssistPkTask(code) {
-  return new Promise((resolve) => {
-    $.get(taskUrl('smtg_doAssistPkTask', { 'inviteCode': code }), (err, resp, data) => {
-      try {
-        if (err) {
-          console.log('\n京小超: API查询请求失败 ‼️‼️')
-          console.log(JSON.stringify(err))
-        } else {
-          data = JSON.parse(data)
-        }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve(data)
-      }
-    })
-  })
-}
 
 function smtgReceiveCoin(type) {
   return new Promise((resolve) => {
@@ -897,43 +870,6 @@ function smtgReceiveCoin(type) {
 }
 
 // 领取PK任务做完后的奖励
-function smtgObtainPkTaskPrize(taskId) {
-  return new Promise((resolve) => {
-    $.get(taskUrl('smtg_obtainPkTaskPrize', { 'taskId': taskId }), (err, resp, data) => {
-      try {
-        if (err) {
-          console.log('\n京小超: API查询请求失败 ‼️‼️')
-          console.log(JSON.stringify(err))
-        } else {
-          data = JSON.parse(data)
-        }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve(data)
-      }
-    })
-  })
-}
-
-function smtgDoPkTask(taskId, itemId) {
-  return new Promise((resolve) => {
-    $.get(taskUrl('smtg_doPkTask', { 'taskId': taskId, 'itemId': itemId }), (err, resp, data) => {
-      try {
-        if (err) {
-          console.log('\n京小超: API查询请求失败 ‼️‼️')
-          console.log(JSON.stringify(err))
-        } else {
-          data = JSON.parse(data)
-        }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve(data)
-      }
-    })
-  })
-}
 
 function smtg_joinPkTeam(teamId, inviteCode, sharePkActivityId) {
   return new Promise((resolve) => {
@@ -1297,21 +1233,22 @@ function smtg_lotteryIndex() {
 }
 
 function smtg_drawLottery() {
-  return new Promise(async(resolve) => {
-    await $.wait(1000)
-    $.get(taskUrl('smtg_drawLottery', { 'costType': 1, 'channel': 1 }), (err, resp, data) => {
-      try {
-        if (err) {
-          console.log('\n京小超: API查询请求失败 ‼️‼️')
-          console.log(JSON.stringify(err))
-        } else {
-          data = JSON.parse(data)
+  return new Promise(resolve => {
+    $.wait(1000).then(__ => {
+      $.get(taskUrl('smtg_drawLottery', { 'costType': 1, 'channel': 1 }), (err, resp, data) => {
+        try {
+          if (err) {
+            console.log('\n京小超: API查询请求失败 ‼️‼️')
+            console.log(JSON.stringify(err))
+          } else {
+            data = JSON.parse(data)
+          }
+        } catch (e) {
+          $.logErr(e, resp)
+        } finally {
+          resolve(data)
         }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve(data)
-      }
+      })
     })
   })
 }
@@ -1354,7 +1291,7 @@ function requireConfig() {
 }
 
 function TotalBean() {
-  return new Promise(async resolve => {
+  return new Promise(resolve => {
     const options = {
       'url': `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
       'headers': {
