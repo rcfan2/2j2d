@@ -21,7 +21,7 @@ cron "11 1-23/5 * * *" script-path=https://raw.githubusercontent.com/lxk0301/scr
 // Surge
 京小超 = type=cron,cronexp="11 1-23/5 * * *",wake-system=1,timeout=320,script-path=https://raw.githubusercontent.com/lxk0301/scripts/master/jd_superMarket.js
  */
-const {Env} = require('../utils/Env')
+const {Env} = require('../../utils/Env')
 const $ = new Env('京小超');
 //Node.js用户请在jdCookie.js处填写京东ck;
 //IOS等用户直接用NobyDa的jd cookie
@@ -1330,9 +1330,9 @@ function sortTotalPriceGold(a, b) {
 function requireConfig() {
   return new Promise(resolve => {
     // console.log('\n开始获取京小超配置文件\n')
-    notify = $.isNode() ? require('../utils/sendNotify') : '';
+    notify = $.isNode() ? require('../../utils/sendNotify') : '';
     //Node.js用户请在jdCookie.js处填写京东ck;
-    const jdCookieNode = $.isNode() ? require('../utils/jdCookie') : '';
+    const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : '';
     //IOS等用户直接用NobyDa的jd cookie
     if ($.isNode()) {
       Object.keys(jdCookieNode).forEach((item) => {

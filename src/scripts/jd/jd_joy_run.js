@@ -34,7 +34,7 @@ cron "15 10 * * *" script-path=https://raw.githubusercontent.com/lxk0301/scripts
 http-response ^https:\/\/draw\.jdfcloud\.com(\/mirror)?\/\/api\/user\/addUser\?code= script-path=https://raw.githubusercontent.com/lxk0301/scripts/master/jd_joy_run.js, requires-body=true, timeout=10, tag=宠汪汪助力更新Token
 http-request ^https:\/\/draw\.jdfcloud\.com(\/mirror)?\/\/api\/user\/user\/detail\?openId= script-path=https://raw.githubusercontent.com/lxk0301/scripts/master/jd_joy_run.js, requires-body=true, timeout=10, tag=宠汪汪助力获取Token
  **/
-const {Env} = require('../utils/Env')
+const {Env} = require('../../utils/Env')
 const isRequest = typeof $request != "undefined"
 const $ = new Env('来客有礼宠汪汪');
 const JD_BASE_API = `https://draw.jdfcloud.com//pet`;
@@ -46,7 +46,7 @@ let run_pins = ["jd_6cd93e613b0e5,被折叠的记忆33,jd_704a2e5e28a66,jd_45a6b
 // $.LKYLToken = '76fe7794c475c18711e3b47185f114b5' || $.getdata('jdJoyRunToken');
 $.LKYLToken = $.getdata('jdJoyRunToken');
 //Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../utils/jdCookie') : '';
+const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';
 const headers = {

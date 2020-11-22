@@ -1,9 +1,10 @@
 // 闪电签到
 // https://freemycloud.pw
 // let cookie = process.env.FREE_MY_CLOUD_COOKIE;
-const {Env} = require('../utils/Env')
+const HOST_NAME = 'https://freemycloud.pw'
+const {Env} = require('../../utils/Env')
 const $ = new Env('闪电签到');
-const notify = $.isNode() ? require('../utils/sendNotify') : '';
+const notify = $.isNode() ? require('../../utils/sendNotify') : '';
 
 let usernames = []
 let passwords = []
@@ -25,7 +26,7 @@ console.log(`您提供了${usernames.length}个账号，即将开始签到`)
 const login = (username, password) => {
   return new Promise(resolve => {
     const option = {
-      url: `https://freemycloud.pw/auth/login`,
+      url: `${HOST_NAME}/auth/login`,
       headers: {
         "accept": "*/*",
         "accept-encoding": "gzip, deflate, br",
@@ -65,7 +66,7 @@ const login = (username, password) => {
 const checkin = (cookies) => {
   return new Promise(resolve => {
     const option = {
-      url: `https://freemycloud.pw/user/checkin`,
+      url: `${HOST_NAME}/user/checkin`,
       headers: {
         "accept": "*/*",
         "accept-encoding": "gzip, deflate, br",
@@ -101,13 +102,14 @@ for (let i = 0; i < usernames.length; i++) {
     checkin(cookies)
       .then(data => {
         if (data.ret === 1) {
-          console.log(`\n【${username}】闪电签到成功 --> ${data.msg}`)
-          summary = `【${username}】闪电签到成功 --> ${data.msg}`
+          let msg = `【${username}】闪电签到成功 --> ${data.msg}`
+          console.log(`\n${msg}`)
+          summary = `${msg}`
           text = data.msg
         } else {
-
-          console.log(`\n【${username}】闪电签到失败 --> ${data.msg}`)
-          summary = `【${username}】闪电签到失败 --> ${data.msg}`
+          let msg = `【${username}】闪电签到失败 --> ${data.msg}`
+          console.log(`\n${msg}`)
+          summary = `${msg}`
           text = data.msg
         }
         notify.sendNotify(text, summary).then(() => {

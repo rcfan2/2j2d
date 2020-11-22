@@ -23,7 +23,7 @@ cron "15 6-18/6 * * *" script-path=https://raw.githubusercontent.com/lxk0301/scr
 东东萌宠 = type=cron,script-path=https://raw.githubusercontent.com/lxk0301/scripts/master/jd_pet.js, cronexpr="15 6-18/6 * * *", timeout=200, enable=true
 
 */
-const {Env} = require('../utils/Env')
+const {Env} = require('../../utils/Env')
 const $ = new Env('东东萌宠');
 let cookiesArr = [], cookie = '', jdPetShareArr = [], isBox = false, notify, newShareCodes;
 //助力好友分享码(最多5个,否则后面的助力失败),原因:京东农场每人每天只有四次助力机会
@@ -482,9 +482,9 @@ function shareCodesFormat() {
 function requireConfig() {
   return new Promise(resolve => {
     console.log('开始获取东东萌宠配置文件\n')
-    notify = $.isNode() ? require('../utils/sendNotify') : '';
+    notify = $.isNode() ? require('../../utils/sendNotify') : '';
     //Node.js用户请在jdCookie.js处填写京东ck;
-    const jdCookieNode = $.isNode() ? require('../utils/jdCookie') : '';
+    const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : '';
     const jdPetShareCodes = $.isNode() ? require('./jdPetShareCodes.js') : '';
     //IOS等用户直接用NobyDa的jd cookie
     if ($.isNode()) {

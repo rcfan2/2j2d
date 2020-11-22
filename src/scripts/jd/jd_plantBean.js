@@ -22,7 +22,7 @@ cron "1 7-21/2 * * *" script-path=https://raw.githubusercontent.com/lxk0301/scri
 
 搬的https://github.com/uniqueque/QuantumultX/blob/4c1572d93d4d4f883f483f907120a75d925a693e/Script/jd_plantBean.js
 */
-const {Env} = require('../utils/Env')
+const {Env} = require('../../utils/Env')
 const $ = new Env('京东种豆得豆');
 //Node.js用户请在jdCookie.js处填写京东ck;
 //ios等软件用户直接用NobyDa的jd cookie
@@ -569,9 +569,9 @@ function shareCodesFormat() {
 function requireConfig() {
   return new Promise(resolve => {
     console.log('开始获取种豆得豆配置文件\n')
-    notify = $.isNode() ? require('../utils/sendNotify') : '';
+    notify = $.isNode() ? require('../../utils/sendNotify') : '';
     //Node.js用户请在jdCookie.js处填写京东ck;
-    const jdCookieNode = $.isNode() ? require('../utils/jdCookie') : '';
+    const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : '';
     const jdPlantBeanShareCodes = $.isNode() ? require('./jdPlantBeanShareCodes.js') : '';
     //IOS等用户直接用NobyDa的jd cookie
     if ($.isNode()) {

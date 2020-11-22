@@ -13,11 +13,11 @@
 // cron "15 */1 * * *" script-path=https://raw.githubusercontent.com/lxk0301/scripts/master/jd_joy_feedPets.js,tag=京东宠汪汪喂食
 // Surge
 // 京东宠汪汪喂食 = type=cron,cronexp="15 */1 * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/lxk0301/scripts/master/jd_joy_feedPets.js
-const {Env} = require('../utils/Env')
+const {Env} = require('../../utils/Env')
 const $ = new Env('宠汪汪🐕喂食');
-const notify = $.isNode() ? require('../utils/sendNotify') : '';
+const notify = $.isNode() ? require('../../utils/sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../utils/jdCookie') : '';
+const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : '';
 
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';

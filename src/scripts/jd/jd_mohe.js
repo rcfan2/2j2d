@@ -15,10 +15,10 @@ cron "1 0,1-23/3 * * *" script-path=https://raw.githubusercontent.com/lxk0301/sc
 // Surge
 热8超级盲盒 = type=cron,cronexp=1 0,1-23/3 * * *,wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/lxk0301/scripts/master/jd_mohe.js
  */
-const {Env} = require('../utils/Env')
+const {Env} = require('../../utils/Env')
 const $ = new Env('热8超级盲盒');
 //Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../utils/jdCookie') : '';
+const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : '';
 
 //直接用NobyDa的jd cookie
 let cookie = jdCookieNode.CookieJD ? jdCookieNode.CookieJD : $.getdata('CookieJD');

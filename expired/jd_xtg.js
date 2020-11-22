@@ -24,12 +24,12 @@
  // Surge
  京东星推官 = type=cron,cronexp=2 0 * * *,wake-system=1,timeout=320,script-path=https://raw.githubusercontent.com/lxk0301/scripts/master/jd_xtg.js
  */
-const {Env} = require('../src/utils/Env')
+const {Env} = require('../../src/utils/Env')
 const $ = new Env('京东星推官');
 const activeEndTime = '2020/11/11 23:59:59';//活动结束时间
-const notify = $.isNode() ? require('../src/utils/sendNotify') : '';
+const notify = $.isNode() ? require('../../src/utils/sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../src/utils/jdCookie.js') : '';
+const jdCookieNode = $.isNode() ? require('../../src/utils/jdCookie.js') : '';
 
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';

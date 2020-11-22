@@ -14,11 +14,11 @@ cron "0 0 0 * * *" script-path=https://raw.githubusercontent.com/lxk0301/scripts
 ===================Surge==================
 京小超兑换奖品 = type=cron,cronexp="0 0 0 * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/lxk0301/scripts/master/jd_blueCoin.js
  */
-const {Env} = require('../utils/Env')
+const {Env} = require('../../utils/Env')
 const $ = new Env('京小超兑换奖品');
-const notify = $.isNode() ? require('../utils/sendNotify') : '';
+const notify = $.isNode() ? require('../../utils/sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../utils/jdCookie') : '';
+const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : '';
 let coinToBeans = $.getdata('coinToBeans') || 20; //兑换多少数量的京豆（20或者1000），0表示不兑换，默认兑换20京豆，如需兑换把0改成20或者1000，或者'商品名称'(商品名称放到单引号内)即可
 let jdNotify = false;//是否开启静默运行，默认false关闭(即:奖品兑换成功后会发出通知提示)
 //IOS等用户直接用NobyDa的jd cookie

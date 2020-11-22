@@ -5,10 +5,10 @@
 每小时的第20分运行一次
 20 * * * * https://raw.githubusercontent.com/lxk0301/scripts/master/jd_collectProduceScore.js
  */
-const {Env} = require('../src/utils/Env')
+const {Env} = require('../../src/utils/Env')
 const $ = new Env('京东全民营业领金币');
 //Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../src/utils/jdCookie') : '';
+const jdCookieNode = $.isNode() ? require('../../src/utils/jdCookie') : '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';
 

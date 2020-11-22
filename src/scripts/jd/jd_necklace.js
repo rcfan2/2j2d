@@ -25,12 +25,12 @@ cron "10 0,20 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_sc
 ============小火箭=========
 东东农场 = type=cron,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_necklace.js, cronexpr="10 0,20 * * *", timeout=200, enable=true
  */
-const {Env} = require('../utils/Env')
+const {Env} = require('../../utils/Env')
 const $ = new Env('点点券');
 
-const notify = $.isNode() ? require('../utils/sendNotify') : '';
+const notify = $.isNode() ? require('../../utils/sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../utils/jdCookie.js') : '';
+const jdCookieNode = $.isNode() ? require('../../utils/jdCookie.js') : '';
 
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';

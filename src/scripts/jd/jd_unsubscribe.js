@@ -16,11 +16,11 @@ cron "55 23 * * *" script-path=https://raw.githubusercontent.com/lxk0301/scripts
 // Surge
 取关京东店铺商品 = type=cron,cronexp="55 23 * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/lxk0301/scripts/master/jd_unsubscribe.js
  */
-const {Env} = require('../utils/Env')
+const {Env} = require('../../utils/Env')
 const $ = new Env('取关京东店铺和商品');
 //Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../utils/jdCookie') : '';
-const notify = $.isNode() ? require('../utils/sendNotify') : '';
+const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : '';
+const notify = $.isNode() ? require('../../utils/sendNotify') : '';
 
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';

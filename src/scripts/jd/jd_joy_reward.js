@@ -16,12 +16,12 @@ cron "0 0-16/8 * * *" script-path=https://raw.githubusercontent.com/lxk0301/scri
 // Surge
 宠汪汪积分兑换奖品 = type=cron,cronexp="0 0-16/8 * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/lxk0301/scripts/master/jd_joy_reward.js
  */
-const {Env} = require('../utils/Env')
+const {Env} = require('../../utils/Env')
 const $ = new Env('宠汪汪积分兑换奖品');
 let joyRewardName = 20;//是否兑换京豆，默认开启兑换功能，其中20为兑换20京豆,500为兑换500京豆，0为不兑换京豆.数量有限先到先得
 //Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../utils/jdCookie') : '';
-const notify = $.isNode() ? require('../utils/sendNotify') : '';
+const jdCookieNode = $.isNode() ? require('../../utils/jdCookie') : '';
+const notify = $.isNode() ? require('../../utils/sendNotify') : '';
 let jdNotify = false;//是否开启静默运行，默认false关闭(即:奖品兑换成功后会发出通知提示)
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';
