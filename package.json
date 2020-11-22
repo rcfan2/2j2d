@@ -28,6 +28,7 @@
     "jd_superMarket": "node src/scripts/jd_superMarket.js",
     "jd_unsubscribe": "node src/scripts/jd_unsubscribe.js",
     "lightning_checkin": "node src/scripts/lightning_checkin.js",
+    "jd_bean_shake": "node src/scripts/jd_bean_shake.js",
     "jd_shareCodes_boarding": "node src/utils/jd_shareCodes_boarding.js",
     "shareCodesHelper": "node src/utils/shareCodesHelper.js"
   },

@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 京豆签到
+name: 京豆摇一摇
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-    types: bean_sign
+    types: bean_shake
 jobs:
   build:
 
@@ -33,14 +33,11 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【京豆签到脚本】'
+      - name: '运行 【京豆摇一摇脚本】'
         run: |
-          npm run jd_bean_sign
+          npm run jd_bean_shake
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
-          JD_BEAN_STOP: ${{secrets.JD_BEAN_STOP}} #自定义延迟签到,单位毫秒. 默认分批并发无延迟. 延迟作用于每个签到接口, 如填入延迟则切换顺序签到(耗时较长)
-          JD_BEAN_SIGN_STOP_NOTIFY: ${{secrets.JD_BEAN_SIGN_STOP_NOTIFY}}
-          JD_BEAN_SIGN_NOTIFY_SIMPLE: ${{secrets.JD_BEAN_SIGN_NOTIFY_SIMPLE}}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
