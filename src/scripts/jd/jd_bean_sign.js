@@ -18,7 +18,8 @@ const download = require('download')
 let resultPath = './result.txt'
 let JD_DailyBonusPath = './JD_DailyBonus.js'
 let outPutUrl = './'
-const cookiesArr = []; let cookie = ''
+const cookiesArr = []
+let cookie = ''
 
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -158,7 +159,7 @@ async function deleteFile(path) {
 }
 
 function TotalBean() {
-  return new Promise(async resolve => {
+  return new Promise(resolve => {
     const options = {
       'url': `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
       'headers': {
@@ -216,6 +217,7 @@ function downloadUrl(url = 'https://raw.githubusercontent.com/NobyDa/Script/mast
     })
   })
 }
+
 function requireConfig() {
   return new Promise(resolve => {
     const file = 'src/scripts/jd_bean_sign.js'
@@ -227,6 +229,7 @@ function requireConfig() {
     })
   })
 }
+
 function timeFormat(time) {
   let date
   if (time) {
