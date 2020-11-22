@@ -30,7 +30,7 @@ const $ = new Env('点点券')
 
 const notify = require('../../utils/sendNotify')
 // Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../../utils/jdCookie.js') : ''
+const jdCookieNode = require('../../utils/jdCookie.js')
 
 // IOS等用户直接用NobyDa的jd cookie
 const cookiesArr = []; let cookie = ''

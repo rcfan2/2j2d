@@ -27,9 +27,9 @@
 const {Env} = require('../../src/utils/Env')
 const $ = new Env('京东星推官');
 const activeEndTime = '2020/11/11 23:59:59';//活动结束时间
-const notify = $.isNode() ? require('../../src/utils/sendNotify') : '';
+const notify = require('../../src/utils/sendNotify');
 //Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../../src/utils/jdCookie.js') : '';
+const jdCookieNode = require('../../src/utils/jdCookie.js');
 
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';

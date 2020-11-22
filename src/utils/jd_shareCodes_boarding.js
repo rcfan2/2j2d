@@ -5,7 +5,7 @@ const moment = require('moment')
 
 const { Env } = require('./Env')
 const $ = new Env('助力码上车')
-const notify = $.isNode() ? require('./sendNotify') : ''
+const notify = require('./sendNotify')
 const { shareCodes } = require('./ShareCode')
 
 const shareCodeMap = {

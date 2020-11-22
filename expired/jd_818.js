@@ -32,10 +32,10 @@ cron "1 0-18/6 * * *" script-path=https://raw.githubusercontent.com/lxk0301/scri
 const {Env} = require('../../src/utils/Env')
 const $ = new Env('京东手机狂欢城');
 
-const notify = $.isNode() ? require('../../src/utils/sendNotify') : '';
+const notify = require('../../src/utils/sendNotify');
 let jdNotify = false;//是否开启推送互助码
 //Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('../../src/utils/jdCookie') : '';
+const jdCookieNode = require('../../src/utils/jdCookie');
 
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';

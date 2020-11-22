@@ -484,7 +484,7 @@ function requireConfig() {
     notify = require('../../utils/sendNotify')
     // Node.js用户请在jdCookie.js处填写京东ck;
     const jdCookieNode = require('../../utils/jdCookie')
-    const jdPetShareCodes = $.isNode() ? require('./jdPetShareCodes.js') : ''
+    const jdPetShareCodes = require('./jdPetShareCodes.js')
     // IOS等用户直接用NobyDa的jd cookie
     if ($.isNode()) {
       Object.keys(jdCookieNode).forEach((item) => {
