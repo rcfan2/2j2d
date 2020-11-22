@@ -11,11 +11,11 @@ const JD_API_HOST = 'https://m.jingxi.com';
 let ele, factoryId, productionId;
 
 let message = '', subTitle = '', option = {};
-const notify = $.isNode() ? require('./sendNotify') : '';
+const notify = require('../../utils/sendNotify');
 let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送
 
 let cookiesArr = [], cookie = '';
-const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+const jdCookieNode = require('../../utils/jdCookie.js');
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -23,10 +23,10 @@ if ($.isNode()) {
   if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
   };
 } else {
-    cookiesArr.push(...[$.getdata('CookieJD'), $.getdata('CookieJD2')])
-    }
-      !(async () => {
-      if (!cookiesArr[0]) {
+  cookiesArr.push(...[$.getdata('CookieJD'), $.getdata('CookieJD2')])
+}
+!(async () => {
+  if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {"open-url": "https://bean.m.jd.com/"});
     return;
   }
@@ -48,13 +48,13 @@ if ($.isNode()) {
           $.setdata('', `CookieJD${i ? i + 1 : ""}`);//cookie失效，故清空cookie。$.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。
         }
         continue
-          }
-          message = '';
-        subTitle = '';
-        goodsUrl = '';
-          taskInfoKey = [];
-          option = {};
-        await jdDreamFactory();
+      }
+      message = '';
+      subTitle = '';
+      goodsUrl = '';
+      taskInfoKey = [];
+      option = {};
+      await jdDreamFactory();
     }
   }
 })()
@@ -62,13 +62,11 @@ if ($.isNode()) {
     $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
   })
   .finally(() => {
-    $. done();
+    $.done();
   })
 
 
-async
-
-functionjdDreamFactory() {
+async function jdDreamFactory() {
   ele = 0;
   await userInfo();
   if ($.unActive) return
@@ -85,17 +83,17 @@ functionjdDreamFactory() {
 // 收取发电机的电力
 function collectElectricity(facId = factoryId, help = false) {
   return new Promise(async resolve => {
-  const url = `/dreamfactory/generator/CollectCurrentElectricity?zone=dream_factory&apptoken=&pgtimestamp=&phoneID=&factoryid=${facId}&doubleflag=1&sceneval=2&g_login_type=1`;
-  $.get(taskurl(url), (err, resp, data) => {
-    try {
-      if (err) {
+    const url = `/dreamfactory/generator/CollectCurrentElectricity?zone=dream_factory&apptoken=&pgtimestamp=&phoneID=&factoryid=${facId}&doubleflag=1&sceneval=2&g_login_type=1`;
+    $.get(taskurl(url), (err, resp, data) => {
+      try {
+        if (err) {
           console.log(`${JSON.stringify(err)}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
             data = JSON.parse(data);
             if (data['ret'] === 0) {
-        if (help) {
+              if (help) {
                 ele += Number(data.data['loginPinCollectElectricity'])
                 console.log(`帮助好友收取 ${data.data['CollectElectricity']} 电力，获得 ${data.data['loginPinCollectElectricity']} 电力`);
                 message += `【帮助好友】帮助成功，获得 ${data.data['loginPinCollectElectricity']} 电力\n`
@@ -107,14 +105,14 @@ function collectElectricity(facId = factoryId, help = false) {
               }
 
             } else {
-      // console.log(data)
-      }
+              // console.log(data)
+            }
           } else {
             console.log(`京东服务器返回空数据`)
           }
         }
-    } catch (e) {
-      $.logErr(e, resp)
+      } catch (e) {
+        $.logErr(e, resp)
       } finally {
         resolve();
       }
@@ -422,7 +420,7 @@ function stealFriend() {
         for (let i = 0; i < data.list.length; ++i) {
           let pin = data.list[i]['encryptPin'];
           getFactoryIdByPin(pin).then(async (facId) => {
-            await collectElectricity(facId,true)
+            await collectElectricity(facId, true)
           }).catch(err => {
 
           })
