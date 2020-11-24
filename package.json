@@ -34,6 +34,7 @@
     "jd_shareCodes_boarding": "node jd_shareCodes_boarding.js",
     "shareCodesHelper": "node shareCodesHelper.js",
     "lightning_checkin": "node lightning_checkin.js",
+    "smzdm_checkin": "node smzdm_checkin.js",
     "j.mr_checkin": "node j.mr_checkin.js",
     "v2ex_checkin": "node v2ex_checkin.js"
   },
@@ -47,6 +48,7 @@
   "author": "lxk0301",
   "license": "ISC",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "crypto-js": "^4.0.0",
     "download": "^8.0.0",
     "got": "^11.5.1",

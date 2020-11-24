@@ -37,6 +37,7 @@ jobs:
           npm run lightning_checkin
           npm run j.mr_checkin
           npm run v2ex_checkin
+          npm run smzdm_checkin
         env:
           FREE_MY_CLOUD_USERNAME: ${{ secrets.FREE_MY_CLOUD_USERNAME }}
           FREE_MY_CLOUD_PASSWORD: ${{ secrets.FREE_MY_CLOUD_PASSWORD }}
