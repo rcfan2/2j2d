@@ -33,6 +33,7 @@
     "jd_small_home": "node jd_small_home.js",
     "jd_jdfactory": "node jd_jdfactory.js",
     "jd_shareCodes_boarding": "node jd_shareCodes_boarding.js",
+    "jd_syj": "node jd_syj.js",
     "shareCodesHelper": "node shareCodesHelper.js",
     "lightning_checkin": "node lightning_checkin.js",
     "smzdm_checkin": "node smzdm_checkin.js",
