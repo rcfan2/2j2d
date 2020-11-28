@@ -31,6 +31,7 @@
     "jd_necklace": "node jd_necklace.js",
     "jd_baitiao": "node jd_baitiao.js",
     "jd_small_home": "node jd_small_home.js",
+    "jd_jdfactory": "node jd_jdfactory.js",
     "jd_shareCodes_boarding": "node jd_shareCodes_boarding.js",
     "shareCodesHelper": "node shareCodesHelper.js",
     "lightning_checkin": "node lightning_checkin.js",

@@ -8,15 +8,19 @@ const notify = require('./sendNotify')
 const { shareCodes } = require('./ShareCode')
 
 const shareCodeMap = {
-  bean: shareCodes.map(it => it.plantBean),
-  farm: shareCodes.map(it => it.fruits),
-  pet: shareCodes.map(it => it.pet)
+  bean: shareCodes.filter(it => it.plantBean !== undefined).map(it => it.plantBean),
+  farm: shareCodes.filter(it => it.fruits !== undefined).map(it => it.fruits),
+  pet: shareCodes.filter(it => it.pet !== undefined).map(it => it.pet),
+  ddfactory: shareCodes.filter(it => it.ddfactory !== undefined).map(it => it.ddfactory),
+  jxfactory: shareCodes.filter(it => it.jxfactory !== undefined).map(it => it.jxfactory),
 }
 
 const SHARE_CODE_DESC = {
   'bean': '种豆得豆',
   'farm': '东东农场',
-  'pet': '东东萌宠'
+  'pet': '东东萌宠',
+  'ddfactory':'东东工厂',
+  'jxfactory':'京喜工厂',
 }
 
 const taskurl = (url) => {
