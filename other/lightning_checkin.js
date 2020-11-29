@@ -3,7 +3,7 @@
 // let cookie = process.env.FREE_MY_CLOUD_COOKIE;
 const HOST_NAME = 'https://freemycloud.pw'
 const $ = new Env('闪电签到');
-const notify = $.isNode() ? require('./sendNotify') : '';
+const notify = $.isNode() ? require('../sendNotify') : '';
 
 let usernames = []
 let passwords = []

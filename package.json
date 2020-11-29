@@ -35,10 +35,10 @@
     "jd_shareCodes_boarding": "node jd_shareCodes_boarding.js",
     "jd_syj": "node jd_syj.js",
     "shareCodesHelper": "node shareCodesHelper.js",
-    "lightning_checkin": "node lightning_checkin.js",
-    "smzdm_checkin": "node smzdm_checkin.js",
-    "j.mr_checkin": "node j.mr_checkin.js",
-    "v2ex_checkin": "node v2ex_checkin.js"
+    "lightning_checkin": "node other/lightning_checkin.js",
+    "smzdm_checkin": "node other/smzdm_checkin.js",
+    "j.mr_checkin": "node other/j.mr_checkin.js",
+    "v2ex_checkin": "node other/v2ex_checkin.js"
   },
   "repository": {
     "type": "git",
