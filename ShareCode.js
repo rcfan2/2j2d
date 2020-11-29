@@ -49,7 +49,7 @@ const shareCodes = [
         'n3AaXZttXXmX6mIJenJWjw=='
     ),
     new ShareCode(
-        '18800659641',
+        '大咪嗷嗷1',
         '987ee04888b64f0597b13049853caca4',
         'MTE1NDAxNzgwMDAwMDAwNDAwMzg2Mjk=',
         'bknudbr7e4sqwbhh4kxjg7vthwtj3ctybaw66uy',
@@ -59,7 +59,21 @@ const shareCodes = [
         '高敏',
         '32b5348df6374239964194e187fa187c',
         'MTE1NDUwMTI0MDAwMDAwMDQwNDcxOTYx',
-        'mv3riww4sqy5f53abjy63rud3qz6gsx6f7h3czq'
+        'mv3riww4sqy5f53abjy63rud3qz6gsx6f7h3czq',
+    ),
+    new ShareCode(
+        '大咪嗷嗷2',
+        '97d2efe84bd74bf8aacacb9b9bac20fd',
+        'MTEzMzI0OTE0NTAwMDAwMDA0MTU3ODg3OQ==',
+        'gou7sxm3hztwosdrlp4mnrat6ypjtw3b5ukpqpq',
+        'P04z54XCjVWnYaS5m9cZyaNjzQOxlCuj5XW6w',
+        'tvUf4vUpkLF9KyitjqKI3A=='
+    ),
+    new ShareCode(
+        '大咪嗷嗷3',
+        undefined,
+        undefined,
+        'pt_key=AAJfw5oZADCBdZciQl2_tzrlQQ3HYQYfbREj3YIOioHQoGyjc4-G4tgqb6F4NdHKEpyhiY7ar1g; pt_pin=jd_KWhQIuTtixQJ;'
     ),
     new ShareCode(
         '查钧译',
