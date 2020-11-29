@@ -39,6 +39,7 @@
     "smzdm_checkin": "node other/smzdm_checkin.js",
     "j.mr_checkin": "node other/j.mr_checkin.js",
     "v2ex_checkin": "node other/v2ex_checkin.js",
+    "bcs_checkin": "node other/bcs_checkin.js",
     "qqread": "node other/qqread.js"
   },
   "repository": {
