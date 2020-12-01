@@ -18,42 +18,46 @@ const maxtime = 20; //每日上传时长限制，默认20小时
 const wktimess = 1200; //周奖励领取标准，默认1200分钟
 const qqreadurlVal = "https://mqqapi.reader.qq.com/mqq/user/init";
 let qqreadheaderVal, qqreadtimeurlVal, qqreadtimeheaderVal;
-const cookiesArr = [
+const cookieParams = [
     {
-        qqreadheaderVal: JSON.stringify({
-            ywsession: "886al1rfdyowvgxxduklhqtvieuna3bx",
-            Cookie:
-                "ywguid=1398371419;ywkey=yw0GpSYORC1s;platform=android;channel=mqqmina;mpVersion=0.30.0;",
-            Connection: "keep-alive",
-            "Content-Type": "application/json",
-            Accept: "*/*",
-            Host: "mqqapi.reader.qq.com",
-            "User-Agent": "QQ/8.4.17.638 CFNetwork/1206 Darwin/20.1.0",
-            Referer: "https://appservice.qq.com/1110657249/0.30.0/page-frame.html",
-            "Accept-Language": "zh-cn",
-            "Accept-Encoding": "gzip, deflate, br",
-            mpversion: "0.30.0",
-        }),
-        qqreadtimeurlVal:
-        // "https://mqqapi.reader.qq.com/mqq/addReadTimeWithBid?scene=1007&refer=pages%2Fbook-read%2Findex&bid=13121988&readTime=2063&read_type=0&conttype=1&read_status=0&chapter_info=%5B%7B%221%22%3A%7B%22readTime%22%3A2063%2C%22pay_status%22%3A0%2C%22is_tail%22%3A0%7D%7D%5D&sp=-1",
-            "https://mqqapi.reader.qq.com/mqq/addReadTimeWithBid?scene=2016&refer=-1&bid=26134185&readTime=10463&read_type=0&conttype=1&read_status=0&chapter_info=%5B%7B%221%22%3A%7B%22readTime%22%3A10463%2C%22pay_status%22%3A0%7D%7D%5D&sp=-1",
-        qqreadtimeheaderVal: JSON.stringify({
-            ywsession: "886al1rfdyowvgxxduklhqtvieuna3bx",
-            Cookie:
-                "ywguid=1398371419;ywkey=yw0GpSYORC1s;platform=android;channel=mqqmina;mpVersion=0.30.0;qq_ver=8.3.9.2944;os_ver=Android 10;mpos_ver=1.16.0;platform=android;openid=BE8F85D640E85BB13C942C8DE01B0363",
-            Connection: "keep-alive",
-            "Content-Type": "application/json",
-            Accept: "*/*",
-            Host: "mqqapi.reader.qq.com",
-            "User-Agent": "QQ/8.4.17.638 CFNetwork/1206 Darwin/20.1.0",
-            Referer: "https://appservice.qq.com/1110657249/0.30.0/page-frame.html",
-            "Accept-Language": "zh-cn",
-            "Accept-Encoding": "gzip, deflate, br",
-            mpversion: "0.30.0",
-        }),
-    },
-    //多账号添加到这里，每个账号一个{}
-];
+        ywsession: '7ra0jg00a821v16d10a1xdqs8qdkykkd',
+        Cookie: 'ywguid=1398371419;ywkey=yw0GpSYORC1s;platform=android;channel=mqqmina;mpVersion=0.30.0;',
+        qqreadtimeurlVal: 'https://mqqapi.reader.qq.com/mqq/addReadTimeWithBid?scene=2014&refer=-1&bid=26134185&readTime=4761&read_type=0&conttype=1&read_status=0&chapter_info=%5B%7B%221%22%3A%7B%22readTime%22%3A4761%2C%22pay_status%22%3A0%7D%7D%5D&sp=-1',
+        qqreadCookie: 'ywguid=1398371419;ywkey=ywZut6ibGPeB;platform=android;channel=mqqmina;mpVersion=0.30.0;qq_ver=8.3.9.2944;os_ver=Android 10;mpos_ver=1.16.0;platform=android;openid=BE8F85D640E85BB13C942C8DE01B0363'
+    }
+]
+const cookiesArr = cookieParams.map(it => {
+                return {
+                    qqreadheaderVal: JSON.stringify({
+                        ywsession: it.ywsession,
+                        Cookie: it.Cookie,
+                        Connection: "keep-alive",
+                        "Content-Type": "application/json",
+                        Accept: "*/*",
+                        Host: "mqqapi.reader.qq.com",
+                        "User-Agent": "QQ/8.4.17.638 CFNetwork/1206 Darwin/20.1.0",
+                        Referer: "https://appservice.qq.com/1110657249/0.30.0/page-frame.html",
+                        "Accept-Language": "zh-cn",
+                        "Accept-Encoding": "gzip, deflate, br",
+                        mpversion: "0.30.0",
+                    }),
+                    qqreadtimeurlVal: it.qqreadtimeurlVal,
+                    qqreadtimeheaderVal: JSON.stringify({
+                        ywsession: it.ywsession,
+                        Cookie: it.qqreadCookie,
+                        Connection: "keep-alive",
+                        "Content-Type": "application/json",
+                        Accept: "*/*",
+                        Host: "mqqapi.reader.qq.com",
+                        "User-Agent": "QQ/8.4.17.638 CFNetwork/1206 Darwin/20.1.0",
+                        Referer: "https://appservice.qq.com/1110657249/0.30.0/page-frame.html",
+                        "Accept-Language": "zh-cn",
+                        "Accept-Encoding": "gzip, deflate, br",
+                        mpversion: "0.30.0",
+                    })
+                }
+            }
+        )
 
 let tz = "";
 let num = 0;
