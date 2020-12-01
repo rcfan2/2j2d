@@ -41,12 +41,12 @@ class ShareCode {
 
 const shareCodes = [
     new ShareCode(
-        '小绵羊酱酱',
-        'f8df73267c104df2acba96d9378f06c5',
-        'MTE1NDAxNzYwMDAwMDAwMzkxNzczMTE=',
-        'e7lhibzb3zek2oioxerjozsro55orxh2yys4ula',
-        'P04z54XCjVWnYaS5m9cZ2T62ypPnY82rvc-CJA',
-        'n3AaXZttXXmX6mIJenJWjw=='
+        'jd未知jd',
+        'a399af032b1643f3b1359f4f24af39e1',
+        'MTE1NDQ5MzYwMDAwMDAwMzcyMTg1MjU=',
+        '',
+        'P04z54XCjVWnYaS5m9cZz2muSkS_NgjbZnSzA',
+        ''
     ),
     new ShareCode(
         '大咪嗷嗷1',
