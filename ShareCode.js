@@ -1,6 +1,13 @@
 // 助力码辅助生成
 class ShareCode {
-    constructor(username, fruits, pet, plantBean, ddfactory, jxfactory) {
+    constructor(username,
+                fruits,
+                pet,
+                plantBean,
+                ddfactory,
+                jxfactory,
+                jxStory,
+                jdSplit) {
         this._username = username
         // 东东农场互助码
         this._fruits = fruits
@@ -12,6 +19,10 @@ class ShareCode {
         this._ddfactory = ddfactory
         // 京喜工厂互助码
         this._jxfactory = jxfactory
+        // 京喜故事互助码
+        this._jxStory = jxStory
+        // 京榜年终奖
+        this._jdSplit = jdSplit
     }
 
     get username() {
@@ -37,6 +48,14 @@ class ShareCode {
     get jxfactory() {
         return this._jxfactory
     }
+
+    get jxStory() {
+        return this._jxStory
+    }
+
+    get jdSplit() {
+        return this._jdSplit
+    }
 }
 
 const shareCodes = [
@@ -46,14 +65,19 @@ const shareCodes = [
         'MTE1NDAxNzYwMDAwMDAwMzkxNzczMTE=',
         'e7lhibzb3zek2oioxerjozsro55orxh2yys4ula',
         'P04z54XCjVWnYaS5m9cZ2T62ypPnY82rvc-CJA',
-        'n3AaXZttXXmX6mIJenJWjw=='
+        'n3AaXZttXXmX6mIJenJWjw==',
+        'JRurIu4XYSB8NPOzdUPImYR0f2tbnAd5ETR1tM90sak=',
+        'P04z54XCjVUnIaW5m9cZ2T62ypPnccHcyh7TME'
     ),
     new ShareCode(
-        '大咪嗷嗷1',
+        '大咪酱噢噢噢',
         '987ee04888b64f0597b13049853caca4',
         'MTE1NDAxNzgwMDAwMDAwNDAwMzg2Mjk=',
         'bknudbr7e4sqwbhh4kxjg7vthwtj3ctybaw66uy',
         'P04z54XCjVWnYaS5m9cZxa_rCUbw1uYn51X5g',
+        'cgw1XF89J-1IWzDQICxWcg==',
+        '40OKfEi2PzjgCMVnZzl2ttDXOc-iAXtDDXDdaNFqu9o=',
+        'P04z54XCjVUnIaW5m9cZxa_rCUbw2Ezcr-scg'
     ),
     new ShareCode(
         '高敏',
@@ -67,13 +91,15 @@ const shareCodes = [
         'MTEzMzI0OTE0NTAwMDAwMDA0MTU3ODg3OQ==',
         'gou7sxm3hztwosdrlp4mnrat6ypjtw3b5ukpqpq',
         'P04z54XCjVWnYaS5m9cZyaNjzQOxlCuj5XW6w',
-        'tvUf4vUpkLF9KyitjqKI3A=='
+        'tvUf4vUpkLF9KyitjqKI3A==',
+        '95ba6vtMsw_CzaGe49Rk7eZlyZqI_Oe8aDyu7sEj1No=',
+        'P04z54XCjVUnIaW5m9cZyaNjzQOxvMEV4J98A',
     ),
     new ShareCode(
         '大咪嗷嗷3',
         undefined,
         undefined,
-        'pt_key=AAJfw5oZADCBdZciQl2_tzrlQQ3HYQYfbREj3YIOioHQoGyjc4-G4tgqb6F4NdHKEpyhiY7ar1g; pt_pin=jd_KWhQIuTtixQJ;'
+        'gcdr655xfdjq7ptqbtglgnitygjn3dbfj4m423a',
     ),
     new ShareCode(
         '查钧译',
@@ -104,6 +130,16 @@ const shareCodes = [
         '4cbf9b4070b14efa853ee3e3ea0a97db',
         'MTE1NDUyMjEwMDAwMDAwNDAwMzgwOTU=',
         'lqvulo4mnacvkub4mrvr2u3qba'
+    ),
+    new ShareCode(
+        '王瑶',
+        '6831e59df38e40468b099ff48e6a1a0f',
+        'MTE1NDAxNzgwMDAwMDAwNDIwMDE0Mjk=',
+        'olmijoxgmjutyz727n3ma37f7r26bdvt7squrmy',
+        'P04z54XCjVWnYaS5m9cZ2auj3RKl5j19_GLmPw',
+        undefined,
+        'VWMrbTBkk8qIziGYchoa0eOx3qbAGiY_nnoY1OgvLP8=',
+        'P04z54XCjVUnIaW5m9cZ2auj3RKl--KfJRZ8z8',
     )
 ]
 
