@@ -66,8 +66,8 @@ const shareCodes = [
         'e7lhibzb3zek2oioxerjozsro55orxh2yys4ula',
         'P04z54XCjVWnYaS5m9cZ2T62ypPnY82rvc-CJA',
         'n3AaXZttXXmX6mIJenJWjw==',
-        'nkh1dTbkXzO89RvBYiY8nE4qsRgtOGFO3kbYbCGv54Q=',
-        'P04z54XCjVUnIaW5m9cZzKKhB4y_btcECPCeA'
+        'JRurIu4XYSB8NPOzdUPImYR0f2tbnAd5ETR1tM90sak=',
+        'P04z54XCjVUnIaW5m9cZ2T62ypPnccHcyh7TME'
     ),
     new ShareCode(
         '大咪酱噢噢噢',
@@ -77,7 +77,7 @@ const shareCodes = [
         'P04z54XCjVWnYaS5m9cZxa_rCUbw1uYn51X5g',
         'cgw1XF89J-1IWzDQICxWcg==',
         '40OKfEi2PzjgCMVnZzl2ttDXOc-iAXtDDXDdaNFqu9o=',
-        'P04z54XCjVUnIaW5mlbSWb51Q'
+        'P04z54XCjVUnIaW5m9cZxa_rCUbw2Ezcr-scg'
     ),
     new ShareCode(
         '高敏',
