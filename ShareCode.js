@@ -1,6 +1,13 @@
 // 助力码辅助生成
 class ShareCode {
-    constructor(username, fruits, pet, plantBean, ddfactory, jxfactory) {
+    constructor(username,
+                fruits,
+                pet,
+                plantBean,
+                ddfactory,
+                jxfactory,
+                jxStory,
+                jdSplit) {
         this._username = username
         // 东东农场互助码
         this._fruits = fruits
@@ -12,6 +19,10 @@ class ShareCode {
         this._ddfactory = ddfactory
         // 京喜工厂互助码
         this._jxfactory = jxfactory
+        // 京喜故事互助码
+        this._jxStory = jxStory
+        // 京榜年终奖
+        this._jdSplit = jdSplit
     }
 
     get username() {
@@ -37,6 +48,14 @@ class ShareCode {
     get jxfactory() {
         return this._jxfactory
     }
+
+    get jxStory() {
+        return this._jxStory
+    }
+
+    get jdSplit() {
+        return this._jdSplit
+    }
 }
 
 const shareCodes = [
@@ -47,6 +66,8 @@ const shareCodes = [
         'l4ex6vx6yynouxpqe5pbjoigplsluypljetpovq',
         'P04z54XCjVWnYaS5m9cZz2muSkS_NgjbZnSzA',
         ''
+        'hkTxQB0fplkGKTMUStI8zy2BrF74eD2qEOblJdQuHf4=',
+        ''
     ),
     new ShareCode(
         '遇见3未',
@@ -54,12 +75,19 @@ const shareCodes = [
         'MTAxODc2NTEzMTAwMDAwMDAyODc2NjM2NQ==',
         'zlmjgctb673yvqj464zq6mwdee',
         'P04z54XCjVWnYaS5mlbSWb51Q',
+         ''
+        'b5u67pVlki9FYUQgHeZC1w==',
+        'P04z54XCjVUnIaW5mlbSWb51Q '
     ),
     new ShareCode(
         '1jake37',
         'd9e3d1ffadd34ab9b5e990010d258c60',
         'MTE1NDAxNzcwMDAwMDAwMzg2MDE0Njc=',
         '4larfd6ua4ecyw5gp5ojqcdz57wfcewgnlpjfgq',
+        ''
+        ''
+        'ItquS9iMCp53Sr7KAxxxQ2-jcxRVDYlxgbYxVF1LmiU=',
+        'P04z54XCjVUnIaW5m9cZySkvzo75xIw9FdCYg'
     ),
     new ShareCode(
         'jd_62433',
@@ -68,6 +96,8 @@ const shareCodes = [
         'xmblfgd3rmwo46hdnzy3mnvb7tmnzawk2kmrffi',
         'P04z54XCjVWnYaS5m9cZzKKhB4y_X4oQNFVDw',
         'jxiWiwhUmfE47jIWiiZrYQ=='
+        'nkh1dTbkXzO89RvBYiY8nE4qsRgtOGFO3kbYbCGv54Q= ',
+        'P04z54XCjVUnIaW5m9cZzKKhB4y_btcECPCeA '
     )
 ]
 
