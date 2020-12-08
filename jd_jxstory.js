@@ -31,7 +31,11 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送
 const randomCount = 3;
 let cookiesArr = [], cookie = '', message = '';
-const inviteCodes = ['qSDHMwUOz7onHcMyaju4KmdSXWf0dlv7LVnTt1Wzemo=@iuGNoGYvk9YdEImUAz25Wyzm7oeggrm0JSIYgZdHJGI=', 'iuGNoGYvk9YdEImUAz25Wyzm7oeggrm0JSIYgZdHJGI='];
+const inviteCodes = [
+  'JRurIu4XYSB8NPOzdUPImYR0f2tbnAd5ETR1tM90sak=',
+  '40OKfEi2PzjgCMVnZzl2ttDXOc-iAXtDDXDdaNFqu9o=',
+  '95ba6vtMsw_CzaGe49Rk7eZlyZqI_Oe8aDyu7sEj1No=',
+];
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {

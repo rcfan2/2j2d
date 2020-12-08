@@ -1,5 +1,5 @@
 /*
- * @Author: lxk0301 https://github.com/lxk0301 
+ * @Author: lxk0301 https://github.com/lxk0301
  * @Date: 2020-12-06 18:19:21
  * @Last Modified by: lxk0301
  * @Last Modified time: 2020-12-06 22:58:02
@@ -47,7 +47,11 @@ if ($.isNode()) {
 }
 let wantProduct = ``;//心仪商品名称
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
-const inviteCodes = [`P04z54XCjVWnYaS5u2ak7ZCdan1Bdd2GGiWvC6_uERj`, 'P04z54XCjVWnYaS5m9cZ2ariXVJwHf0bgkG7Uo'];
+const inviteCodes = [
+  'P04z54XCjVWnYaS5m9cZ2T62ypPnY82rvc-CJA',
+  'P04z54XCjVWnYaS5m9cZxa_rCUbw1uYn51X5g',
+  'P04z54XCjVWnYaS5m9cZyaNjzQOxlCuj5XW6w',
+]
 !(async () => {
   await requireConfig();
   if (!cookiesArr[0]) {
