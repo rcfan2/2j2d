@@ -1,5 +1,6 @@
 /*
 数码加购京豆
+脚本会给内置的码进行助力
 共计25京豆，一天运行一次即可
 活动时间：2020-12-4 到 2020-12-11
 活动入口：https://prodev.m.jd.com/mall/active/nKxVyPnuLwAsQSTfidZ9z4RKVZy/index.html#/
@@ -280,7 +281,8 @@ function shareCodesFormat() {
   })
 }
 function requireConfig() {
-  return new Promise(resolve => {
+  return new Promise(async resolve => {
+    await getAuthorShareCode()
     console.log(`开始获取${$.name}配置文件\n`);
     //Node.js用户请在jdCookie.js处填写京东ck;
     const shareCodes = [] //$.isNode() ? require('./jdSplitShareCodes.js') : '';
@@ -295,6 +297,22 @@ function requireConfig() {
     }
     console.log(`您提供了${$.shareCodesArr.length}个账号的${$.name}助力码\n`);
     resolve()
+  })
+}
+function getAuthorShareCode() {
+  return new Promise(resolve => {
+    $.get({url: "https://cdn.jsdelivr.net/gh/shylocks/updateTeam@main/jd_digital_floor"}, async (err, resp, data) => {
+      try {
+        if (err) {
+        } else {
+          inviteCodes[0] = data.replace('\n', '')
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve();
+      }
+    })
   })
 }
 function taskPostUrl(function_id, body) {

@@ -1,25 +1,26 @@
 /*
-健康抽奖机 ，活动于2020-12-31日结束
+苹果抽奖机
 脚本会给内置的码进行助力
-活动地址：https://h5.m.jd.com/babelDiy/Zeus/3HBUP66Gnx92mRt2bXbT9VamYWSx/index.html
+活动于2020-12-14日结束
+活动地址：https://h5.m.jd.com/babelDiy/Zeus/2zwQnu4WHRNfqMSdv69UPgpZMnE2/index.html/
 已支持IOS双京东账号,Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 ============Quantumultx===============
 [task_local]
-#健康抽奖机
-10 0 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_health.js, tag=健康抽奖机, enabled=true
+#苹果抽奖机
+10 0 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_apple_live.js, tag=苹果抽奖机, enabled=true
 
 ================Loon==============
 [Script]
-cron "10 0 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_health.js,tag=健康抽奖机
+cron "10 0 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_apple_live.js,tag=苹果抽奖机
 
 ===============Surge=================
-健康抽奖机 = type=cron,cronexp="10 0 * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_health.js
+苹果抽奖机 = type=cron,cronexp="10 0 * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_apple_live.js
 
 ============小火箭=========
-健康抽奖机 = type=cron,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_health.js, cronexpr="10 0 * * *", timeout=200, enable=true
+苹果抽奖机 = type=cron,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_apple_live.js, cronexpr="10 0 * * *", timeout=200, enable=true
  */
-const $ = new Env('健康抽奖机');
+const $ = new Env('苹果抽奖机');
 
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -37,9 +38,7 @@ if ($.isNode()) {
   cookiesArr.push(...[$.getdata('CookieJD'), $.getdata('CookieJD2')]);
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
-const inviteCodes = [
-    ''
-];
+const inviteCodes = [`P04z54XCjVUm4aW5nJcXCCyoR8C6s-kRmWs@P04z54XCjVUm4aW5m9cZ2bx3y5Ow@P04z54XCjVUm4aW5u2ak7ZCdan1BeYMuZ9HwF34gJjW@P04z54XCjVUm4aW5m9cZ2T6jChKkkjZEdhiKUY`, `P04z54XCjVUm4aW5nJcXCCyoR8C6s-kRmWs@P04z54XCjVUm4aW5m9cZ2bx3y5Ow`];
 !(async () => {
   await requireConfig();
   if (!cookiesArr[0]) {
@@ -79,14 +78,14 @@ const inviteCodes = [
     })
 async function jdHealth() {
   await helpFriends();
-  await jdhealth_getTaskDetail();
+  await jdapple_getTaskDetail();
   await doTask();
-  await jdhealth_getTaskDetail(0);
+  await jdapple_getTaskDetail(0);
   if($.userInfo.scorePerLottery<=$.userInfo.userScore){
     console.log(`当前用户金币: ${$.userInfo.userScore}，抽奖需要${$.userInfo.scorePerLottery}，开始抽奖`)
     message += `当前用户金币: ${$.userInfo.userScore}，抽奖需要${$.userInfo.scorePerLottery}，开始抽奖\n`
     for(let i=0;i<parseInt($.userInfo.userScore)/$.userInfo.scorePerLottery;++i){
-      await jdhealth_getLottery()
+      await jdapple_getLottery()
     }
   }else{
     console.log(`当前用户金币: ${$.userInfo.userScore}，抽奖需要${$.userInfo.scorePerLottery}，金币不足无法抽奖`)
@@ -111,7 +110,7 @@ function showMsg() {
 async function helpFriends() {
   for (let code of $.newShareCodes) {
     if (!code) continue
-    const helpRes = await jdhealth_collectScore(code,6,null);
+    const helpRes = await jdapple_collectScore(code,6,null);
     if (helpRes.code === 0 && helpRes.data.bizCode === -7) {
       console.log(`助力机会已耗尽，跳出`);
       break
@@ -126,9 +125,24 @@ async function doTask() {
         console.log(`准备做此任务：${item.taskName}`)
         for (let task of item.shoppingActivityVos) {
           if (task.status === 1) {
-            await jdhealth_collectScore(task.taskToken,item.taskId,task.itemId,1);
+            await jdapple_collectScore(task.taskToken,item.taskId,task.itemId,1);
+            await $.wait(6500)
+            await jdapple_collectScore(task.taskToken,item.taskId,task.itemId,0);
+          }
+        }
+      } else if(item.status!==4){
+        console.log(`${item.taskName}已做完`)
+      }
+    }
+    if (item.taskType === 8) {
+      // 浏览商品任务
+      if (item.status === 1) {
+        console.log(`准备做此任务：${item.taskName}`)
+        for (let task of item.productInfoVos) {
+          if (task.status === 1) {
+            await jdapple_collectScore(task.taskToken,item.taskId,task.itemId,1);
             await $.wait(15000)
-            await jdhealth_collectScore(task.taskToken,item.taskId,task.itemId,0);
+            await jdapple_collectScore(task.taskToken,item.taskId,task.itemId,0);
           }
         }
       } else if(item.status!==4){
@@ -136,27 +150,30 @@ async function doTask() {
       }
     }
 
-    if (item.taskType === 21) {
-      // 会员任务
+    if (item.taskType === 1) {
+      // 关注任务
       if (item.status === 1) {
-        console.log(`准备做此任务：${item.taskName}`);
-        for (let task of item.brandMemberVos) {
+        console.log(`准备做此任务：${item.taskName}`)
+        for (let task of item.followShopVo) {
           if (task.status === 1) {
-            await jdhealth_collectScore(task.taskToken,item.taskId,task.itemId,1);
-            await jdhealth_collectScore(task.taskToken,item.taskId,task.itemId,0);
+            console.log(`去关注 ${task.shopName}`)
+            await jdapple_collectScore(task.taskToken,item.taskId,task.itemId,1);
+            await $.wait(1000)
+            await jdapple_collectScore(task.taskToken,item.taskId,task.itemId,0);
           }
         }
       } else if(item.status!==4){
         console.log(`${item.taskName}已做完`)
       }
     }
+
   }
 }
 
 //领取做完任务的奖励
-function jdhealth_collectScore(taskToken, taskId, itemId, actionType=0) {
+function jdapple_collectScore(taskToken, taskId, itemId, actionType=0) {
   return new Promise(resolve => {
-    let body = { "appId":"1EFRTwg","taskToken":taskToken,"taskId":taskId,"itemId":itemId,"actionType":actionType }
+    let body = { "appId":"1EFRTxw","taskToken":taskToken,"taskId":taskId,"itemId":itemId,"actionType":actionType }
     $.post(taskPostUrl("harmony_collectScore", body), async (err, resp, data) => {
       try {
         if (err) {
@@ -175,7 +192,6 @@ function jdhealth_collectScore(taskToken, taskId, itemId, actionType=0) {
                   message += `助力好友：${data.data.result.itemId}成功！\n`
                 }else {
                   console.log(`任务完成成功`);
-                  message += `任务完成成功！\n`
                 }
 
             } else {
@@ -193,9 +209,9 @@ function jdhealth_collectScore(taskToken, taskId, itemId, actionType=0) {
 }
 
 // 抽奖
-function jdhealth_getLottery() {
+function jdapple_getLottery() {
   return new Promise(resolve => {
-    let body = { "appId":"1EFRTwg"}
+    let body = { "appId":"1EFRTxw"}
     $.post(taskPostUrl("interact_template_getLotteryResult", body), async (err, resp, data) => {
       try {
         if (err) {
@@ -221,9 +237,9 @@ function jdhealth_getLottery() {
   })
 }
 
-function jdhealth_getTaskDetail(get=1) {
+function jdapple_getTaskDetail(get=1) {
   return new Promise(resolve => {
-    $.post(taskPostUrl("healthyDay_getHomeData", {"appId":"1EFRTwg","taskToken":""}, ), async (err, resp, data) => {
+    $.post(taskPostUrl("healthyDay_getHomeData", {"appId":"1EFRTxw","taskToken":""}, ), async (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
@@ -256,7 +272,7 @@ function jdhealth_getTaskDetail(get=1) {
 function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
-    $.get({url: `http://api.turinglabs.net/api/v1/jd/jdhealth/read/${randomCount}/`}, (err, resp, data) => {
+    $.get({url: `http://api.turinglabs.net/api/v1/jd/jdapple/read/${randomCount}/`}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
