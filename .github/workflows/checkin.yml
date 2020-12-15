@@ -10,7 +10,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-    types: lightning
+    types: checkin
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -39,6 +39,7 @@ jobs:
           npm run v2ex_checkin
           npm run smzdm_checkin
           npm run bcs_checkin
+          npm run 52pojie_checkin
         env:
           FREE_MY_CLOUD_USERNAME: ${{ secrets.FREE_MY_CLOUD_USERNAME }}
           FREE_MY_CLOUD_PASSWORD: ${{ secrets.FREE_MY_CLOUD_PASSWORD }}
@@ -47,5 +48,6 @@ jobs:
           V2EX_COOKIE: ${{ secrets.V2EX_COOKIE }}
           SMZDM_COOKIE: ${{ secrets.SMZDM_COOKIE }}
           BCS_COOKIE: ${{ secrets.BCS_COOKIE }}
+          POJIE52_COOKIE: ${{ secrets.POJIE52_COOKIE }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
