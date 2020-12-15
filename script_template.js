@@ -16,15 +16,16 @@ const $ = new Env(name)
 
 function task_sample1() {
     const options = {
-        'url': `${JD_API_HOST}task/listMeeting?t=${Date.now()}`,
-        'headers': {
-            'Host': 'rdcseason.m.jd.com',
+        url: '',
+        headers: {
+            'Host': '',
             'Accept': 'application/json, text/plain, */*',
             'Connection': ' keep-alive',
             'Cookie': cookie,
             'User-Agent': UA,
             'Accept-Language': 'zh-cn',
-            'Referer': `https://rdcseason.m.jd.com/?reloadWQPage=t_${Date.now()}`,
+            'Referer': '',
+            'Origin': '',
             'Accept-Encoding': 'gzip, deflate, br'
         }
     }
