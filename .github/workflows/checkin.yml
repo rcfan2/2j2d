@@ -6,7 +6,7 @@ name: 签到
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 16 * * *' #北京时间0点运行，action会有延迟
+    - cron: '0 0 * * *' #北京时间0点运行，action会有延迟
   watch:
     types: started
   repository_dispatch:
@@ -34,12 +34,12 @@ jobs:
           npm install
       - name: '运行 【多功能签到】'
         run: |
-          npm run lightning_checkin
-          npm run j.mr_checkin
-          npm run v2ex_checkin
-          npm run smzdm_checkin
-          npm run bcs_checkin
-          npm run 52pojie_checkin
+          node lightning_checkin.js
+          node j.mr_checkin.js
+          node v2ex_checkin.js
+          node smzdm_checkin.js
+          node bcs_checkin.js
+          node 52pojie_checkin.js
         env:
           FREE_MY_CLOUD_USERNAME: ${{ secrets.FREE_MY_CLOUD_USERNAME }}
           FREE_MY_CLOUD_PASSWORD: ${{ secrets.FREE_MY_CLOUD_PASSWORD }}

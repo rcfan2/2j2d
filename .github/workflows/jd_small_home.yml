@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【东东小窝】'
         run: |
-          npm run jd_small_home
+          node jd_small_home.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}

@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【京东汽车】'
         run: |
-          npm run jd_car
+          node jd_car.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}

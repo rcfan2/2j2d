@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【点点券脚本】'
         run: |
-          npm run jd_necklace
+          node jd_necklace.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}

@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【东东农场】'
         run: |
-          npm run jd_fruit
+          node jd_fruit.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}

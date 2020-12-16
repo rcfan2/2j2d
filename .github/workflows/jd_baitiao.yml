@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【天天领白条券】'
         run: |
-          npm run jd_baitiao
+          node jd_baitiao.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}

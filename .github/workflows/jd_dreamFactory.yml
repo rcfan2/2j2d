@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【京喜工厂】'
         run: |
-          npm run jd_dreamFactory
+          node jd_dreamFactory.js
         env:
           JD_JX_COOKIE: ${{ secrets.JD_JX_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}

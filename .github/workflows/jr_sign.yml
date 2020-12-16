@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【金融打卡领年终奖】'
         run: |
-          npm run jr_sign
+          node jr_sign.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}

@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【京豆变动通知】'
         run: |
-          npm run jd_bean_change
+          node jd_bean_change.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}

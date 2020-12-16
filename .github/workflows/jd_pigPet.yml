@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【金融养猪】'
         run: |
-          npm run jd_pigPet
+          node jd_pigPet.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}

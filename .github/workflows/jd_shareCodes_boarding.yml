@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【京东随机助力上车】'
         run: |
-          npm run jd_shareCodes_boarding
+          node jd_shareCodes_boarding.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}

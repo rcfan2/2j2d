@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【京小超兑换奖品】'
         run: |
-          npm run jd_blueCoin
+          node jd_blueCoin.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}

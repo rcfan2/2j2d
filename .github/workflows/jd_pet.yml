@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【东东萌宠】'
         run: |
-          npm run jd_pet
+          node jd_pet.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}

@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【秒杀红包雨】'
         run: |
-          npm run jd_ms_redrain
+          node jd_ms_redrain.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}

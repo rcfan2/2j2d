@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【进店领豆脚本】'
         run: |
-          npm run jd_shop
+          node jd_shop.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}

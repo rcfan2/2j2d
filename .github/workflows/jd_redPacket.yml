@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【全民开红包脚本】'
         run: |
-          npm run jd_redPacket
+          node jd_redPacket.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}

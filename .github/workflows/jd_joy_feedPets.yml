@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【宠汪汪喂食脚本】'
         run: |
-          npm run jd_joy_feedPets
+          node jd_joy_feedPets.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
