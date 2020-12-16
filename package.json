@@ -51,6 +51,7 @@
     "bcs_checkin": "node other/bcs_checkin.js",
     "52pojie_checkin": "node other/52pojie_checkin.js",
     "ruike1_reply": "node other/ruike1_reply.js",
+    "52pojie_reply": "node other/52pojie_reply.js",
     "xm_sport": "node backUp/xmSports.js",
     "qqread": "node backUp/qqread.js",
     "check_workflow": "node utils/check_workflow.js"
