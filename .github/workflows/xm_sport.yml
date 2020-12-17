@@ -35,7 +35,7 @@ jobs:
           npm install
       - name: '运行 【小米运动】'
         run: |
-          node xm_sport.js
+          node backUp/xmSports.js
         env:
           XM_LOGIN_TOKEN: ${{ secrets.XM_LOGIN_TOKEN }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}

@@ -34,7 +34,7 @@ jobs:
           npm install
       - name: '运行 【瑞客论坛评论】'
         run: |
-          node ruike1_reply.js
+          node other/ruike1_reply.js
         env:
           RUIKE_COOKIE: ${{ secrets.RUIKE_COOKIE }}
           RUIKE_REPLY_MESSAGE: ${{ secrets.RUIKE_REPLY_MESSAGE }}
