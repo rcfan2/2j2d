@@ -43,7 +43,7 @@ if ($.isNode()) {
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const inviteCodes = [
-    'P04z54XCjVUnoaW5m9cZ2T62ypPnXW_Ekpbj-M',
+    '15ad3153f3e2f75bd47544553428ff73',
     'P04z54XCjVUnoaW5m9cZxa_rCUbwwORFGOwdw',
     'P04z54XCjVUnoaW5jYOCmn62HpInTqDQCYzaOQ',
     'P04z54XCjVUnoaW5m9cZyaNjzQOxn9JToHNsg',
