@@ -10,7 +10,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-    types: xm_sport
+    types: xm_sport1
 jobs:
   build:
 
@@ -35,8 +35,8 @@ jobs:
           npm install
       - name: '运行 【小米运动】'
         run: |
-          node backUp/xmSports.js
+          node backUp/xmSports1.js
         env:
-          XM_LOGIN_TOKEN: ${{ secrets.XM_LOGIN_TOKEN }}
+          XM_LOGIN_TOKEN: ${{ secrets.XM_LOGIN_TOKEN1 }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
