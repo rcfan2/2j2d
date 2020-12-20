@@ -4,7 +4,7 @@
   "description": "{**When you're done, you can delete the content in this README and update the file with details for others getting started with your repository**}",
   "main": "AlipayManor.js",
   "scripts": {
-    "jd_shareCodes_boarding": "node jd_shareCodes_boarding.js",
+    "jd_shareCodes_boarding": "node shareBus.js",
     "shareCodesHelper": "node shareCodesHelper.js",
     "check_workflow": "node utils/check_workflow.js"
   },
