@@ -41,7 +41,6 @@ const $ = new Env('东东小窝');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-$.inviteCodes = []
 
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message = '';
@@ -60,7 +59,7 @@ if ($.isNode()) {
   cookiesArr.push(...[$.getdata('CookieJD2'), $.getdata('CookieJD')]);
   cookiesArr.reverse();
 }
-
+$.newShareCodes = [];
 const JD_API_HOST = 'https://lkyl.dianpusoft.cn/api';
 
 !(async () => {
@@ -92,28 +91,16 @@ const JD_API_HOST = 'https://lkyl.dianpusoft.cn/api';
     }
   }
   // 获取到每个账号的助力码，开始助力
-  console.log(`获取到${$.inviteCodes.length}个助力码，开始助力`)
+  console.log(`获取到${$.newShareCodes.length}个助力码，开始助力`)
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
-      $.index = i + 1;
-      $.isLogin = true;
-      $.nickName = '';
-      message = '';
-      await TotalBean();
-      console.log(`\n*******开始【京东账号${$.index}】${$.nickName || $.UserName}********\n`);
-      if (!$.isLogin) {
-        $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/`, {"open-url": "https://bean.m.jd.com/"});
-
-        if ($.isNode()) {
-          await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
-        } else {
-          $.setdata('', `CookieJD${i ? i + 1 : ""}`);//cookie失效，故清空cookie。$.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。
-        }
-        continue
+      if ($.newShareCodes.length > 1) {
+        let code = $.newShareCodes[(i + 1) % $.newShareCodes.length]
+        console.log(`\n${$.UserName}去给自己的下一账号${decodeURIComponent(cookiesArr[(i + 1) % $.newShareCodes.length].match(/pt_pin=(.+?);/) && cookiesArr[(i + 1) % $.newShareCodes.length].match(/pt_pin=(.+?);/)[1])}助力\n`)
+        await createAssistUser(code, $.createAssistUserID || "1318106976846299138");
       }
-      await helpFriends();
     }
   }
 
@@ -128,8 +115,9 @@ const JD_API_HOST = 'https://lkyl.dianpusoft.cn/api';
 async function smallHome() {
   await loginHome();
   await ssjjRooms();
-  await createInviteUser();
+  // await helpFriends();
   if (!$.isUnLock) return;
+  await createInviteUser();
   await queryDraw();
   await lottery();
   await doAllTask();
@@ -525,7 +513,7 @@ function createInviteUser() {
               if (data.body) {
                 if (data.body.id) {
                   console.log(`\n您的${$.name}shareCode(每天都是变化的):【${data.body.id}】\n`);
-                  $.inviteCodes.push(data.body.id);
+                  $.newShareCodes.push(data.body.id);
                 }
               }
             }
