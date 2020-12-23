@@ -15,32 +15,14 @@ if ($.isNode()) {
  * jx 京喜工厂
  */
 const shareCodes = [
-  // jd_62433
+  // jakesan1
   {
-    zd: 'xmblfgd3rmwo46hdnzy3mnvb7tmnzawk2kmrffi',
-    nc: 'c162b16c03b846ba9a7cd98448c29025',
-    mc: 'MTE1NDUwMTI0MDAwMDAwMDM4OTU1ODYx',
-    dd: 'P04z54XCjVWnYaS5m9cZzKKhB4y_X4oQNFVDw',
-    jx: 'jxiWiwhUmfE47jIWiiZrYQ==',
-    zz: 'AUWE5zd_Jr01gUjWuhi44',
-  },
-  // 遇见3未
-  {
-    zd: 'zlmjgctb673yvqj464zq6mwdee',
-    nc: 'd92cbd8f7c0048699452db1fdc24a75b',
-    mc: 'MTAxODc2NTEzMTAwMDAwMDAyODc2NjM2NQ==',
-    dd: 'P04z54XCjVWnYaS5mlbSWb51Q',
-    jx: 'e16R8GB6IJDhjA_VEeKcmw==',
-    zz: 'AV2YXmayY'
-  },
-  // 高
-  {
-    zd: '',
-    nc: '',
-    mc: '',
+    zd: 'tnmcphpjys5idhepzb4ggqphxvabwstydj7sl5y',
+    nc: '102ea0f241a84f77944b39c37efef174',
+    mc: 'MTE1NDQ5OTIwMDAwMDAwNDI5MTM4MTE=',
     dd: '',
-    jx: '',
-    zz: ''
+    jx: 'OzN1I5lHIPMmrDXWD1BJrg==',
+    zz: 'S5KkcJ1xojAK2QlCR1pRd'
   },
   // 大
   {
