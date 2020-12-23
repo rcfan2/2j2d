@@ -66,8 +66,8 @@ class CrazyJoy {
     await this.gameState()
     await this.doSign()
     setInterval(__ => this.produce(), PRODUCE_WAIT) // 模拟挂机1s一次
-    setInterval(__ => this.checkAndMerge(), MERGE_WAIT) // 购买合并升级30分钟一次
-
+    setInterval(__ => this.checkAndMerge(), MERGE_WAIT) // 购买合并升级1分钟一次
+    setInterval(__ => this.obtainAward(), 1000 * 60 * 30) //领取金币，固定30分钟一次
     // await this.produce()
     // await this.checkAndMerge()
   }
@@ -93,7 +93,6 @@ class CrazyJoy {
       if (it > 0 && it < 34) {
         if (v.length > 1 && v.length > 2) {
           // 只合并一次，因为合并后joy索引会变化
-          console.log(it)
           await this.moveOrMerge(v[0], v[1])
           await $.wait(1000 * 3)
         }
@@ -165,12 +164,11 @@ class CrazyJoy {
     })
   }
 
-// 获得奖励
+// 领取金币
   obtainAward() {
     return new Promise((resolve) => {
       const body = {
-        eventType: "LUCKY_BOX_DROP",
-        eventRecordId: "547749487320494080"
+        eventType: "HOUR_BENEFIT",
       }
       $.get(this.taskUrl('crazyJoy_event_obtainAward', body), async (err, resp, data) => {
         try {
@@ -179,8 +177,8 @@ class CrazyJoy {
             console.log(`${$.name} API请求失败，请检查网路重试`)
           } else {
             data = JSON.parse(data);
-            if (data.success && data.data.coins) {
-              console.log(`账号${this._index + 1} ${this._nickName} 模拟挂机中 获得${data.data.coins}个币，当前拥有${data.data.totalCoinAmount}`)
+            if (data.success) {
+              console.log(`领取金币奖励 --> ${data.data.coins}`)
             }
           }
         } catch (e) {
@@ -295,6 +293,8 @@ class CrazyJoy {
             console.log(data)
             if (data.success) {
               console.log(`购买${joyLevel}级joy成功， 花费${data.data.coins}，下次购买费用 --> ${data.data.nextBuyPrice}， 剩余joy币 --> ${data.data.totalCoins}`)
+              //更新当前剩余金币数量
+              this.ctx.totalCoinAmount = data.data.totalCoins
             } else {
               console.log(data.message)
             }
