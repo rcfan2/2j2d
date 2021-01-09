@@ -1,6 +1,10 @@
 /**
  * 疯狂的joy
  *
+ * 已废弃，建议使用
+ * - https://github.com/lxk0301/jd_scripts/blob/master/jd_crazy_joy.js
+ * - https://github.com/lxk0301/jd_scripts/blob/master/jd_crazy_joy_coin.js
+ *
  * - 签到
  * - 挂机
  * - 购买、合并joy

@@ -42,6 +42,7 @@ if ($.isNode()) {
     cookiesArr.reverse();
     cookiesArr.push(...[$.getdata('CookieJD2'), $.getdata('CookieJD')]);
     cookiesArr.reverse();
+  cookiesArr = cookiesArr.filter(item => item !== "" && item !== null && item !== undefined);
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const inviteCodes = [
@@ -81,8 +82,6 @@ const inviteCodes = [
 
                 if ($.isNode()) {
                     await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
-                } else {
-                    $.setdata('', `CookieJD${i ? i + 1 : ""}`);//cookie失效，故清空cookie。$.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。
                 }
                 continue
             }
@@ -270,7 +269,7 @@ function getUserInfo() {
                     if (safeGet(data)) {
                         data = JSON.parse(data);
                         if (data.data.shareTaskRes) {
-                            console.log(`\n您的${$.name}好友助力码为： ${data.data.shareTaskRes.itemId}\n`);
+                            console.log(`\n【京东账号${$.index}（${$.nickName || $.UserName}）的${$.name}好友互助码】${data.data.shareTaskRes.itemId}\n`);
             } else {
               console.log(`已满5人助力,暂时看不到您的${$.name}好友助力码`)
             }
@@ -359,7 +358,7 @@ function readShareCode() {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            console.log(`随机取${randomCount}个码放到您固定的互助码后面`)
+            console.log(`随机取${randomCount}个码放到您固定的互助码后面(不影响已有固定互助)`)
             data = JSON.parse(data);
           }
         }
