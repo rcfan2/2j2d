@@ -1,12 +1,10 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 京东代属
+name: 【手动任务】注销京东会员卡
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '10 23 * * *' # 每天7点10分
   watch:
     types: started
   repository_dispatch:
@@ -32,10 +30,8 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【京东代属】'
+      - name: '运行 【天天领白条券】'
         run: |
-          node jd_ds.js
+          node jd_unbind.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_USER_ID: ${{ secrets.TG_USER_ID }}
