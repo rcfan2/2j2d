@@ -30,8 +30,8 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【天天领白条券】'
+      - name: '运行 【手动任务】互助码(邀请码)】'
         run: |
-          node jd_unbind.js
+          node jd_get_share_code.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
