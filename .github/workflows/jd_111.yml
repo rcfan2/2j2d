@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - "jd_scripts1/docker/Dockerfile"
+      - "JD_scripts1/docker/Dockerfile"
 
 jobs:
   build-and-push:
@@ -31,7 +31,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: jd_scripts1/docker/Dockerfile
+          file: JD_scripts1/docker/Dockerfile
           platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x
           push: true
           tags: |
