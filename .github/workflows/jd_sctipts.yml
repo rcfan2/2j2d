@@ -6,7 +6,7 @@ on:
     branches:
       - master
     paths:
-      - "jd_scripts1/docker/Dockerfile"
+      - "docker/Dockerfile"
   repository_dispatch:
     types: jd_scripts
 
