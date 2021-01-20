@@ -35,7 +35,7 @@ jobs:
         if: env.BBB_ck
         run: |
           cd ~/Scripts
-          node BBB2.js
+          node BBB.js
         env:
           BBB_ck: ${{ secrets.BBB_ck }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
