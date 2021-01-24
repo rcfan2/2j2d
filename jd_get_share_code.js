@@ -8,17 +8,17 @@
 ============Quantumultx===============
 [task_local]
 #获取互助码
-20 13 * * 6 https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_get_share_code.js, tag=获取互助码, enabled=true
+20 13 * * 6 https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_get_share_code.js, tag=获取互助码, img-url=https://raw.githubusercontent.com/Orz-3/task/master/jd.png, enabled=true
 
 ================Loon==============
 [Script]
 cron "20 13 * * 6" script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_get_share_code.js, tag=获取互助码
 
 ===============Surge=================
-获取互助码 = type=cron,cronexp="20 13 * * 6",wake-system=1,timeout=120,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_get_share_code.js
+获取互助码 = type=cron,cronexp="20 13 * * 6",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_get_share_code.js
 
 ============小火箭=========
-获取互助码 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_get_share_code.js, cronexpr="20 13 * * 6", timeout=200, enable=true
+获取互助码 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_get_share_code.js, cronexpr="20 13 * * 6", timeout=3600, enable=true
  */
 const $ = new Env("获取互助码");
 const JD_API_HOST = "https://api.m.jd.com/client.action";
@@ -321,12 +321,16 @@ function getJxNc(){
             if (safeGet(data)) {
               data = JSON.parse(data);
               if (data["ret"] === 0) {
-                console.log(`【账号${$.index}（${$.nickName || $.UserName}）京喜农场助力码】${data.smp}`);
-
                 if (data.active) {
-                  console.log(`【账号${$.index}（${$.nickName || $.UserName}）京喜农场active】${data.active}`);
+                  let shareCodeJson = {
+                    'smp': data.smp,
+                    'active': data.active,
+                    'joinnum': data.joinnum,
+                  };
+                  console.log(`注意：京喜农场 种植种子发生变化的时候，互助码也会变！！`);
+                  console.log(`【账号${$.index}（${$.nickName || $.UserName}）京喜农场】` + JSON.stringify(shareCodeJson));
                 } else {
-                  console.log( `【账号${$.index}（${$.nickName || $.UserName}）京喜农场】未选择种子，请先去京喜农场选择种子`);
+                  console.log(`【账号${$.index}（${$.nickName || $.UserName}）京喜农场】未选择种子，请先去京喜农场选择种子`);
                 }
               }
             } else {

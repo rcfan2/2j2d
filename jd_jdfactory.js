@@ -15,18 +15,18 @@
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 ============Quantumultx===============
 [task_local]
-#京东工厂
-10 * * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jdfactory.js, tag=东东工厂, enabled=true
+#东东工厂
+10 * * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jdfactory.js, tag=东东工厂, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jd_factory.png, enabled=true
 
 ================Loon==============
 [Script]
 cron "10 * * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jdfactory.js,tag=东东工厂
 
 ===============Surge=================
-东东工厂 = type=cron,cronexp="10 * * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jdfactory.js
+东东工厂 = type=cron,cronexp="10 * * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jdfactory.js
 
 ============小火箭=========
-东东工厂 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jdfactory.js, cronexpr="10 * * * *", timeout=200, enable=true
+东东工厂 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jdfactory.js, cronexpr="10 * * * *", timeout=3600, enable=true
  */
 const $ = new Env('东东工厂');
 
@@ -43,6 +43,7 @@ if ($.isNode()) {
     })
     if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
     };
+  if (process.env.JDFACTORY_FORBID_ACCOUNT) process.env.JDFACTORY_FORBID_ACCOUNT.split('&').map((item, index) => Number(item) === 0 ? cookiesArr = [] : cookiesArr.splice(Number(item) - 1 - index, 1))
 } else {
     let cookiesData = $.getdata('CookiesJD') || "[]";
     cookiesData = jsonParse(cookiesData);
@@ -671,18 +672,10 @@ function shareCodesFormat() {
     return new Promise(async resolve => {
         // console.log(`第${$.index}个京东账号的助力码:::${$.shareCodesArr[$.index - 1]}`)
         $.newShareCodes = [];
-        if ($.shareCodesArr[$.index - 1]) {
-            $.newShareCodes = $.shareCodesArr[$.index - 1].split('@');
-        } else {
-            console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
-            // const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
-          const tempIndex = 0;
-            $.newShareCodes = inviteCodes[tempIndex].split('@');
-        }
-        const readShareCodeRes = null // await readShareCode();
-        if (readShareCodeRes && readShareCodeRes.code === 200) {
-            $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
-        }
+        console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
+        // const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
+        const tempIndex = 0;
+        $.newShareCodes = inviteCodes[tempIndex].split('@');
         console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify($.newShareCodes)}`)
         resolve();
     })
@@ -692,18 +685,8 @@ function requireConfig() {
     return new Promise(resolve => {
         console.log(`开始获取${$.name}配置文件\n`);
         //Node.js用户请在jdCookie.js处填写京东ck;
-        const shareCodes = $.isNode() ? require('./jdFactoryShareCodes.js') : '';
         console.log(`共${cookiesArr.length}个京东账号\n`);
         $.shareCodesArr = [];
-        if ($.isNode()) {
-            Object.keys(shareCodes).forEach((item) => {
-                if (shareCodes[item]) {
-                    $.shareCodesArr.push(shareCodes[item])
-                }
-            })
-        }
-        // console.log(`\n种豆得豆助力码::${JSON.stringify($.shareCodesArr)}`);
-        console.log(`您提供了${$.shareCodesArr.length}个账号的${$.name}助力码\n`);
         resolve()
     })
 }
