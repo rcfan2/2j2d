@@ -8,17 +8,17 @@
 ============Quantumultx===============
 [task_local]
 # 京东赚赚
-10 0 * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jdzz.js, tag=京东赚赚, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdzz.png, enabled=true
+10 0 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jdzz.js, tag=京东赚赚, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdzz.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "10 0 * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jdzz.js,tag=京东赚赚
+cron "10 0 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jdzz.js,tag=京东赚赚
 
 ===============Surge=================
-京东赚赚 = type=cron,cronexp="10 0 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jdzz.js
+京东赚赚 = type=cron,cronexp="10 0 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jdzz.js
 
 ============小火箭=========
-京东赚赚 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_jdzz.js, cronexpr="10 0 * * *", timeout=3600, enable=true
+京东赚赚 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jdzz.js, cronexpr="10 0 * * *", timeout=3600, enable=true
  */
 const $ = new Env('京东赚赚');
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -46,18 +46,18 @@ if ($.isNode()) {
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const inviteCodes = [
-    'S5KkcRBwfo1HfJRv0x6ZYcg',
-    'S5KkcNllorAWBfUWp3YNU',
-    'SvftxSRwc81bfPRn9kvICdg',
-    'Svfp1Qxce9l3ePRnzkfYNdQ',
-    'S5KkcBmtLvRCEWFid17N2',
-    'S5KkcRkhL_VTVKE-llKIIIQ',
-    'S5KkcO3lBlC2SRF6t3JZw',
-    'SaXnOl5-K',
-    'S5KkcRR0Q8FSFIxzwwqZYIA',
-    'S5KkcRRgc_VLTJUmmx6UIIg',
-    'S5KkcRx5N9VXWKBr3lqUMIg',
-    'S5KkcBWhDqgqic2-L_KBU',
+    'S5KkcRBwfo1HfJRv0x6ZYcg@' +
+    'S5KkcNllorAWBfUWp3YNU@' +
+    'SvftxSRwc81bfPRn9kvICdg@' +
+    'Svfp1Qxce9l3ePRnzkfYNdQ@' +
+    'S5KkcBmtLvRCEWFid17N2@' +
+    'S5KkcRkhL_VTVKE-llKIIIQ@' +
+    'S5KkcO3lBlC2SRF6t3JZw@' +
+    'SaXnOl5-K@' +
+    'S5KkcRR0Q8FSFIxzwwqZYIA@' +
+    'S5KkcRRgc_VLTJUmmx6UIIg@' +
+    'S5KkcRx5N9VXWKBr3lqUMIg@' +
+    'S5KkcBWhDqgqic2-L_KBU@' +
     'S5qguER0b9FQ',
 ]
 !(async () => {
@@ -220,14 +220,14 @@ function getUserTuanInfo() {
                 } else {
                     if (safeGet(data)) {
                         data = JSON.parse(data);
-                        if (!data.data || !data.data.canStartNewAssist)
+                        if (data.data && !data.data || !data.data.canStartNewAssist) {
                             $.tuan = {
                                 "activityIdEncrypted": data.data.id,
                                 "assistStartRecordId": data.data.assistStartRecordId,
                                 "assistedPinEncrypted": data.data.encPin,
                                 "channel": "FISSION_BEAN"
                             }
-                        $.tuanActId = data.data.id
+                        $.tuanActId = data.data.id}
                     }
                 }
             } catch (e) {
@@ -277,7 +277,7 @@ function getUserInfo() {
                         if (data.data.shareTaskRes) {
                             console.log(`\n【京东账号${$.index}（${$.nickName || $.UserName}）的${$.name}好友互助码】${data.data.shareTaskRes.itemId}\n`);
             } else {
-              console.log(`已满5人助力,暂时看不到您的${$.name}好友助力码`)
+              console.log(`\n\n已满5人助力或助力功能已下线,故暂时无${$.name}好友助力码\n\n`)
             }
                     }
                 }

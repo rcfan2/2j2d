@@ -3,6 +3,7 @@
  */
 /*
 京豆签到,自用,可N个京东账号
+活动入口：各处的签到汇总
 Node.JS专用
 IOS软件用户请使用 https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
 更新时间：2021-1-19
@@ -147,7 +148,7 @@ async function changeFile (content) {
   let newContent = content.replace(/var Key = ''/, `var Key = '${cookie}'`);
   newContent = newContent.replace(/const NodeSet = 'CookieSet.json'/, `const NodeSet = '${NodeSet}'`)
   if (process.env.JD_BEAN_STOP && process.env.JD_BEAN_STOP !== '0') {
-    newContent = newContent.replace(/var stop = 0/, `var stop = ${process.env.JD_BEAN_STOP * 1}`);
+    newContent = newContent.replace(/var stop = '0'/, `var stop = '${process.env.JD_BEAN_STOP}'`);
   }
   const zone = new Date().getTimezoneOffset();
   if (zone === 0) {
