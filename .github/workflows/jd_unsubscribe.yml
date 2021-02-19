@@ -56,7 +56,7 @@ jobs:
       - name: '运行 【京东注销店铺会员】'
         run: |
           cd  ~/scripts
-          node ./jd_unbind.js
+          [ -e "./jd_unbind.js" ] && node ./jd_unbind.js || echo "pass"
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
