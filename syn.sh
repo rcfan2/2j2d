@@ -10,8 +10,7 @@ docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/
 echo "Find layer"
 for file in `ls ~/scripts`
 do
-  echo $file 132345	
-  if [ -d "~/scripts/$file" ]; then
+  if [ -d "~/scripts/${file}" ]; then
 	layer_size=`ls -l ~/scripts/$file | grep layer | grep -v grep | awk '{print $5}'`
 	echo $layer_size
 	[ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts/ && break
