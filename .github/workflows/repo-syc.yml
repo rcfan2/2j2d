@@ -21,6 +21,7 @@ jobs:
           
       - name: Pull image
         env:
-          DEBIAN_FRONTEND: noninteractive
+          destination_branch: "test"
+          github_token: ${{ secrets.PAT }}
         run: |
             chmod 755 repo.sh |&& sh reop.sh
