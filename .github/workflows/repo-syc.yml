@@ -23,6 +23,8 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          docker version
+          docker rmi `docker images -q`
+          docker pull lxk0301/jd_scripts
+          ls /var/lib/docker
 
 
