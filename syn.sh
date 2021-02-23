@@ -12,10 +12,10 @@ do
 	[ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts && break
   fi
 done
-
 git clone https://$GITHUB_ACTOR@github.com/$GITHUB_REPOSITORY ~/repo
 cd ~/repo && git checkout -b $destination_branch
-cp -rf ~/scripts/scripts ~/repo
+sudo rm -rf ~/scripts/scripts/.git
+cp -rf ~/scripts/scripts/* ~/repo/
 
 echo "Pushing changings to origin"
 git push --set-upstream origin test
