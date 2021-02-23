@@ -26,6 +26,5 @@ jobs:
           docker rmi `docker images -q`
           docker pull lxk0301/jd_scripts
           sudo ls /var/lib/docker/image/overlay2
-          docker images | grep latest | grep -v grep | awk '{print $3}'
-
-
+          docker save ` docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
+          tar -tf ~/jd.tar
