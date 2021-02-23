@@ -14,6 +14,9 @@ do
   [ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts/ > /dev/null && break
 done
 
+echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
+git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
+
 echo "Clone origin repository"
 git clone https://$GITHUB_ACTOR@github.com/$GITHUB_REPOSITORY ~/repo
 cd ~/repo && git checkout -b $destination_branch
