@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 echo "$DESTINATION_BRANCH"
+
 docker rmi `docker images -q`
 echo "Get docker image"
 docker pull lxk0301/jd_scripts
