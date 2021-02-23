@@ -18,14 +18,22 @@ echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHU
 git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 git remote --verbose
 
+cd ~/scripts/scripts/ && SOURCE_BRANCH=`git branch | awk '{print $2}'` && UPSTREAM_REPO=`git remote -v | grep origin | grep fetch | awk '{print $2}'`
+
 echo "Clone origin repository"
 git clone https://$GITHUB_ACTOR@github.com/$GITHUB_REPOSITORY ~/repo
 cd ~/repo && git checkout -b $destination_branch
-sudo rm -rf ~/scripts/scripts/.git
+#sudo rm -rf ~/scripts/scripts/.git
 cp -rf ~/scripts/scripts/* ~/repo/
 
+echo "Adding tmp_upstream $UPSTREAM_REPO"
+git remote add tmp_upstream "$UPSTREAM_REPO"
+
 echo "Pushing changings from tmp_upstream to origin"
-git push origin "refs/remotes/${destination_branch%%:*}:refs/heads/${destination_branch#*:}" --force
+git push origin "refs/remotes/tmp_upstream/${BRANCH_MAPPING%%:*}:refs/heads/${BRANCH_MAPPING#*:}" --force
+
+echo "Pushing changings from tmp_upstream to origin"
+git push origin "refs/remotes/${SOURCE_BRANCH}:refs/heads/${DESTINATION_BRANCH}" --force
 
 if [[ "$SYNC_TAGS" = true ]]; then
   echo "Force syncing all tags"
