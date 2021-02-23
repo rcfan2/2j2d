@@ -18,12 +18,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           persist-credentials: false
+          
+      - name: Space cleanup
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          docker version
 
-      - name: sync-jd_scripts
-        uses: repo-sync/github-sync@v2
-        if: env.PAT
-        with:
-          source_repo: "https://gitee.com/lxk0301/jd_scripts.git"
-          source_branch: "master"
-          destination_branch: "jd"
-          github_token: ${{ secrets.PAT }}
+
