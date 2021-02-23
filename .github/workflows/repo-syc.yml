@@ -27,4 +27,4 @@ jobs:
           docker pull lxk0301/jd_scripts
           docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
           ls -lh ~
-          echo "解压";cd ~ && mkdir ~/scripts && tar -xvf  ~/jd.tar -C ~/scripts && ls -lh ~/scripts
+          echo "解压";cd ~ && mkdir ~/scripts && tar xvf  ~/jd.tar -C ~/scripts && ls -lh ~/scripts
