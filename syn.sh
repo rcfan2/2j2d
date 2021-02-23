@@ -10,10 +10,11 @@ do
   if [ -d "~/scripts/$file" ]; then
   	echo $file
 	layer_size=`ls -l ~/scripts/$file | grep layer | grep -v grep | awk '{print $5}'`
+	echo $layer_size
 	[ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts/ && break
   fi
 done
-ls -lRh ~/scripts
+echo "Clone origin repository"
 git clone https://$GITHUB_ACTOR@github.com/$GITHUB_REPOSITORY ~/repo
 cd ~/repo && git checkout -b $destination_branch
 sudo rm -rf ~/scripts/scripts/.git
