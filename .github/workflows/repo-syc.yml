@@ -26,4 +26,4 @@ jobs:
           docker rmi `docker images -q`
           docker pull lxk0301/jd_scripts
           docker save ` docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
-          cd ~ && mkdir ~/scripts && tar -xf ~/jd.tar -C ~/scripts && ls ~/scripts
+          echo "解压";cd ~ && mkdir ~/scripts && tar -xvf  ~/jd.tar -C ~/scripts && ls -lh ~/scripts
