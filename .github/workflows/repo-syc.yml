@@ -26,5 +26,6 @@ jobs:
           docker rmi `docker images -q`
           docker pull lxk0301/jd_scripts
           sudo ls /var/lib/docker/image
+          docker ps
 
 
