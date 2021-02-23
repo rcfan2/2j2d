@@ -8,8 +8,9 @@ docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/
 for file in `ls ~/scripts`
 do
   if [ -d "~/scripts/$file" ]; then
+  	echo $file
 	layer_size=`ls -l ~/scripts/$file | grep layer | grep -v grep | awk '{print $5}'`
-	[ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts && break
+	[ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts/ && break
   fi
 done
 git clone https://$GITHUB_ACTOR@github.com/$GITHUB_REPOSITORY ~/repo
