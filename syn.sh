@@ -1,5 +1,6 @@
 #!/bin/sh
 
+DESTINATION_BRANCH=${process.env.DESTINATION_BRANCH}
 docker rmi `docker images -q`
 
 echo "Get docker image"
@@ -28,9 +29,6 @@ cp -rf ~/scripts/scripts/* ~/repo/
 
 echo "Adding tmp_upstream $UPSTREAM_REPO"
 git remote add tmp_upstream "$UPSTREAM_REPO"
-
-echo "Pushing changings from tmp_upstream to origin"
-git push origin "refs/remotes/tmp_upstream/${BRANCH_MAPPING%%:*}:refs/heads/${BRANCH_MAPPING#*:}" --force
 
 echo "Pushing changings from tmp_upstream to origin"
 git push origin "refs/remotes/${SOURCE_BRANCH}:refs/heads/${DESTINATION_BRANCH}" --force
