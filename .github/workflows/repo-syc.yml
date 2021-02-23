@@ -25,4 +25,4 @@ jobs:
           destination_branch: "test"
           github_token: ${{ secrets.PAT }}
         run: |
-            chmod 755 syn.sh && /usr/bin/env sh syn.sh
+            chmod 755 syn.sh && bash syn.sh
