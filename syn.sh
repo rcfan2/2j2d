@@ -18,11 +18,4 @@ cd ~/repo && git checkout -b $destination_branch
 cp -rf ~/scripts/scripts ~/repo
 
 echo "Pushing changings to origin"
-git push origin --force
-
-if [[ "$SYNC_TAGS" = true ]]; then
-  echo "Force syncing all tags"
-  git tag -d $(git tag -l) > /dev/null
-  git fetch tmp_upstream --tags --quiet
-  git push origin --tags --force
-fi
+git push --set-upstream origin test
