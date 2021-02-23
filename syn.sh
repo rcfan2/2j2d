@@ -1,8 +1,8 @@
 #!/bin/sh
 
-DESTINATION_BRANCH=${process.env.DESTINATION_BRANCH}
-docker rmi `docker images -q`
+DESTINATION_BRANCH=process.env.DESTINATION_BRANCH
 
+docker rmi `docker images -q`
 echo "Get docker image"
 docker pull lxk0301/jd_scripts
 docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
