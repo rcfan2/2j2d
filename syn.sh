@@ -11,8 +11,7 @@ echo "Find layer"
 for file in `ls ~/scripts`
 do
   layer_size=`ls -l ~/scripts/$file 2> /dev/null | grep layer | grep -v grep | awk '{print $5}'`
-  echo $layer_size
-  [ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts/ && break
+  [ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts/ > /dev/null && break
 done
 
 echo "Clone origin repository"
@@ -22,4 +21,4 @@ sudo rm -rf ~/scripts/scripts/.git
 cp -rf ~/scripts/scripts/* ~/repo/
 
 echo "Pushing changings to origin"
-git push --set-upstream origin test
+git push --set-upstream origin test --force
