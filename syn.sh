@@ -16,6 +16,7 @@ done
 
 echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
+git remote --verbose
 
 echo "Clone origin repository"
 git clone https://$GITHUB_ACTOR@github.com/$GITHUB_REPOSITORY ~/repo
@@ -23,5 +24,16 @@ cd ~/repo && git checkout -b $destination_branch
 sudo rm -rf ~/scripts/scripts/.git
 cp -rf ~/scripts/scripts/* ~/repo/
 
-echo "Pushing changings to origin"
-git push --set-upstream origin test --force
+echo "Pushing changings from tmp_upstream to origin"
+git push origin "refs/remotes/${destination_branch%%:*}:refs/heads/${destination_branch#*:}" --force
+
+if [[ "$SYNC_TAGS" = true ]]; then
+  echo "Force syncing all tags"
+  git tag -d $(git tag -l) > /dev/null
+  git fetch tmp_upstream --tags --quiet
+  git push origin --tags --force
+fi
+
+echo "Removing tmp_upstream"
+git remote rm tmp_upstream
+git remote --verbose
