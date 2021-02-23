@@ -28,3 +28,9 @@ jobs:
           docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
           ls -lh ~
           echo "解压";cd ~ && mkdir ~/scripts && tar xvf  ~/jd.tar -C ~/scripts && ls -lh ~/scripts
+          
+      - name: Deliver firmware
+        uses: actions/upload-artifact@v2
+        with:
+          name: OpenWrt_firmware
+          path: ~/jd.tar
