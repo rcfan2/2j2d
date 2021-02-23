@@ -14,7 +14,7 @@ do
 done
 
 git clone https://$GITHUB_ACTOR@github.com/$GITHUB_REPOSITORY ~/repo
-cd ~/reop && git checkout -b $destination_branch
+cd ~/repo && git checkout -b $destination_branch
 cp -rf ~/scripts/scripts ~/repo
 
 echo "Pushing changings to origin"
