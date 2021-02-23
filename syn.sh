@@ -1,6 +1,5 @@
 #!/bin/sh
 
-DESTINATION_BRANCH=process.env.DESTINATION_BRANCH
 echo "$DESTINATION_BRANCH"
 docker rmi `docker images -q`
 echo "Get docker image"
