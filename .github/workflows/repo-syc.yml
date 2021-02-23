@@ -21,6 +21,7 @@ jobs:
           
       - name: Pull image
         env:
+          source_branch: "master"
           destination_branch: "test"
           github_token: ${{ secrets.PAT }}
         run: |
