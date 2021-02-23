@@ -13,6 +13,7 @@ do
 	[ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts/ && break
   fi
 done
+ls -lRh ~/scripts
 git clone https://$GITHUB_ACTOR@github.com/$GITHUB_REPOSITORY ~/repo
 cd ~/repo && git checkout -b $destination_branch
 sudo rm -rf ~/scripts/scripts/.git
