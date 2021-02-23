@@ -19,12 +19,12 @@ jobs:
         with:
           persist-credentials: false
           
-      - name: Space cleanup
+      - name: Pull image
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
           docker rmi `docker images -q`
           docker pull lxk0301/jd_scripts
-          sudo ls /var/lib/docker
+          sudo ls /var/lib/docker/images
 
 
