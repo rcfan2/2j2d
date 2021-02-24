@@ -21,8 +21,7 @@ jobs:
           
       - name: Pull image
         env:
-          source_branch: "master"
-          destination_branch: "test"
-          github_token: ${{ secrets.PAT }}
+          DESTINATION_BRANCH: "test"
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
             cp -f syn.sh ~/syn.sh && chmod 755 ~/syn.sh && ~/syn.sh
