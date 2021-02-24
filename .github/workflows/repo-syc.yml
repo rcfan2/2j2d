@@ -21,7 +21,7 @@ jobs:
           
       - name: Pull image
         env:
-          DESTINATION_BRANCH: "test"
+          DESTINATION_BRANCH: "jd"
           SOURCE_IMAGE: "lxk0301/jd_scripts"
           GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
