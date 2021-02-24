@@ -22,6 +22,7 @@ jobs:
       - name: Pull image
         env:
           DESTINATION_BRANCH: "test"
+          SOURCE_IMAGE: "lxk0301/jd_scripts"
           GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
             cp -f syn.sh ~/syn.sh && chmod 755 ~/syn.sh && ~/syn.sh
