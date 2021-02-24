@@ -40,7 +40,7 @@ jobs:
       - name: '运行 【闪购盲盒】'
         run: |
           cd  ~/scripts
-          sed -i "s/const inviteCodes =/const inviteCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
+          sed -i "s/const inviteCodes =/const inviteCodesss =/g" ./jd_sgmh.js
           sed -i "1i\const inviteCodes = ['$MY_SHARECODES']" ./jd_sgmh.js
           node ./jd_sgmh.js
         env:
@@ -61,8 +61,9 @@ jobs:
       - name: '运行【现金】'
         run: |
           cd  ~/scripts
-          echo "123" $MY_SHARECODES
-          #node ./jd_cash.js
+          sed -i "s/const inviteCodes =/const inviteCodesss =/g" ./jd_cash.js
+          sed -i "1i\const inviteCodes = ['$MY_SHARECODES']" ./jd_cash.js
+          node ./jd_cash.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
@@ -77,3 +78,4 @@ jobs:
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
           JDSGMH_SHARECODES: ${{ secrets.IGOT_PUSH_KEY }}
+          MY_SHARECODES: "eU9YaOzhNPR3-WnWzCcb0A@eU9Yaem2N_l3-GzVmicR1g@eU9YaOy2Y_wu9z-GmntH1w@eU9YauixYf5y82_VzydA1Q@a19mLbPyMfsh@eU9YN4jIMq5hiwePthRp@eU9YaeWxZa90ozvUyHEQ3g@aUNmMrvgN6N0pA"
