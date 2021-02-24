@@ -35,12 +35,12 @@ jobs:
           sed -i "s/indexOf('GITHUB')/indexOf('GOGOGOGO')/g" `ls -l |grep -v ^d|awk '{print $9}'`
           sed -i 's/indexOf("GITHUB")/indexOf("GOGOGOGO")/g' `ls -l |grep -v ^d|awk '{print $9}'`
           git clone -b sc https://github.com/tracefish/ds.git ./sharecode
-              sed -i '2i\process.env.SHARE_CODE_FILE = ".\/sharecode\/sharecode.log";' ./utils/jdShareCodes.js
-              npm install
+          sed -i '2i\process.env.SHARE_CODE_FILE = ".\/sharecode\/sharecode.log";' ./utils/jdShareCodes.js
+          npm install
       - name: '运行 【闪购盲盒】'
         run: |
           cd  ~/scripts
-          node ./jd_sgmh.js
+          #node ./jd_sgmh.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
@@ -57,7 +57,8 @@ jobs:
       - name: '运行【现金】'
         run: |
           cd  ~/scripts
-          node ./jd_cash.js
+          echo "123" $
+          #node ./jd_cash.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
@@ -71,3 +72,4 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
+          JDSGMH_SHARECODES: "rftgeatfdsaf"
