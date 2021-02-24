@@ -42,8 +42,7 @@ jobs:
           cd  ~/scripts
           sed -i "s/const inviteCodes =/const inviteCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
           sed -i "1i\const inviteCodes = ['$MY_SHARECODES']" ./jd_sgmh.js
-          cat ./jd_sgmh.js
-          #node ./jd_sgmh.js
+          node ./jd_sgmh.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
