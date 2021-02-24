@@ -57,7 +57,7 @@ jobs:
       - name: '运行【现金】'
         run: |
           cd  ~/scripts
-          echo "123" $
+          echo "123" $JDSGMH_SHARECODES
           #node ./jd_cash.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
