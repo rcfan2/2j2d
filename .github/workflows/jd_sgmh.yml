@@ -40,7 +40,7 @@ jobs:
       - name: '运行 【闪购盲盒】'
         run: |
           cd  ~/scripts
-          sed -i "s/const inviteCodes =/const inviteCodesss =/g" ./jd_sgmh.js
+          sed -i "s/const inviteCodes =/const inviteCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
           sed -i "1i\const inviteCodes = ['$MY_SHARECODES']" ./jd_sgmh.js
           node ./jd_sgmh.js
         env:
@@ -61,7 +61,7 @@ jobs:
       - name: '运行【现金】'
         run: |
           cd  ~/scripts
-          sed -i "s/const inviteCodes =/const inviteCodesss =/g" ./jd_cash.js
+          sed -i "s/const inviteCodes =/const inviteCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
           sed -i "1i\const inviteCodes = ['$MY_SHARECODES']" ./jd_cash.js
           node ./jd_cash.js
         env:
