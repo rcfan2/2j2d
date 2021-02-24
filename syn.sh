@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
+set -e
 echo "$DESTINATION_BRANCH"
 
 docker rmi `docker images -q`
