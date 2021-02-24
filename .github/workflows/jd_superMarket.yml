@@ -55,4 +55,4 @@ jobs:
           jdSuperMarketUpgrade: ${{ secrets.SUPERMARKET_UPGRADE }}
           jdBusinessCircleJump: ${{ secrets.BUSINESS_CIRCLE_JUMP }}
           SUPERMARKET_SHARECODES: ${{ secrets.SUPERMARKET_SHARECODES }}
-          jdSuperMarketLottery: ${{ secrets.SUPERMARKET_LOTTERY }}
+          jdSuperMarketLottery: "true"
