@@ -6,7 +6,7 @@ name: jd_crazy_joy_bonus
 on:
   workflow_dispatch:
   schedule:
-    - cron: 0 1,4,12,13 2-22 2 *
+    - cron: 0 17,20,4,5 2-22 2 *
   #watch:
    # types: started
   repository_dispatch:
