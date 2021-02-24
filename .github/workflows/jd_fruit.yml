@@ -35,11 +35,13 @@ jobs:
           sed -i "s/indexOf('GITHUB')/indexOf('GOGOGOGO')/g" `ls -l |grep -v ^d|awk '{print $9}'`
           sed -i 's/indexOf("GITHUB")/indexOf("GOGOGOGO")/g' `ls -l |grep -v ^d|awk '{print $9}'`
           git clone -b sc https://github.com/tracefish/ds.git ./sharecode
-              sed -i '2i\process.env.SHARE_CODE_FILE = ".\/sharecode\/sharecode.log";' ./utils/jdShareCodes.js
-              npm install
+          sed -i '2i\process.env.SHARE_CODE_FILE = ".\/sharecode\/sharecode.log";' ./utils/jdShareCodes.js
+          npm install
       - name: '运行 【东东农场】'
         run: |
           cd  ~/scripts
+          sed -i "s/let shareCodes =/let shareCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
+          sed -i "1i\let shareCodes = ['$MY_SHARECODES']" ./jd_fruit.js
           node ./jd_fruit.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
@@ -55,3 +57,4 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
+          MY_SHARECODES: "eed8a50f50a2407ba483b7f74d88da7e@a138819f79b64f18bb1fe23a9aad9e7d@3c88e6a635c142f2bbee7a0cf17a754f@0792756107fc43d590b88b7d54796ee9@12f465d77ecf472aad1d1bb2e5222a98@d57715ac11754598b1f9c5f6b338ce32@e72776d09bd4486c9b66fbd026da9de1@3cb84ada5543426a9e43174702e60e1e"
