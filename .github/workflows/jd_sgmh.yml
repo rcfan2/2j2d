@@ -40,6 +40,9 @@ jobs:
       - name: '运行 【闪购盲盒】'
         run: |
           cd  ~/scripts
+          sed -i "s/const inviteCodes =/const inviteCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
+          sed -i "1i\const inviteCodes = ['$MY_SHARECODES']" ./jd_sgmh.js
+          cat ./jd_sgmh.js
           #node ./jd_sgmh.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
@@ -54,10 +57,12 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
+          MY_SHARECODES: "T0225KkcRB5Kp1yGKB33k6MCcgCjVWmIaW5kRrbA@T0225KkcRRsdpFGGKRj0xaMIdACjVWmIaW5kRrbA@T0225KkcRB4d8FTfJkunxf9edQCjVWmIaW5kRrbA@T0225KkcRhoa8laDIhv0kKNZdwCjVWmIaW5kRrbA@T0129rkiAUFZolPQCjVWmIaW5kRrbA@T0205KkcG3pjoQaQWnOu6ZBwCjVWmIaW5kRrbA@T0225KkcRRca9geFck_1l_UJfACjVWmIaW5kRrbA@T0149KUiHklLpAuFdQCjVWmIaW5kRrbA"
+
       - name: '运行【现金】'
         run: |
           cd  ~/scripts
-          echo "123" $JDSGMH_SHARECODES
+          echo "123" $MY_SHARECODES
           #node ./jd_cash.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
@@ -72,4 +77,4 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
-          JDSGMH_SHARECODES: "rftgeatfdsaf"
+          JDSGMH_SHARECODES: ${{ secrets.IGOT_PUSH_KEY }}
