@@ -4,7 +4,7 @@ set -e
 
 docker rmi `docker images -q`
 echo "Get docker image"
-docker pull lxk0301/jd_scripts
+docker pull $SOURCE_IMAGE
 docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
 [ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
 
