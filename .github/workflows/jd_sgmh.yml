@@ -62,7 +62,7 @@ jobs:
         run: |
           cd  ~/scripts
           sed -i "s/const inviteCodes =/const inviteCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
-          sed -i "s/2 *\//*/g" `ls -l |grep -v ^d|awk '{print $9}'`
+          sed -i "s/2 \*\//\*/g" `ls -l |grep -v ^d|awk '{print $9}'`
           sed -i "1i\const inviteCodes = [\`$MY_SHARECODES\`]" ./jd_cash.js
           node ./jd_cash.js
         env:
