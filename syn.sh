@@ -2,19 +2,25 @@
 
 set -e
 
-docker rmi `docker images -q`
-echo "Get docker image"
-docker pull $SOURCE_IMAGE
+mkdir -p ~/jd_scripts/logs
+cp -f docker-compose.yml ~/jd_scripts/
+cd ~/jd_scripts/
+#docker rmi `docker images -q`
+#echo "Get docker image"
+#docker pull $SOURCE_IMAGE
 docker-compose up -d
-docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
-[ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
+docker-compose pull
+docker exec -it jd_scripts /bin/sh
+ls -lR
+#docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
+#[ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
 
-echo "Find layer"
-for file in `ls ~/scripts`
-do
-  layer_size=`ls -l ~/scripts/$file 2> /dev/null | grep layer | grep -v grep | awk '{print $5}'`
-  [ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts/ > /dev/null && break
-done
+#echo "Find layer"
+#for file in `ls ~/scripts`
+#do
+#  layer_size=`ls -l ~/scripts/$file 2> /dev/null | grep layer | grep -v grep | awk '{print $5}'`
+#  [ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts/ > /dev/null && break
+#done
 
 cd ~/scripts/scripts/
 SOURCE_BRANCH=`git branch | awk '{print $2}'`
