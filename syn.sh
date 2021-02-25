@@ -22,21 +22,21 @@ docker pull $SOURCE_IMAGE
 echo "修改docker脚本"
 for file in `sudo find /var/lib/docker  -type f -name "docker_entrypoint.sh"`
 do
-    sudo sed -i "s/npm/#npm/g" $file && sudo sed -i "s/sh -x/#sh/g" $file
+    sudo sed -i "s/npm/#npm/g" $file && sudo sed -i "s/sh -x/#sh/g" $file && sudo sed -i "s/crond/#/g" $file
 done
 
 docker images
 docker run -i $SOURCE_IMAGE /bin/sh
 
-#docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
-#[ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
+docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
+[ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
 
-#echo "Find layer"
-#for file in `ls ~/scripts`
-#do
-#  layer_size=`ls -l ~/scripts/$file 2> /dev/null | grep layer | grep -v grep | awk '{print $5}'`
-#  [ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts/ > /dev/null && break
-#done
+echo "Find layer"
+for file in `ls ~/scripts`
+do
+  layer_size=`ls -l ~/scripts/$file 2> /dev/null | grep layer | grep -v grep | awk '{print $5}'`
+  [ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts/ > /dev/null && break
+done
 
 cd ~/scripts/scripts/
 SOURCE_BRANCH=`git branch | awk '{print $2}'`
