@@ -19,13 +19,13 @@ docker pull $SOURCE_IMAGE
 #docker exec -i jd_scripts /bin/sh -c "git reset --hard origin/master"
 
 #docker exec -i jd_scripts /bin/sh -c "git pull --rebase"
-sudo ls -lR /var/lib/docker
 echo "修改docker脚本"
-for file in `sudo ls /var/lib/docker`
+sudo cd /var/lib/docker 
+for file in ` find ./ -type f -name "docker_entrypoint.sh"`
 do
-  en_exsit=`sudo ls -l /var/lib/docker/$file 2> /dev/null | grep "docker_entrypoint.sh"`
-  [ -n "$en_exsit" ] && sudo sed -i sed -i "s/npm/#npm/g" /var/lib/docker/$file/docker_entrypoint.sh&& sudo sed -i sed -i "s/sh -x/#sh/g" /var/lib/docker/$file/docker_entrypoint.sh
+    sudo sed -i "s/npm/#npm/g" $file && sudo sed -i "s/sh -x/#sh/g" $file
 done
+
 docker images
 docker run -i $SOURCE_IMAGE /bin/sh
 
