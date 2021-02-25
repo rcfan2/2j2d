@@ -19,12 +19,13 @@ cd ~/scripts/scripts/
 SOURCE_BRANCH=`git branch | awk '{print $2}'`
 UPSTREAM_REPO=`git remote -v | grep origin | grep fetch | awk '{print $2}'`
 
+git reset --hard
+echo "git pull拉取最新代码..."
+git pull --rebase
+
 echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 git remote --verbose
-
-git add .
-git commit -m "Update"
 
 echo "Pushing changings from tmp_upstream to origin"
 git push origin "refs/remotes/origin/${SOURCE_BRANCH}:refs/heads/${DESTINATION_BRANCH}" --force
