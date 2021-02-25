@@ -23,11 +23,10 @@ echo "修改docker脚本"
 for file in `sudo find /var/lib/docker -type f -name "docker_entrypoint.sh" | grep -v "scripts/docker/docker_entrypoint.sh"`
 do
     sudo sed -i "s/npm/#npm/g" $file && sudo sed -i "s/sh -x/#sh/g" $file && sudo sed -i "s/crond/#/g" $file
-    sudo echo "exit >> $file"
 done
 
 docker images
-docker run -i $SOURCE_IMAGE /bin/sh
+docker run -i $SOURCE_IMAGE /bin/sh >/dev/null
 
 docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
 [ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
