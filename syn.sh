@@ -17,8 +17,11 @@ done
 
 cd ~/scripts/scripts/
 SOURCE_BRANCH=`git branch | awk '{print $2}'`
-UPSTREAM_REPO=`git remote -v | grep origin | grep fetch | awk '{print $2}'`
+#UPSTREAM_REPO=`git remote -v | grep origin | grep fetch | awk '{print $2}'`
+git remote --verbose
 
+REPO_URL="git@gitee.com:lxk0301/jd_scripts.git"
+git remote set-url origin $REPO_URL
 git reset --hard
 echo "git pull拉取最新代码..."
 git pull --rebase
@@ -30,6 +33,4 @@ git remote --verbose
 echo "Pushing changings from tmp_upstream to origin"
 git push origin "refs/remotes/origin/${SOURCE_BRANCH}:refs/heads/${DESTINATION_BRANCH}" --force
 
-#echo "Removing tmp_upstream"
-#git remote rm tmp_upstream
 git remote --verbose
