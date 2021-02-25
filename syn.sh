@@ -19,10 +19,10 @@ docker pull $SOURCE_IMAGE
 #docker exec -i jd_scripts /bin/sh -c "git reset --hard origin/master"
 
 #docker exec -i jd_scripts /bin/sh -c "git pull --rebase"
+sudo ls -lR /var/lib/docker
 docker images
 docker run -id $SOURCE_IMAGE /bin/sh
-docker ps
-docker exec -i `docker ps | grep jd_scripts | grep -v grep | awk '{print $1}'` /bin/sh -c "git pull"
+
 #docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
 #[ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
 
