@@ -11,7 +11,7 @@ jd_scripts:
   restart: always
   volumes:
     - ./logs:/scripts/logs
-  tty: true
+  tty: false
   # 因为更换仓库地址可能git pull的dns解析不到，可以在配置追加hosts
   extra_hosts:
     - "gitee.com:180.97.125.228"
