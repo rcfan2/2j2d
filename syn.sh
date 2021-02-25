@@ -2,24 +2,25 @@
 
 set -e
 
-mkdir -p ~/jd_scripts/logs
-cp -f docker-compose.yml ~/jd_scripts/
-mv -f crontab_list.sh ~/jd_scripts/my_crontab_list.sh
-cd ~/jd_scripts/
-#docker rmi `docker images -q`
-#echo "Get docker image"
-#docker pull $SOURCE_IMAGE
-docker-compose up -d
-docker-compose logs
-docker-compose pull
+#mkdir -p ~/jd_scripts/logs
+#cp -f docker-compose.yml ~/jd_scripts/
+#mv -f crontab_list.sh ~/jd_scripts/my_crontab_list.sh
+#cd ~/jd_scripts/
+docker rmi `docker images -q`
+echo "Get docker image"
+docker pull $SOURCE_IMAGE
+#docker-compose up -d
+#docker-compose logs
+#docker-compose pull
 
-echo "设定远程仓库地址..."
-docker exec -i jd_scripts /bin/sh -c "git remote set-url origin $REPO_URL"
-echo "git pull拉取最新代码..."
-docker exec -i jd_scripts /bin/sh -c "git reset --hard origin/master"
+#echo "设定远程仓库地址..."
+#docker exec -i jd_scripts /bin/sh -c "git remote set-url origin $REPO_URL"
+#echo "git pull拉取最新代码..."
+#docker exec -i jd_scripts /bin/sh -c "git reset --hard origin/master"
 
-docker exec -i jd_scripts /bin/sh -c "git pull --rebase 2> /dev/null"
+#docker exec -i jd_scripts /bin/sh -c "git pull --rebase"
 docker images
+docker exec -i jd_scripts /bin/sh -c "git pull“
 #docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
 #[ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
 
