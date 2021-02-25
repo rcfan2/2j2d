@@ -10,7 +10,7 @@ cd ~/jd_scripts/
 #docker pull $SOURCE_IMAGE
 docker-compose up -d
 docker-compose pull
-docker exec -it jd_scripts /bin/sh
+docker exec -i jd_scripts /bin/sh
 ls -lR
 #docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
 #[ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
