@@ -23,14 +23,8 @@ echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHU
 git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 git remote --verbose
 
-#echo "Clone origin repository"
-#git clone https://$GITHUB_ACTOR@github.com/$GITHUB_REPOSITORY ~/repo
-#cd ~/repo && git checkout -b $DESTINATION_BRANCH
-#sudo rm -rf ~/scripts/scripts/.git
-#cp -rf ~/scripts/scripts/* ~/repo/
-
-#echo "Adding tmp_upstream $UPSTREAM_REPO"
-#git remote add tmp_upstream "$UPSTREAM_REPO"
+git add .
+git commit -m "Update"
 
 echo "Pushing changings from tmp_upstream to origin"
 git push origin "refs/remotes/origin/${SOURCE_BRANCH}:refs/heads/${DESTINATION_BRANCH}" --force
