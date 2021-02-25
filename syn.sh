@@ -40,7 +40,8 @@ do
 done
 
 cd ~/scripts/scripts/
-SOURCE_BRANCH=`git branch | awk '{print $2}'`
+SOURCE_BRANCH="master"
+#SOURCE_BRANCH=`git branch | awk '{print $2}'`
 #UPSTREAM_REPO=`git remote -v | grep origin | grep fetch | awk '{print $2}'`
 git remote --verbose
 
