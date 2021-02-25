@@ -17,8 +17,6 @@ ls -lR
 echo "设定远程仓库地址..."
 docker exec -i jd_scripts /bin/sh -c "git remote set-url origin $REPO_URL"
 echo "git pull拉取最新代码..."
-docker exec -i jd_scripts /bin/sh -c 'ls -Rl'
-docker exec -i jd_scripts /bin/sh -c 'rm .git/refs/remotes/origin/master'
 docker exec -i jd_scripts /bin/sh -c "git -C /scripts pull && node /scripts/jd_bean_change.js"
 docker images
 #docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
