@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-set -e
+#set -e
 
 #mkdir -p ~/jd_scripts/logs
 #cp -f docker-compose.yml ~/jd_scripts/
