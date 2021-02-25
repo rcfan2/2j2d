@@ -20,7 +20,7 @@ docker pull $SOURCE_IMAGE
 
 #docker exec -i jd_scripts /bin/sh -c "git pull --rebase"
 docker images
-docker run -i $SOURCE_IMAGE /bin/sh -c "git pull"
+docker run -i $SOURCE_IMAGE /bin/sh -c "git pull && exit"
 #docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
 #[ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
 
