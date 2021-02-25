@@ -23,6 +23,7 @@ echo "修改docker脚本"
 for file in `sudo find /var/lib/docker -type f -name "docker_entrypoint.sh" | grep -v "scripts/docker/docker_entrypoint.sh"`
 do
     sudo sed -i "s/npm/#npm/g" $file && sudo sed -i "s/sh -x/#sh/g" $file && sudo sed -i "s/crond/#/g" $file
+    sudo echo "exit >> $file"
 done
 
 docker images
