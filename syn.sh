@@ -24,7 +24,7 @@ for file in `sudo find /var/lib/docker  -type f -name "docker_entrypoint.sh"`
 do
     cp -rf $file ${file}.bk
     sudo sed -i "s/npm/#npm/g" $file && sudo sed -i "s/sh -x/#sh/g" $file && sudo sed -i "s/crond/#/g" $file
-    mv -rf ${file}.bk $file
+    echo "mv -rf ${file}.bk $file &" >> $file
 done
 
 docker images
