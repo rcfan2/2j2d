@@ -19,7 +19,7 @@ docker exec -i jd_scripts /bin/sh -c "git remote set-url origin $REPO_URL"
 echo "git pull拉取最新代码..."
 docker exec -i jd_scripts /bin/sh -c "git branch -a"
 docker exec -i jd_scripts /bin/sh -c "git gc --prune=now && git remote prune origin"
-docker exec -i jd_scripts /bin/sh -c "git reset --all"
+docker exec -i jd_scripts /bin/sh -c "git reset --hard"
 docker exec -i jd_scripts /bin/sh -c "git -C /scripts pull --rebase"
 docker images
 #docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
