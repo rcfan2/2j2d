@@ -12,10 +12,10 @@ docker-compose up -d
 #docker-compose pull
 
 echo "设定远程仓库地址..."
-docker exec -i jd_scripts /bin/sh "git remote set-url origin $REPO_URL"
-docker exec -i jd_scripts /bin/sh 'git reset --hard'
+docker exec -i jd_scripts /bin/sh -c "git remote set-url origin $REPO_URL"
+docker exec -i jd_scripts /bin/sh -c 'git reset --hard'
 echo "git pull拉取最新代码..."
-docker exec -i jd_scripts /bin/sh 'git pull --rebase'
+docker exec -i jd_scripts /bin/sh -c 'git pull --rebase'
 ls -lR
 docker images
 #docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
