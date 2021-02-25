@@ -12,7 +12,7 @@ docker-compose up -d
 #docker-compose pull
 
 echo "设定远程仓库地址..."
-docker exec -i jd_scripts /bin/sh 'git remote set-url origin $REPO_URL'
+docker exec -i jd_scripts /bin/sh "git remote set-url origin $REPO_URL"
 docker exec -i jd_scripts /bin/sh 'git reset --hard'
 echo "git pull拉取最新代码..."
 docker exec -i jd_scripts /bin/sh 'git pull --rebase'
