@@ -12,6 +12,7 @@ docker-compose up -d
 docker-compose pull
 docker exec -i jd_scripts /bin/sh
 ls -lR
+docker images
 #docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
 #[ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
 
