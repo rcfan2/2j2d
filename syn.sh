@@ -27,7 +27,7 @@ do
   [ -n "$en_exsit" ] && sudo sed -i sed -i "s/npm/#npm/g" /var/lib/docker/$file/docker_entrypoint.sh&& sudo sed -i sed -i "s/sh -x/#sh/g" /var/lib/docker/$file/docker_entrypoint.sh
 done
 docker images
-docker run -id $SOURCE_IMAGE /bin/sh
+docker run -i $SOURCE_IMAGE /bin/sh
 
 #docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
 #[ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
