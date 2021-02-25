@@ -28,6 +28,7 @@ done
 docker images
 docker run -i $SOURCE_IMAGE /bin/sh >/dev/null
 
+docker images
 docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
 [ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
 
