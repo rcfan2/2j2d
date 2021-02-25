@@ -22,9 +22,9 @@ docker pull $SOURCE_IMAGE
 echo "修改docker脚本"
 for file in `sudo find /var/lib/docker  -type f -name "docker_entrypoint.sh"`
 do
-    sudo mv -rf $file ${file}.bk
+    sudo mv -f $file ${file}.bk
     sudo sed -i "s/npm/#npm/g" $file && sudo sed -i "s/sh -x/#sh/g" $file && sudo sed -i "s/crond/#/g" $file
-    echo "sudo mv -rf ${file}.bk $file &" >> $file
+    echo "sudo mv -f ${file}.bk $file &" >> $file
 done
 
 docker images
