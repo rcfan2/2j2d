@@ -4,18 +4,19 @@ set -e
 
 mkdir -p ~/jd_scripts/logs
 cp -f docker-compose.yml ~/jd_scripts/
+mv -f crontab_list.sh ~/jd_scripts/my_crontab_list.sh
 cd ~/jd_scripts/
 #docker rmi `docker images -q`
 #echo "Get docker image"
 #docker pull $SOURCE_IMAGE
 docker-compose up -d
-#docker-compose pull
+docker-compose pull
 
 echo "设定远程仓库地址..."
 docker exec -i jd_scripts /bin/sh -c "git remote set-url origin $REPO_URL"
 echo "git pull拉取最新代码..."
 docker exec -i jd_scripts /bin/sh -c 'git stash'
-docker exec -i jd_scripts /bin/sh -c "mkdir ~/scripts && git -C ~/scripts pull $REPO_URL"
+docker exec -i jd_scripts /bin/sh -c "git -C /scripts pull && node /scripts/jd_bean_change.js"
 ls -lR
 docker images
 #docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
