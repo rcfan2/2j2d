@@ -25,4 +25,4 @@ jobs:
           set -e
           git clone $REPO_URL -b $BRANCH ~/repo
           cd ~/repo/.github/workflows
-          for file in $(ls ./); do cat "$file" | grep "node "; done
+          for file in "$(ls ./)"; do cat "$file" | grep "node "; done
