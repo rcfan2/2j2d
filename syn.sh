@@ -35,6 +35,7 @@ docker exec -i jd_scripts /bin/sh -c "git clone $REPO_URL /scriptss"
 #sudo ls -Rl /var/lib/docker
 
 sudo ls -Rl /var/lib/docker | grep scriptss
+sudo find /var/lib/docker -type d -name "scriptss" 
 #docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
 #[ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
 
