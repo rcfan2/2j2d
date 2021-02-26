@@ -24,5 +24,11 @@ jobs:
         run: |
           git clone $REPO_URL -b $BRANCH ~/repo
           cd ~/repo/.github/workflows
-          for file in `ls ./`; do isScript=`cat "$file" | grep -E "node .*.js" | awk -F "node " '{print $2}' | awk -F "./" '{print $2}' | awk -F ".js" '{print $1}'`; [ -n "$isScript" ] && echo -e "文件$file里面有：\n$isScript"; done
+          for file in `ls ./`; do isScript=`cat "$file" | grep -E "node .*.js" | awk -F "node " '{print $2}' | awk -F "./" '{print $2}' | awk -F ".js" '{print $1}'`; [ -n "$isScript" ] && echo -e "文件$file里面有：\n$isScript" >> ~/scripts.log; done
           echo "获取完成"
+
+      - name: Deliver Log
+        uses: actions/upload-artifact@v2
+        with:
+          name: ScriptsLocation
+          path: ~/scripts.log
