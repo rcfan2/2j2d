@@ -4,7 +4,6 @@ set -e
 
 mkdir -p ~/jd_scripts/logs
 cp -f docker-compose.yml ~/jd_scripts/
-#mv -f crontab_list.sh ~/jd_scripts/my_crontab_list.sh
 cd ~/jd_scripts/
 
 docker-compose up -d
