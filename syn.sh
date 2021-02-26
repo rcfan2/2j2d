@@ -34,8 +34,6 @@ docker exec -i jd_scripts /bin/sh -c "git clone $REPO_URL /scriptss"
 #docker exec -i `docker ps | grep jd_scripts | grep -v grep | awk '{print $1}'` /bin/sh -c 'git pull'
 #sudo ls -Rl /var/lib/docker
 
-sudo ls -Rl /var/lib/docker | grep scriptss
-sudo find /var/lib/docker -type d -name "scriptss" 
 #docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
 #[ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
 
@@ -45,8 +43,9 @@ sudo find /var/lib/docker -type d -name "scriptss"
  # layer_size=`ls -l ~/scripts/$file 2> /dev/null | grep layer | grep -v grep | awk '{print $5}'`
  # [ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts/ > /dev/null && break
 #done
-#cp -rf `sudo find /var/lib/docker -type d -name "scriptss"` ~/scripts
-cd ~/scripts/scriptss
+sudo cp -rf `sudo find /var/lib/docker -type d -name "scriptss" | grep merged` ~/
+#cd ~/scripts/scriptss
+cd ~/scriptss
 SOURCE_BRANCH="master"
 #SOURCE_BRANCH=`git branch | awk '{print $2}'`
 #UPSTREAM_REPO=`git remote -v | grep origin | grep fetch | awk '{print $2}'`
