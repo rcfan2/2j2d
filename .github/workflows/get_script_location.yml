@@ -23,5 +23,5 @@ jobs:
           BRANCH: "main"
         run: |
           set -e
-          git clone $REPO_URL -branch $BRANCH ~/repo
+          git clone $REPO_URL -b $BRANCH ~/repo
          
