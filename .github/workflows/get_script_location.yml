@@ -24,4 +24,4 @@ jobs:
         run: |
           git clone $REPO_URL -b $BRANCH ~/repo
           cd ~/repo/.github/workflows
-          for file in `ls ./`; do cat "$file" | grep -E "node .*.js" | awk -F "node " '{print $2}' | awk -F ".js" '{print $1}'; done
+          for file in `ls ./`; do isScript=`cat "$file" | grep -E "node .*.js" | awk -F "node " '{print $2}' | awk -F ".js" '{print $1}'`;[ -n $isScript ]&& echo "$isScript 在 $file里面" ; done
