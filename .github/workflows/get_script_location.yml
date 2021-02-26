@@ -19,9 +19,10 @@ jobs:
           
       - name: GET SCRIPTS
         env:
-          REPO_URL: github.event.repository
+          REPO_URL: "https://github.com/tracefish/ds"
           BRANCH: "main"
         run: |
           set -e
           git clone $REPO_URL -b $BRANCH ~/repo
-         
+          cd ~/repo/.github/workflows
+          for file in $(ls ./); do cat $file | grep "node "; done
