@@ -27,6 +27,7 @@ echo "修改docker脚本"
 #done
 
 docker images
+docker ps -a
 #docker run -i $SOURCE_IMAGE /bin/sh
 docker exec -i $SOURCE_IMAGE /bin/sh -c 'docker_entrypoint.sh'
 docker images
