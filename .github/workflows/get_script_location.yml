@@ -1,0 +1,27 @@
+# File: .github/workflows/repo-sync.yml
+name: get_script_location
+on:
+  #schedule:
+  #  - cron: '15 */6 * * *'
+  workflow_dispatch:
+  watch:
+    types: started
+  repository_dispatch:
+    types: get_script_location
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          
+      - name: GET SCRIPTS
+        env:
+          REPO_URL: github.event.repository
+          BRANCH: "main"
+        run: |
+          set -e
+          git clone $REPO_URL -branch $BRANCH ~/repo
+         
