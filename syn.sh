@@ -32,7 +32,7 @@ docker exec -i jd_scripts /bin/sh -c "git clone $REPO_URL /scriptss"
 #docker ps -a
 #docker run -i $SOURCE_IMAGE /bin/sh &
 #docker exec -i `docker ps | grep jd_scripts | grep -v grep | awk '{print $1}'` /bin/sh -c 'git pull'
-sudo ls -Rl /var/lib/docker
+#sudo ls -Rl /var/lib/docker
 
 
 docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
