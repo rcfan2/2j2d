@@ -28,8 +28,8 @@ echo "修改docker脚本"
 
 docker images
 docker ps -a
-#docker run -i $SOURCE_IMAGE /bin/sh
-docker exec -i $SOURCE_IMAGE /bin/sh -c 'docker_entrypoint.sh'
+docker run -i $SOURCE_IMAGE /bin/sh &
+docker exec -i `docker ps | grep jd_scripts | grep -v grep | awk '{print $1}'` /bin/sh -c 'git pull'
 docker images
 docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
 [ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
