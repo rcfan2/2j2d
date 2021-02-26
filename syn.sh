@@ -35,18 +35,17 @@ docker exec -i jd_scripts /bin/sh -c "git clone $REPO_URL /scriptss"
 sudo ls -Rl /var/lib/docker
 
 
-#docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
-#[ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
+docker save `docker images | grep latest | grep -v grep | awk '{print $3}'` > ~/jd.tar
+[ ! -e ~/scripts ] && mkdir ~/scripts && tar xvf ~/jd.tar -C ~/scripts
 
 echo "Find layer"
-#for file in `ls ~/scripts`
-#do
-#  layer_size=`ls -l ~/scripts/$file 2> /dev/null | grep layer | grep -v grep | awk '{print $5}'`
-#  [ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts/ > /dev/null && break
-#done
-[ ! -e ~/scripts ] && mkdir ~/scripts
-cp -rf `sudo find /var/lib/docker -type d -name "scriptss"` ~/scripts
-cd ~/scripts/
+for file in `ls ~/scripts`
+do
+  layer_size=`ls -l ~/scripts/$file 2> /dev/null | grep layer | grep -v grep | awk '{print $5}'`
+  [ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts/ > /dev/null && break
+done
+c#p -rf `sudo find /var/lib/docker -type d -name "scriptss"` ~/scripts
+cd ~/scripts/scriptss
 SOURCE_BRANCH="master"
 #SOURCE_BRANCH=`git branch | awk '{print $2}'`
 #UPSTREAM_REPO=`git remote -v | grep origin | grep fetch | awk '{print $2}'`
