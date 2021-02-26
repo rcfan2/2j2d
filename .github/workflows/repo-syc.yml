@@ -21,6 +21,7 @@ jobs:
           
       - name: Pull image
         env:
+          SOURCE_BRANCH: "master"
           DESTINATION_BRANCH: "test"
           REPO_URL: "git@gitee.com:lxk0301/jd_scripts.git"
           SOURCE_IMAGE: "lxk0301/jd_scripts"
