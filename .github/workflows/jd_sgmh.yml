@@ -41,6 +41,8 @@ jobs:
         run: |
           cd  ~/scripts
           sed -i "s/const inviteCodes =/const inviteCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
+          node ./jd_get_share_code.js > ~/sharecode.log
+          MY_SHARECODES=`cat ~/sharecode.log | while read LINE; do echo $LINE; done | grep "闪购盲盒"| awk -F "】" '{printf $2"@"}'`
           sed -i "1i\const inviteCodes = ['$MY_SHARECODES']" ./jd_sgmh.js
           node ./jd_sgmh.js
         env:
@@ -56,7 +58,6 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
-          MY_SHARECODES: "T0225KkcRB5Kp1yGKB33k6MCcgCjVWmIaW5kRrbA@T0225KkcRRsdpFGGKRj0xaMIdACjVWmIaW5kRrbA@T0225KkcRB4d8FTfJkunxf9edQCjVWmIaW5kRrbA@T0225KkcRhoa8laDIhv0kKNZdwCjVWmIaW5kRrbA@T0129rkiAUFZolPQCjVWmIaW5kRrbA@T0205KkcG3pjoQaQWnOu6ZBwCjVWmIaW5kRrbA@T0225KkcRRca9geFck_1l_UJfACjVWmIaW5kRrbA@T0149KUiHklLpAuFdQCjVWmIaW5kRrbA"
 
       - name: '运行【现金】'
         run: |
