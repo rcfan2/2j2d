@@ -44,7 +44,7 @@ do
   layer_size=`ls -l ~/scripts/$file 2> /dev/null | grep layer | grep -v grep | awk '{print $5}'`
   [ "$layer_size" -gt 52428800 ] && tar xvf ~/scripts/$file/layer.tar -C ~/scripts/ > /dev/null && break
 done
-c#p -rf `sudo find /var/lib/docker -type d -name "scriptss"` ~/scripts
+#cp -rf `sudo find /var/lib/docker -type d -name "scriptss"` ~/scripts
 cd ~/scripts/scriptss
 SOURCE_BRANCH="master"
 #SOURCE_BRANCH=`git branch | awk '{print $2}'`
