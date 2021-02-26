@@ -6,7 +6,7 @@ name: jd_blueCoin
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 22 * * *'
+    - cron: '10 16 * * *'
 #  watch:
 #    types: started
   repository_dispatch:
