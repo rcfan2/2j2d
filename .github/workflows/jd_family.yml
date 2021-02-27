@@ -41,7 +41,7 @@ jobs:
         run: |
           cd  ~/scripts
           node ./jd_family.js  
-          echo "$test" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'
+          for jk in `echo "$test" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'`;do echo $jk; done
         env:
           test: "hhh&ppp&pdhh&"
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
