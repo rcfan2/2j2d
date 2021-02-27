@@ -47,7 +47,7 @@ jobs:
           sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js && \
           sed -i "1i\let CookieJDs = [ '$jk', ]" ./jdCookie.js && \
           node ./jd_speed_sign.js & && \
-          cd ~ && num=$((num + 1)
+          cd ~ && num=$((num + 1))
           done
           unset IFS
           wait
