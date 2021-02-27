@@ -41,7 +41,7 @@ jobs:
         run: |
           cd  ~/scripts
           for jk in `echo "$JD_COOKIES" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'`;do \
-          sed -i 's/let CookieJDs =/let CookieJDsss =/g' ./jdCookie.js && \
+          sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js && \
           sed -i "1i\let CookieJDs = [ '$jk' ]" ./jdCookie.js && \
           node ./jd_speed_sign.js &
           done
