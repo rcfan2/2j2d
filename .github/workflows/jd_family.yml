@@ -40,7 +40,7 @@ jobs:
       - name: '运行 【京豆变动通知】'
         run: |
           cd  ~/scripts
-          test="djj"
+          test=${{ secrets.JD_COOKIE }}
           node ./jd_family.js  
         env:
           test: $test
