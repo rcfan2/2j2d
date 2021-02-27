@@ -44,6 +44,7 @@ jobs:
           sed -i 's/let CookieJDs =/let CookieJDsss =/g' ./jdCookie.js && \
           sed -i "1i\let CookieJDs = [ '$jk' ]" ./jdCookie.js && \
           node ./jd_speed_sign.js &; done
+          wait
         env:
           JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
