@@ -23,4 +23,4 @@ jobs:
           npm install
       - name: '运行 【助力】'
         run: |
-          node .HelpSelf.js
+          node HelpSelf.js
