@@ -43,7 +43,7 @@ jobs:
           test="djj"
           node ./jd_family.js  
         env:
-          test: ${{ run.test }}
+          test: $test
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
