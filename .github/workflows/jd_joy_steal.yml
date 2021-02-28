@@ -46,7 +46,7 @@ jobs:
           cd ~/scripts${num}
           sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js && \
           sed -i "1i\let CookieJDs = [ '$jk', ]" ./jdCookie.js && \
-          node ./jd_joy_steal.js&
+          node ./jd_joy_steal.js &
           cd ~
           num=$((num + 1))
           done
@@ -64,4 +64,4 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
-          
+        
