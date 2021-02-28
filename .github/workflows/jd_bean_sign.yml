@@ -41,6 +41,7 @@ jobs:
         run: |
           cd  ~/scripts
           node ./jd_bean_sign.js
+          node ./jd_car.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
