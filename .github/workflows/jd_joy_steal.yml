@@ -53,7 +53,7 @@ jobs:
           unset IFS
           wait
         env:
-          JD_COOKIE: ${{ secrets.JD_COOKIE }}
+          JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           JOY_HELP_FEED: "true"
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
