@@ -40,7 +40,7 @@ jobs:
       - name: '运行 【美丽颜究院】'
         run: |
           cd  ~/scripts
-          node ./jd_beauty.js &
+          (node ./jd_beauty.js && killall sleep && echo "退出脚本")&
           sleep 1h && killall node && echo "退出脚本"
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
