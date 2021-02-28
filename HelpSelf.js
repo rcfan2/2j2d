@@ -68,11 +68,11 @@ async function toHelpMyself() {
 
 // 🥔种豆得豆✅
 async function helpPlantBean() {
-// xin mlrdw3aw26j3xtlnoc5rovsdcl364xjx4ctvrhq
-// bao e7lhibzb3zek2volndkiirtldf2etf3cbfqgk5y
-// ksy olmijoxgmjutydzvmwfbl6e6l6h2cth3aj3eb4q
-// ksyd gou7sxm3hztwog43s4wlioc4zwmle4lerqaqbky
-// hw e7lhibzb3zek2stpvartzi4aykd2ea5dzobizwy
+// xin zlmjgctb673yvqj464zq6mwdee
+// bao xmblfgd3rmwo46hdnzy3mnvb7tmnzawk2kmrffi
+// ksy tnmcphpjys5idhepzb4ggqphxvabwstydj7sl5y
+// ksyd gou7sxm3hztwo
+// hw e7lhibzb3z
 const jdPlantBeanShareArr=[`e7lhibzb3zek2volndkiirtldf2etf3cbfqgk5y@mlrdw3aw26j3xtlnoc5rovsdcl364xjx4ctvrhq@olmijoxgmjutydzvmwfbl6e6l6h2cth3aj3eb4q@gou7sxm3hztwog43s4wlioc4zwmle4lerqaqbky@e7lhibzb3zek2stpvartzi4aykd2ea5dzobizwy`]
 // 格式化
 function shareCodesFormat() {
@@ -169,11 +169,11 @@ function taskUrl(function_id, body) {
 
 // 🌳东东农场✅
 async function helpFruit() {
-// xin 554359d55fcc4a1fab5f17a946cbf338
-// bao 4625d3914d044bacbae685e9d60f14c8
-// ksy edf5df477f3e4c45960909255988b345
-// ksyd dfb7e6bd0c3649d69d4f61c41a382675
-// hw 7f0d2ecc6e364b938223c3d900eae72d
+// xin d92cbd8f7c0048699452db1fdc24a75b
+// bao c162b16c03b846ba9a7cd98448c29025
+// ksy 102ea0f241a84f77944b39c37efef174
+// ksyd dfb7e6bd0c
+// hw 7f0d2
 const jdFruitShareArr = [`4625d3914d044bacbae685e9d60f14c8@554359d55fcc4a1fab5f17a946cbf338@edf5df477f3e4c45960909255988b345@dfb7e6bd0c3649d69d4f61c41a382675@7f0d2ecc6e364b938223c3d900eae72d`]
 // 格式化
 function shareCodesFormat() {
@@ -285,11 +285,11 @@ function taskUrl(function_id, body = {}) {
 
 // 🐶东东萌宠✅
 async function helpPet() {
-// xin MTE1NDQ5MzYwMDAwMDAwMzkwMTMzNTk=
-// bao MTAxODEyMjkxMDAwMDAwMDQwMDQ5ODU5
-// ksy MTE1NDAxNzgwMDAwMDAwNDE2NTU0Nzk=
-// ksyd MTE1NDQ5MzYwMDAwMDAwNDI0MDQ1NzM=
-// hw MTE1NDAxNzgwMDAwMDAwNDQ3Mjg3MTM=
+// xin MTAxODc2NTEzMTAwMDAwMDAyODc2NjM2NQ==
+// bao MTE1NDUwMTI0MDAwMDAwMDM4OTU1ODYx
+// ksy MTE1NDQ5OTIwMDAwMDAwNDI5MTM4MTE=
+// ksyd MTE1NDQ
+// hw MTE1ND
 const jdPetShareArr = [`MTAxODEyMjkxMDAwMDAwMDQwMDQ5ODU5@MTE1NDQ5MzYwMDAwMDAwMzkwMTMzNTk=@MTE1NDAxNzgwMDAwMDAwNDE2NTU0Nzk=@MTE1NDQ5MzYwMDAwMDAwNDI0MDQ1NzM=@MTE1NDAxNzgwMDAwMDAwNDQ3Mjg3MTM=`]
 // 格式化
 function shareCodesFormat() {
@@ -375,11 +375,11 @@ function taskUrl(function_id, body = {}) {
 
 // 🐶Crazy-Joy✅
 async function helpCrazyJoy() {
-// xin 4hcydYCP_3SVJFTBkKtsLKt9zd5YaBeE
-// bao qNOtcKihtPlqVT188Rh9_6t9zd5YaBeE
-// ksy sRQ2jh_ETvfB8zU3_op5Rqt9zd5YaBeE
-// ksyd 2AxO9_8nIcYf8ITfyXlpcg==
-// hw zXtqe9c8Px1A4LFoWwvtS6t9zd5YaBeE
+// xin bzFPG3_12SOxFg3Zy_NvWA==
+// bao lhZfr1GE750=
+// ksy ZOYPMJXNz_o__Ryc-w9qgg==
+// ksyd 2AxO9_8nIcYf
+// hw zXtqe9c8Px1A4L
 const jdcrazyjoyArr = [`qNOtcKihtPlqVT188Rh9_6t9zd5YaBeE@4hcydYCP_3SVJFTBkKtsLKt9zd5YaBeE@sRQ2jh_ETvfB8zU3_op5Rqt9zd5YaBeE@2AxO9_8nIcYf8ITfyXlpcg==@zXtqe9c8Px1A4LFoWwvtS6t9zd5YaBeE`]
 // 格式化
 function shareCodesFormat() {
@@ -473,11 +473,11 @@ function taskUrl(functionId, body = '') {
 
 // 💸签到领现金✅
 async function helpCash() {
-// xin eU9YaezhZq8j9mbXz3RF1g
-// bao eU9YaOzgYPR082eHmXoa0Q
-// ksy eU9Yar7kYap38m_SmnRBgg
-// ksyd eU9YKqzBMLZXhzyQsxpw
-// hw eU9YaL2wYf1w9zjVySJHhw
+// xin eU9YaezhZq8j9mbX
+// bao eU9YaOzgYPR
+// ksy eU9Yar7kYap3
+// ksyd eU9YKqzBMLZX
+// hw eU9YaL2wYf1w9
 jdCashArr=[`eU9YaezhZq8j9mbXz3RF1g@eU9YaOzgYPR082eHmXoa0Q@eU9Yar7kYap38m_SmnRBgg@eU9YKqzBMLZXhzyQsxpw@eU9YaL2wYf1w9zjVySJHhw`]
 // 格式化
 function shareCodesFormat() {
