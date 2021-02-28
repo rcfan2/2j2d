@@ -41,8 +41,9 @@ jobs:
         run: |
           cd  ~/scripts
           date
+          echo "设置时区"
           sudo rm -f /etc/localtime
-          ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+          sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
           date
           IFS=$'\n'
           num=0
