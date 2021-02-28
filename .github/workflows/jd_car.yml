@@ -42,11 +42,13 @@ jobs:
           cd  ~/scripts
           IFS=$'\n'
           num=0
+          nextdate=`date +%s%N -d "+1 day 00:00:00"`
           for jk in `echo "$JD_COOKIES" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'`;do cp  -rf ~/scripts ~/scripts${num} && \
           cd ~/scripts${num}
           sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js && \
           sed -i "1i\let CookieJDs = [ '$jk', ]" ./jdCookie.js && \
-          node ./jd_car.js &
+          (now=`date +%s%N` && delay=`echo "scale=3;$((nextdate-now))/1000" | bc` && sleep $delay && node ./jd_car.js)&
+          echo "延迟$delay"
           cd ~
           num=$((num + 1))
           done
