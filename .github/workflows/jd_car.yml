@@ -39,12 +39,10 @@ jobs:
           npm install
       - name: '运行 【京东汽车】'
         run: |
-          cd  ~/scripts
-          date
           echo "设置时区"
           sudo rm -f /etc/localtime
           sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-          date
+          echo "开始多账号并发"
           IFS=$'\n'
           num=0
           nextdate=`date +%s%N -d "+1 day 00:00:00"`
