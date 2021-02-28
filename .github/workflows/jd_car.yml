@@ -41,7 +41,7 @@ jobs:
         run: |
           cd  ~/scripts
           date
-          rm -f /etc/localtime
+          sudo rm -f /etc/localtime
           ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
           date
           IFS=$'\n'
