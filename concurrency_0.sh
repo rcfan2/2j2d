@@ -15,7 +15,7 @@ for jk in `echo "$JD_COOKIES" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'`;do c
 cd ~/scripts${num}
 sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js && \
 sed -i "1i\let CookieJDs = [ '$jk', ]" ./jdCookie.js && \
-(now=`date +%s%N` && delay=`echo "scale=3;$((nextdate-now))/1000000000" | bc` && echo "未到当天零点，等待${delay}秒" && sleep $delay && node $SCRIPT)&
+(now=`date +%s%N` && delay=`echo "scale=3;$((nextdate-now))/1000000000" | bc` && echo "未到当天零点，等待${delay}秒" && sleep $delay && node ./$SCRIPT)&
 cd ~
 num=$((num + 1))
 done
