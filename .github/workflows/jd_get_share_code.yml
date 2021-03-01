@@ -46,11 +46,19 @@ jobs:
           cat ~/sharecode.log
           git clone -b sc https://github.com/tracefish/ds ~/ds
           cd ~/ds
+          echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
+          sudo git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
           mv -f ~/sharecode.log ./sharecode.log
+          git config --global user.email "tracefish@qq.com"
+          git config --global user.name "tracefish"
           git add .
-          git commit -m "update"
-          
+          git commit -m "update `date +%Y%m%d`"
+          echo "Pushing changings from tmp_upstream to origin"
+          sudo git push origin "refs/remotes/origin/${SOURCE_BRANCH}:refs/heads/${DESTINATION_BRANCH}" --force 
         env:
+          SOURCE_BRANCH: "sc"
+          DESTINATION_BRANCH: "sc"
+          GITHUB_TOKEN: ${{ secrets.PAT }}
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
