@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 echo "拉取源码"
 git clone -b jd https://github.com/tracefish/ds.git ~/scripts
 cd  ~/scripts
