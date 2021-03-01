@@ -53,7 +53,7 @@ jobs:
           unset IFS
           sleep 5h && sleep 30m && killall node && echo "退出脚本"
         env:
-          JD_COOKIE: ${{ secrets.JD_COOKIE }}
+          JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
