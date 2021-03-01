@@ -46,7 +46,7 @@ jobs:
           IFS=$'\n'
           num=0
           nextdate=`date +%s%N -d "16:00:00"`
-          for jk in `echo "$JD_COOKIE" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'`;do cp  -rf ~/scripts ~/scripts${num} && \
+          for jk in `echo "$JD_COOKIES" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'`;do cp  -rf ~/scripts ~/scripts${num} && \
           cd ~/scripts${num}
           sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js && \
           sed -i "1i\let CookieJDs = [ '$jk', ]" ./jdCookie.js && \
@@ -57,7 +57,7 @@ jobs:
           unset IFS
           wait
         env:
-          JD_COOKIE: ${{ secrets.JD_COOKIE }}
+          JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           JD_JOY_REWARD_NOTIFY: ${{ secrets.JD_JOY_REWARD_NOTIFY }}
           JD_JOY_REWARD_NAME: ${{ secrets.JD_JOY_REWARD_NAME }}
