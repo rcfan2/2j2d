@@ -30,11 +30,11 @@ jobs:
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
       - name: Checkout
         run: |
-          cp -f update_env.sh ~/ && chmod 755 ~/update_env.sh
+          cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh
           sh ~/update_env.sh
       - name: '运行 【疯狂的Joy】'
         run: |
-          cp -f concurrency.sh ~/ && chmod 755 ~/concurrency.sh
+          cp -f concurrency.sh ~/concurrency.sh && chmod 755 ~/concurrency.sh
           sh ~/concurrency.sh jd_crazy_joy_coin.js &
           sleep 5h && sleep 30m && killall node && echo "退出脚本"
         env:
