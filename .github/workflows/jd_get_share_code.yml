@@ -40,7 +40,10 @@ jobs:
       - name: '运行 【助力码】'
         run: |
           cd  ~/scripts
-          [ -e "./jd_get_share_code.js" ] && node ./jd_get_share_code.js || echo "pass"
+          node ./jd_get_share_code.js > ~/sharecode.log
+          sed -i 's/京东农场/东东农场/g' ~/sharecode.log
+          sed -i 's/种豆得豆/京东种豆得豆/g' ~/sharecode.log
+          cat ~/sharecode.log
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
