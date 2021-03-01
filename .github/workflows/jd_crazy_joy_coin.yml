@@ -53,4 +53,4 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
-          BUY_JOY_LEVEL: ${{ secrets.BUY_JOY_LEVEL }}
+          BUY_JOY_LEVEL: 30
