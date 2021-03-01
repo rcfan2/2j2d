@@ -44,6 +44,12 @@ jobs:
           sed -i 's/京东农场/东东农场/g' ~/sharecode.log
           sed -i 's/种豆得豆/京东种豆得豆/g' ~/sharecode.log
           cat ~/sharecode.log
+          git clone -b sc https://github.com/tracefish/ds ~/ds
+          cd ~/ds
+          mv -f ~/sharecode.log ./sharecode.log
+          git add .
+          git commit -m "update"
+          
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
