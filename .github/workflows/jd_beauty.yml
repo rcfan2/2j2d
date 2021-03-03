@@ -52,7 +52,7 @@ jobs:
           done
           unset IFS
           ticker=60
-          while `ticker -gt 0`
+          while [ $ticker -gt 0 ]
           do
             [ -n "pgrep node" ] && sleep 60s || break
             tcker=$((ticker - 1))
