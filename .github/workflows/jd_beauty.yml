@@ -51,7 +51,6 @@ jobs:
           num=$((num + 1))
           done
           unset IFS
-          wait
           sleep 1h && killall node && echo "退出脚本"
         env:
           JD_COOKIES: ${{ secrets.JD_COOKIE }}
