@@ -31,4 +31,5 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - run: sh update_env.sh
+      - run: |
+          cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
