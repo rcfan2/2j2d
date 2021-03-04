@@ -31,4 +31,4 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - run: ./update_env.sh
+      - run: sh update_env.sh
