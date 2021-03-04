@@ -38,6 +38,8 @@ jobs:
       - name: run scripts
         run: |
           cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
+      - name: '运行 【东东农场】'
+        run: |
           cd  ~/scripts
           sed -i "s/let shareCodes =/let shareCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
           sed -i "1i\let shareCodes = ['$MY_SHARECODES']" ./jd_fruit.js
