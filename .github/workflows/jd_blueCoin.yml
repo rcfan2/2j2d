@@ -51,7 +51,7 @@ jobs:
           cd ~/scripts${num}
           sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js && \
           sed -i "1i\let CookieJDs = [ '$jk', ]" ./jdCookie.js && \
-          (now=`date +%s%N` && delay=`echo "scale=3;$((nextdate-now-2000000000))/1000000000" | bc` && echo "未到当天零点，等待${delay}秒" && sleep $delay && node ./jd_blueCoin.js)&
+          (now=`date +%s%N` && delay=`echo "scale=3;$((nextdate-now))/1000000000" | bc` && echo "未到当天零点，等待${delay}秒" && sleep $delay && node ./jd_blueCoin.js)&
           cd ~
           num=$((num + 1))
           done
