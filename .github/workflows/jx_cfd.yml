@@ -38,6 +38,8 @@ jobs:
       - name: run scripts
         run: |
           cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
+      - name: '运行 【京喜财富岛】'
+        run: |
           cd  ~/scripts
           node ./jd_cfd.js
         env:
