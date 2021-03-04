@@ -13,7 +13,6 @@ on:
     types: jd_car
 jobs:
   build:
-
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
@@ -28,38 +27,8 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
-      - name: Checkout
-        run: |
-          sh ./update_env.sh
-      - name: '运行 【京东汽车】'
-        run: |
-          echo "设置时区"
-          sudo rm -f /etc/localtime
-          sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-          echo "开始多账号并发"
-          IFS=$'\n'
-          num=0
-          nextdate=`date +%s%N -d "+1 day 00:00:00"`
-          for jk in `echo "$JD_COOKIES" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'`;do cp  -rf ~/scripts ~/scripts${num} && \
-          cd ~/scripts${num}
-          sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js && \
-          sed -i "1i\let CookieJDs = [ '$jk', ]" ./jdCookie.js && \
-          (now=`date +%s%N` && delay=`echo "scale=3;$((nextdate-now))/1000000000" | bc` && echo "未到当天零点，等待${delay}秒" && sleep $delay && node ./jd_car.js)&
-          cd ~
-          num=$((num + 1))
-          done
-          unset IFS
-          wait
-        env:
-          JD_COOKIES: ${{ secrets.JD_COOKIE }}
-          JD_DEBUG: ${{ secrets.JD_DEBUG }}
-          PUSH_KEY: ${{ secrets.PUSH_KEY }}
-          BARK_PUSH: ${{ secrets.BARK_PUSH }}
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_USER_ID: ${{ secrets.TG_USER_ID }}
-          BARK_SOUND: ${{ secrets.BARK_SOUND }}
-          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
-          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
-          IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
-          DDFACTORY_SHARECODES: ${{ secrets.DDFACTORY_SHARECODES }}
-          FACTORAY_WANTPRODUCT_NAME: ${{ secrets.FACTORAY_WANTPRODUCT_NAME }}
+  run:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./update_env.sh
