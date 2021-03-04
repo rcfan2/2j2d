@@ -30,9 +30,11 @@ jobs:
           - uses: actions/checkout@v2
             with:
               persist-credentials: false
-          - name: run scripts
+          - name: Init Env
             run: |
               cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
+          - name: '运行 【京喜签到】'
+            run: |
               cd  ~/scripts
               node ./jx_sign.js
             env:
