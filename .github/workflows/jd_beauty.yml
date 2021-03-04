@@ -55,7 +55,7 @@ jobs:
           while [ $ticker -gt 0 ]
           do
             [ -n "pgrep node" ] && sleep 60s || break
-            tcker=$((ticker - 1))
+            ticker=$((ticker - 1))
             [ $ticker -eq 1 ] && killall node
           done
           echo "退出脚本"
