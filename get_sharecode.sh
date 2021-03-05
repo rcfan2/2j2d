@@ -18,6 +18,7 @@ node ./jd_get_share_code.js > ~/sharecode.log
 sed -i 's/京东农场/东东农场/g' ~/sharecode.log
 sed -i 's/种豆得豆/京东种豆得豆/g' ~/sharecode.log
 cat ~/sharecode.log
+echo "克隆指定仓库分支"
 git clone -b $DESTINATION_BRANCH REPO_URL ~/ds
 cd ~/ds
 echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
