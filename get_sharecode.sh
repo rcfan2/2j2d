@@ -11,7 +11,7 @@ echo "### 活动脚本位置" > ~/$LOCATION_LOG
 for file in `ls ./`; do
   Script_list=`cat "$file" | grep -E "jd_.*.js" | awk '{for(i=1;i<=NF;i++) {if($i ~ /.js/) print $i}}' | grep -v "\"" | awk -F ")" '{print $1}' | awk -F "/" '{print $2}'`
   echo "去除重复脚本"
-  Script_list=($(awk -v RS=' ' '!a[$1]++' <<< ${Script_list[@]}))
+  [ -n "$Script_list" ] && Script_list=`echo $Script_list | awk '{for(i=1;i<=NF;i++) print $i}}' | awk '{for(i=1;i<NF;i++) print $i}'|awk '!arr[$0]++'`
   if [ -n "$Script_list" ]; then
     echo -e "* $file" >> ~/$LOCATION_LOG
     echo \`\`\` >> ~/$LOCATION_LOG
