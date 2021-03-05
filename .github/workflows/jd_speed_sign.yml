@@ -40,19 +40,8 @@ jobs:
           cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
       - name: '运行 【京东极速版签到】'
         run: |
-          cd  ~/scripts
-          IFS=$'\n'
-          num=0
-          for jk in `echo "$JD_COOKIES" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'`;do cp  -rf ~/scripts ~/scripts${num} && \
-          cd ~/scripts${num}
-          sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js && \
-          sed -i "1i\let CookieJDs = [ '$jk', ]" ./jdCookie.js && \
-          node ./jd_speed_sign.js &
-          cd ~
-          num=$((num + 1))
-          done
-          unset IFS
-          wait
+          cp -f concurrency.sh ~/concurrency.sh && chmod 755 ~/concurrency.sh
+          bash ~/concurrency.sh jd_speed_sign.js 0
         env:
           JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
