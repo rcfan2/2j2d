@@ -42,7 +42,7 @@ jobs:
         run: |
           cp -f concurrency.sh ~/concurrency.sh && chmod 755 ~/concurrency.sh
           sh ~/concurrency.sh jd_crazy_joy_coin.js &
-          sleep 5h && sleep 30m && killall node && echo "退出脚本"
+     #     sleep 5h && sleep 30m && killall node && echo "退出脚本"
         env:
           JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
