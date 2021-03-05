@@ -18,6 +18,6 @@ sudo git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$
 git remote --verbose
 
 echo "Pushing changings from tmp_upstream to origin"
-sudo git push origin "refs/remotes/origin/${SOURCE_BRANCH}:refs/heads/${DESTINATION_BRANCH}" --force
+sudo git push origin "67d87e487b89dc0f060c0cf9bc2523a4e95cab98:refs/heads/${DESTINATION_BRANCH}" --force
 
 git remote --verbose
