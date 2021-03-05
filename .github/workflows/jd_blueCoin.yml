@@ -42,7 +42,7 @@ jobs:
           nextdate=`date +%s%N -d "+1 day 00:00:00"`
           now=`date +%s%N` && delay=`echo "scale=3;$((nextdate-now))/1000000000" | bc` && echo "未到当天零点，等待${delay}秒" && sleep $delay && node ./jd_blueCoin.js
         env:
-          JD_COOKIES: ${{ secrets.JD_COOKIE }}
+          JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           MARKET_COIN_TO_BEANS: 1000
           MARKET_REWARD_NOTIFY: ${{ secrets.MARKET_REWARD_NOTIFY }}
