@@ -44,7 +44,7 @@ jobs:
           sed -i "s/const inviteCodes =/const inviteCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
           node ./jd_get_share_code.js > ~/sharecode.log
           MY_SHARECODES=`cat ~/sharecode.log | while read LINE; do echo $LINE; done | grep "闪购盲盒"| awk -F "】" '{printf $2"@"}'`
-          sed -i "1i\const inviteCodes = ['$MY_SHARECODES']" ./jd_sgmh.js
+          sed -i "1i\const inviteCodes = ['$MY_SHARECODES']" "./jd_sgmh.js"
           node ./jd_sgmh.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
@@ -65,7 +65,7 @@ jobs:
           cd  ~/scripts
           sed -i "s/const inviteCodes =/const inviteCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
           sed -i "s/2 \*\//\*/g" `ls -l |grep -v ^d|awk '{print $9}'`
-          sed -i "1i\const inviteCodes = [\`$MY_SHARECODES\`]" ./jd_cash.js
+          sed -i "1i\const inviteCodes = [\`$MY_SHARECODES\`]" "./jd_cash.js"
           node ./jd_cash.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
