@@ -41,7 +41,7 @@ jobs:
       - name: '运行 【美丽颜究院】'
         run: |
           cp -f concurrency.sh ~/concurrency.sh && chmod 755 ~/concurrency.sh
-          bash ~/concurrency.sh jd_crazy_joy_coin.js &
+          bash ~/concurrency.sh jd_beauty.js &
           ticker=60
           while [ $ticker -gt 0 ]
           do
