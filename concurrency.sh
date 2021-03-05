@@ -11,6 +11,7 @@ for jk in ${JK_LIST[*]}
 do
   cp  -rf ~/scripts ~/scripts${num}
   cd ~/scripts${num}
+  echo $jk
   sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js
   sed -i "1i\let CookieJDs = [ '$jk', ]" ./jdCookie.js
   node "./${SCRIPT}" &
