@@ -36,7 +36,7 @@ mv -v ~/$LOCATION_LOG ./$LOCATION_LOG
 git config --global user.email "tracefish@qq.com"
 git config --global user.name "tracefish"
 git add .
-git commit -m "update `date +%Y%m%d`"
+git commit -m "update `date +%Y%m%d%H%M%S`"
 
 echo "Pushing changings from tmp_upstream to origin"
 sudo git push origin "${SOURCE_BRANCH}:${DESTINATION_BRANCH}" --force 
