@@ -6,7 +6,7 @@ git clone $REPO_URL -b $BRANCH ~/repo
 cd ~/repo/.github/workflows     
 echo "### 活动脚本位置" > ~/sctipts.md
 for file in `ls ./`; do
-  isScript=`cat "$file" | grep -E "node .*.js" | awk -F "node " '{print $2}' | awk -F "./" '{print $2}' | awk -F ".js" '{print $1}'`
+  isScript=`cat "$file" | grep "jd*.js"`
   if [ -n "$isScript" ]; then
     echo -e "$file" >> ~/sctipts.md
     echo \`\`\` >> ~/sctipts.md
