@@ -4,14 +4,14 @@ set -e
 echo "获得本目录下各脚本位置"
 git clone $REPO_URL -b $BRANCH ~/repo
 cd ~/repo/.github/workflows     
-echo "### 活动脚本位置" > ~/readme.md
+echo "### 活动脚本位置" > ~/sctipts.md
 for file in `ls ./`; do
   isScript=`cat "$file" | grep -E "node .*.js" | awk -F "node " '{print $2}' | awk -F "./" '{print $2}' | awk -F ".js" '{print $1}'`
   if [ -n "$isScript" ]; then
-    echo -e "$file" >> ~/readme.md
-    echo \`\`\` >> ~/readme.md
+    echo -e "$file" >> ~/sctipts.md
+    echo \`\`\` >> ~/sctipts.md
     echo "$isScript" >> ~/readme.md
-    echo \`\`\` >> ~/readme.md
+    echo \`\`\` >> ~/sctipts.md
   fi
 done
 
@@ -29,7 +29,7 @@ sudo git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$
 
 echo "强制覆盖原文件"
 mv -f ~/sharecode.log ./sharecode.log
-mv -v ~/scripts.log ./scripts.log
+mv -v ~/sctipts.md ./sctipts.md
 git config --global user.email "tracefish@qq.com"
 git config --global user.name "tracefish"
 git add .
