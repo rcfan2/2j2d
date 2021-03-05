@@ -4,10 +4,10 @@
 #set -e
 SCRIPT="$1"
 echo "开始多账号并发"
-#IFS=$'\n'
+IFS=$'\n'
 num=0
-echo "$JD_COOKIES" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}' > ~/jd_cookies
-for jk in `cat ~/jd_cookies`
+JK_LIST=(echo "$JD_COOKIES" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}')
+for jk in ${JK_LIST[*]}
 do
   cp  -rf ~/scripts ~/scripts${num}
   cd ~/scripts${num}
