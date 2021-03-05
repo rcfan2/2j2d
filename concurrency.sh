@@ -5,8 +5,8 @@
 SCRIPT="$1"
 echo "开始多账号并发"
 IFS=$'\n'
-num=0
 JK_LIST=(`echo "$JD_COOKIES" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'`)
+num=0
 for jk in "${JK_LIST[*]}"
 do
   cp  -rf ~/scripts ~/scripts${num}
