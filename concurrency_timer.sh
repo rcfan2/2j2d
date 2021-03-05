@@ -10,7 +10,7 @@ sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 echo "开始多账号并发"
 IFS=$'\n'
 num=0
-nextdate=`date +%s%N -d "+1 day $timer"`
+[ "$timer" = "00:00:00" ] && nextdate=`date +%s%N -d "+1 day $timer"` || nextdate=`date +%s%N -d "$timer"`
 JK_LIST=(`echo "$JD_COOKIES" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'`)
 num=0
 for jk in ${JK_LIST[*]}
