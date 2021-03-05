@@ -1,7 +1,7 @@
 #!/bin/sh
 # 多账号并发,不定时
 # 变量：要运行的脚本$SCRIPT
-#set -e
+set -e
 SCRIPT="$1"
 echo "开始多账号并发"
 IFS=$'\n'
