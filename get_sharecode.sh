@@ -1,11 +1,12 @@
 #!/bin/bash
 
 set -e
+SC_LOG="sharecode.log"
+LOCATION_LOG="sctipts.md"
 echo "获得本目录下各脚本位置"
 git clone $REPO_URL -b $BRANCH ~/repo
 cd ~/repo/.github/workflows
-SC_LOG="sharecode.log"
-LOCATION_LOG="sctipts.md"
+
 echo "### 活动脚本位置" > ~/$LOCATION_LOG
 for file in `ls ./`; do
   isScript=`cat "$file" | grep "jd*.js"`
