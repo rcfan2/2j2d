@@ -1,5 +1,5 @@
 # File: .github/workflows/repo-sync.yml
-name: sync-jd_scripts
+name: checkout-jd_scripts
 on:
   #schedule:
  #   - cron: '15 */6 * * *'
