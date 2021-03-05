@@ -7,7 +7,7 @@ git clone https://gitee.com/twinzo/scripts/ ~/jd_scripts
 cd ~/jd_scripts/
 
 echo "git 回退"
-git checkout 67d87e487b89dc0f060c0cf9bc2523a4e95cab98
+git reset --hard 67d87e487b89dc0f060c0cf9bc2523a4e95cab98
 
 cd ~/jd_scripts
 #UPSTREAM_REPO=`git remote -v | grep origin | grep fetch | awk '{print $2}'`
