@@ -2,7 +2,7 @@
 # 多账号并发,不定时
 # 变量：要运行的脚本$SCRIPT
 SCRIPT="$1"
-
+JD_COOKIES="$JD_COOKIES"
 echo "开始多账号并发"
 IFS=$'\n'
 num=0
