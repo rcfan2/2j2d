@@ -12,7 +12,7 @@ do
   cp  -rf ~/scripts ~/scripts${num}
   cd ~/scripts${num}
   sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js
-  sed -i "1i\let CookieJDs = [ '($jk)', ]" ./jdCookie.js
+  sed -i "1i\let CookieJDs = [ '$jk', ]" ./jdCookie.js
   node "./${SCRIPT}" &
   cd ~
   num=$((num + 1))
