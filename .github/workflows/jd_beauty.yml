@@ -45,7 +45,7 @@ jobs:
           ticker=60
           while [ $ticker -gt 0 ]
           do
-            [ -n "pgrep node" ] && sleep 60s || (killall node && break)
+            [ -n "pgrep node" ] && sleep 60s || (killall sleep && break)
             ticker=$((ticker - 1))
             [ $ticker -eq 1 ] && killall node
           done
