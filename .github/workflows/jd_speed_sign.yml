@@ -41,7 +41,7 @@ jobs:
       - name: '运行 【京东极速版签到】'
         run: |
           cp -f concurrency.sh ~/concurrency.sh && chmod 755 ~/concurrency.sh
-          bash ~/concurrency.sh jd_speed_sign.js 0
+          bash ~/concurrency.sh jd_speed_sign.js
         env:
           JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
