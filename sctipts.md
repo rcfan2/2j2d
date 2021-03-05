@@ -8,6 +8,10 @@ jd_bean_change.js
 jd_bean_sign.js
 jd_car.js
 ```
+* jd_beauty.yml
+```
+jd_beauty.js
+```
 * jd_blueCoin.yml
 ```
 jd_blueCoin.js
@@ -27,6 +31,10 @@ jd_crazy_joy.js
 * jd_crazy_joy_bonus.yml
 ```
 jd_crazy_joy_bonus.js
+```
+* jd_crazy_joy_coin.yml
+```
+jd_crazy_joy_coin.js
 ```
 * jd_daily_egg.yml
 ```
@@ -60,6 +68,10 @@ jd_jdzz.js
 ```
 jd_joy.js
 jd_joy_feedPets.js
+```
+* jd_joy_reward.yml
+```
+jd_joy_reward.js
 ```
 * jd_joy_steal.yml
 ```
@@ -122,6 +134,10 @@ jd_small_home.js
 * jd_speed.yml
 ```
 jd_speed.js
+```
+* jd_speed_sign.yml
+```
+jd_speed_sign.js
 ```
 * jd_superMarket.yml
 ```
