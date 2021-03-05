@@ -3,7 +3,6 @@
 # 变量：要运行的脚本$SCRIPT
 set -e
 SCRIPT="$1"
-JD_COOKIES="$JD_COOKIES"
 echo "开始多账号并发"
 IFS=$'\n'
 num=0
@@ -17,6 +16,6 @@ do
   cd ~
   num=$((num + 1))
 done
-echo "有账号"$num
+echo "有账号" "${num}"
 unset IFS
 wait
