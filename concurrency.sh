@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # 多账号并发,不定时
 # 变量：要运行的脚本$SCRIPT
 set -e
