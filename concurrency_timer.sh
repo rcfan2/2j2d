@@ -1,8 +1,8 @@
 #!/bin/bash
-# 多账号并发，在零点准时触发
+# 多账号并发，默认在零点准时触发
 # 变量：要运行的脚本$SCRIPT
 SCRIPT=$1
-timer="$2"
+timer=${2:-00:00:00}
 echo "设置时区"
 sudo rm -f /etc/localtime
 sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
