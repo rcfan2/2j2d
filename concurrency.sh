@@ -1,14 +1,12 @@
 #!/bin/sh
 # 多账号并发,不定时
 # 变量：要运行的脚本$SCRIPT
-set -e
+#set -e
 SCRIPT="$1"
 echo "开始多账号并发"
 IFS=$'\n'
 num=0
-JD_COOKIE="$JD_COOKIES"
-echo "$JD_COOKIE"
-for jk in `echo -e "$JD_COOKIES" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'`
+for jk in `echo "$JD_COOKIES" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'`
 do
   cp  -rf ~/scripts ~/scripts${num}
   cd ~/scripts${num}
