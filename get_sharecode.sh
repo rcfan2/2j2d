@@ -9,7 +9,7 @@ cd ~/repo/.github/workflows
 
 echo "### 活动脚本位置" > ~/$LOCATION_LOG
 for file in `ls ./`; do
-  isScript=`cat "$file" | grep -E "jd_.*.js" | awk '{for(i=1;i<=NF;i++) {if($i ~ /.js/) print $i}}'`
+  isScript=`cat "$file" | grep -E "jd_.*.js" | awk '{for(i=1;i<=NF;i++) {if($i ~ /.js/) print $i}}' | grep "\"" | awk -F ")" '{print $1}' | awk -F "/" '{print $2}'`
   if [ -n "$isScript" ]; then
     echo -e "$file" >> ~/$LOCATION_LOG
     echo \`\`\` >> ~/$LOCATION_LOG
