@@ -20,7 +20,7 @@ do
   sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js
   sed -i "1i\let CookieJDs = [ '$jk', ]" ./jdCookie.js
   now=`date +%s%N` && delay=`echo "scale=3;$((nextdate-now))/1000000000" | bc`
-  ([ "$delay" -gt 0 ] && echo "未到当天${timer}，等待${delay}秒" && sleep $delay; node ./$SCRIPT) &
+  ([ $nextdate -gt $now ] && echo "未到当天${timer}，等待${delay}秒" && sleep $delay; node ./$SCRIPT) &
   cd ~
   num=$((num + 1))
 done
