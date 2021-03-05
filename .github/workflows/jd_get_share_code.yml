@@ -43,6 +43,7 @@ jobs:
           cp -f get_sharecode.sh ~/get_sharecode.sh && chmod 755 ~/get_sharecode.sh && ~/get_sharecode.sh
         env:
           REPO_URL: "https://github.com/tracefish/ds"
+          BRANCH: "jd"
           SOURCE_BRANCH: "sc"
           DESTINATION_BRANCH: "sc"
           GITHUB_TOKEN: ${{ secrets.PAT }}
