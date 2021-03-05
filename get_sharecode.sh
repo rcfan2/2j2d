@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+#set -e
 SC_LOG="sharecode.log"
 LOCATION_LOG="sctipts.md"
 echo "获得本目录下各脚本位置"
@@ -9,7 +9,7 @@ cd ~/repo/.github/workflows
 
 echo "### 活动脚本位置" > ~/$LOCATION_LOG
 for file in `ls ./`; do
-  isScript=`cat "$file" | grep "jd*.js"`
+  isScript=`cat "$file" | grep -E "jd_.*.js" | awk '{for(i=1;i<=NF;i++) {if($i ~ /.js/) print $i}}'`
   if [ -n "$isScript" ]; then
     echo -e "$file" >> ~/$LOCATION_LOG
     echo \`\`\` >> ~/$LOCATION_LOG
@@ -32,7 +32,7 @@ sudo git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$
 
 echo "强制覆盖原文件"
 mv -f ~/sharecode.log ./$SC_LOG
-mv -v ~/$LOCATION_LOG./$LOCATION_LOG
+mv -v ~/$LOCATION_LOG ./$LOCATION_LOG
 git config --global user.email "tracefish@qq.com"
 git config --global user.name "tracefish"
 git add .
