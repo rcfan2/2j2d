@@ -13,10 +13,10 @@ do
   cd ~/scripts${num}
   sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js
   sed -i "1i\let CookieJDs = [ '($jk)', ]" ./jdCookie.js
-  #node "./${SCRIPT}" &
+  node "./${SCRIPT}" &
   cd ~
   num=$((num + 1))
 done
 echo "有账号" "${num}"
-#unset IFS
+unset IFS
 wait
