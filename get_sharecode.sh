@@ -1,4 +1,4 @@
-#!/bin/bash\
+#!/bin/bash
 
 echo "获得本目录下各脚本位置"
 cd ./workflows
