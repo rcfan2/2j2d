@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "获得本目录下各脚本位置"
-cd ./workflows
+cd workflows
 echo "### 活动脚本位置" > ~/readme.md
 for file in `ls ./`; do
   isScript=`cat "$file" | grep -E "node .*.js" | awk -F "node " '{print $2}' | awk -F "./" '{print $2}' | awk -F ".js" '{print $1}'`
@@ -10,6 +10,7 @@ for file in `ls ./`; do
     echo \`\`\` >> ~/readme.md
     echo "$isScript" >> ~/readme.md
     echo \`\`\` >> ~/readme.md
+  fi
 done
 
 echo "开始更新助力码"
