@@ -6,6 +6,9 @@ jd_bean_change.js
 * jd_bean_sign.yml
 ```
 jd_bean_sign.js
+```
+* jd_beauty.yml
+```
 jd_car.js
 ```
 * jd_blueCoin.yml
@@ -43,7 +46,6 @@ jd_firecrackers.js
 * jd_fruit.yml
 ```
 jd_fruit.js
-jd_fruit.js
 ```
 * jd_global_mh.yml
 ```
@@ -60,6 +62,9 @@ jd_jdzz.js
 * jd_joy.yml
 ```
 jd_joy.js
+```
+* jd_joy_reward.yml
+```
 jd_joy_feedPets.js
 ```
 * jd_joy_steal.yml
@@ -109,8 +114,6 @@ jd_rankingList.js
 * jd_sgmh.yml
 ```
 jd_get_share_code.js
-jd_sgmh.js
-jd_cash.js
 ```
 * jd_shop.yml
 ```
@@ -124,6 +127,10 @@ jd_small_home.js
 ```
 jd_speed.js
 ```
+* jd_speed_sign.yml
+```
+jd_sgmh.js
+```
 * jd_superMarket.yml
 ```
 jd_superMarket.js
@@ -131,24 +138,24 @@ jd_superMarket.js
 * jd_syj.yml
 ```
 jd_syj.js
-jd_kd.js
-jd_ds.js
-jd_digital_floor.js
-jd_jdh.js
-jd_redPacket.js
-jd_bean_home.js
-jd_ms.js
-jd_xg.js
-jd_xgyl.js
-jd_mh.js
-jd_super_box.js
 ```
 * jd_unsubscribe.yml
 ```
 jd_unsubscribe.js
-jd_unbind.js
 ```
 * jx_cfd.yml
 ```
 jd_cfd.js
+```
+* jx_sign.yml
+```
+jd_unbind.js
+```
+* repo-checkout.yml
+```
+jd_kd.js
+```
+* repo-syc.yml
+```
+jd_ds.js
 ```
