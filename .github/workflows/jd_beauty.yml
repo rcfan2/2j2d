@@ -40,12 +40,13 @@ jobs:
           cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
       - name: '运行 【美丽颜究院】'
         run: |
+          set -e
           cp -f concurrency.sh ~/concurrency.sh && chmod 755 ~/concurrency.sh
           bash ~/concurrency.sh jd_beauty.js &
           ticker=60
           while [ $ticker -gt 0 ]
           do
-            [ -n "pgrep node" ] && sleep 60s || (killall sleep && break)
+            [ -n "pgrep node" ] && sleep 60s || break
             ticker=$((ticker - 1))
             [ $ticker -eq 1 ] && killall node
           done
