@@ -43,14 +43,6 @@ jobs:
           set -e
           cp -f concurrency.sh ~/concurrency.sh && chmod 755 ~/concurrency.sh
           bash ~/concurrency.sh jd_beauty.js &
-          ticker=60
-          while [ $ticker -gt 0 ]
-          do
-            [ -n "pgrep jd_beauty" ] && sleep 60s || break
-            ticker=$((ticker - 1))
-            [ $ticker -eq 1 ] && killall bash
-          done
-          echo "退出脚本"
         env:
           JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
