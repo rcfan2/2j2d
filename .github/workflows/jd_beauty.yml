@@ -46,9 +46,9 @@ jobs:
           ticker=60
           while [ $ticker -gt 0 ]
           do
-            [ -n "pgrep node" ] && sleep 60s || break
+            [ -n "pgrep jd_beauty" ] && sleep 60s || break
             ticker=$((ticker - 1))
-            [ $ticker -eq 1 ] && killall node
+            [ $ticker -eq 1 ] && killall bash
           done
           echo "退出脚本"
         env:
