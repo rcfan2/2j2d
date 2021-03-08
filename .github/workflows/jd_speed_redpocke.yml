@@ -44,7 +44,7 @@ jobs:
         run: |
           set -e
           cp -f concurrency_timer.sh ~/concurrency_timer.sh && chmod 755 ~/concurrency_timer.sh
-          bash ~/concurrency_timer.sh jd_speed_redpocke.js &
+          bash ~/concurrency_timer.sh jd_speed_redpocke.js
         env:
           JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
