@@ -12,7 +12,7 @@ timer="${hour}:${min}:00"
 echo "设置时区"
 sudo rm -f /etc/localtime
 sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-echo "$timer"
+
 echo "开始多账号并发"
 IFS=$'\n'
 num=0
