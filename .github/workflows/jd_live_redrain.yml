@@ -42,7 +42,7 @@ jobs:
         run: |
           set -e
           cp -f con_timer_by_min.sh ~/con_timer_by_min.sh && chmod 755 ~/con_timer_by_min.sh
-          bash ~/con_timer_by_min.sh jd_live_redrain.js 31 &
+          bash ~/con_timer_by_min.sh jd_live_redrain.js 31
         env:
           JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
