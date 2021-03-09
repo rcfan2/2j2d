@@ -52,6 +52,10 @@ jd_firecrackers.js
 ```
 jd_fruit.js
 ```
+* jd_global.yml
+```
+jd_global.js
+```
 * jd_global_mh.yml
 ```
 jd_global_mh.js
@@ -76,6 +80,10 @@ jd_joy_reward.js
 * jd_joy_steal.yml
 ```
 jd_joy_steal.js
+```
+* jd_jxd.yml
+```
+jd_jxd.js
 ```
 * jd_live.yml
 ```
@@ -134,6 +142,10 @@ jd_small_home.js
 * jd_speed.yml
 ```
 jd_speed.js
+```
+* jd_speed_redpocke.yml
+```
+jd_speed_redpocke.js
 ```
 * jd_speed_sign.yml
 ```
