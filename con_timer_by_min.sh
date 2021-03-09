@@ -4,14 +4,14 @@
 # $2 小于等于五分钟，需要设置定时在上一个小时触发
 SCRIPT=$1
 min=${2}
+echo "设置时区"
+sudo rm -f /etc/localtime
+sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 hour=`date +%H`
 if [ $min -le 5 ]; then
   hour = $((hour + 1))
 fi
 timer="${hour}:${min}:00"
-echo "设置时区"
-sudo rm -f /etc/localtime
-sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 echo "开始多账号并发"
 IFS=$'\n'
