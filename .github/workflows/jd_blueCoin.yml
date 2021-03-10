@@ -35,12 +35,9 @@ jobs:
           npm install
       - name: '运行 【京小超兑换奖品】'
         run: |
-          cd  ~/scripts
-          echo "设置时区"
-          sudo rm -f /etc/localtime
-          sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-          nextdate=`date +%s%N -d "+1 day 00:00:00"`
-          now=`date +%s%N` && delay=`echo "scale=3;$((nextdate-now))/1000000000" | bc` && echo "未到当天零点，等待${delay}秒" && sleep $delay && node ./jd_blueCoin.js
+          set -e
+          cp -f concurrency_timer.sh ~/concurrency_timer.sh && chmod 755 ~/concurrency_timer.sh
+          bash ~/concurrency_timer.sh jd_blueCoin.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
