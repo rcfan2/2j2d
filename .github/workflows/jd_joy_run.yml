@@ -41,7 +41,8 @@ jobs:
       - name: '运行 【宠汪汪助力】'
         run: |
           cd  ~/scripts
-          node ./jd_joy_run.js
+          node ./jd_joy_run.js &
+          sleep 15m && [ -n pgrep "node" ] && killall node || echo "退出脚本"
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
