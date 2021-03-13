@@ -1,4 +1,5 @@
-LOG="./`echo "${1}" | awk -F "." '{print $1}'`.log"
+SCRIPT_NAME=`echo "${1}" | awk -F "." '{print $1}'`
+LOG="~/${SCRIPT_NAME}.log"
 cd ~/scripts
 node $1 >&1 | tee ${LOG}
 
@@ -20,3 +21,20 @@ collectSharecode(){
 }
 collectSharecode ${LOG}
 cat ${LOG}1
+
+echo "克隆指定仓库分支"
+REPO_URL="https://github.com/tracefish/ds"
+git clone -b sc $REPO_URL ~/ds
+cd ~/ds
+echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
+sudo git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
+
+echo "强制覆盖原文件"
+mv -v ~/${LOG}1 ./${LOG}
+git config --global user.email "tracefish@qq.com"
+git config --global user.name "tracefish"
+git add .
+git commit -m "update ${SCRIPT_NAME} `date +%Y%m%d%H%M%S`"
+
+echo "Pushing changings from tmp_upstream to origin"
+sudo git push origin "sc:$sc" --force
