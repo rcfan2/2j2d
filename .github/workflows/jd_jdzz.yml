@@ -37,7 +37,7 @@ jobs:
           cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
       - name: '运行 【京东赚赚脚本】'
         run: |
-          cp -f run_scripts.sh ~/updarun_scriptste_env.sh && chmod 755 ~/run_scripts.sh
+          cp -f run_scripts.sh ~/run_scripts.sh && chmod 755 ~/run_scripts.sh
           bash ~/run_scripts.sh jd_jdzz.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
