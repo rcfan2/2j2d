@@ -19,7 +19,9 @@ logDir="~/ds"
 autoHelp(){
 # $1 脚本文件
 # $2 助力码文件所在
-    sc_list=(`cat "$2" | while read LINE; do echo $LINE; done | awk -F "】" '{print $2}'`)
+    sr_file=$1
+    sc_file=$2
+    sc_list=(`cat "$sc_file" | while read LINE; do echo $LINE; done | awk -F "】" '{print $2}'`)
     f_shcode=""
     for e in `seq 1 ${#sc_list[*]}`
     do 
@@ -31,12 +33,14 @@ autoHelp(){
     done
     echo $f_shcode
 #     sed -i "2i\process.env.${1} = $f_shcode" "./$1"
-    sed -i "s/let shareCodes = \[/let shareCodes = \[\n${f_shcode}/g" "./$1"
+    sed -i "s/let shareCodes = \[/let shareCodes = \[\n${f_shcode}/g" "./$sr_file"
 
 }
 
 echo "替换助力码"
 [ -e "${logDir}/${SCRIPT_NAME}.log" ] && autoHelp "${1}" "${logDir}/${SCRIPT_NAME}.log"
+echo "${logDir}/${SCRIPT_NAME}.log"
+cat "${logDir}/${SCRIPT_NAME}.log"
 echo "开始运行"
 node $1 >&1 | tee ${LOG}
 cat "$1"
