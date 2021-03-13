@@ -13,7 +13,7 @@ cd ~/scripts
 #     sed -i "1i\let shareCodes = ['$MY_SHARECODES']" ./jd_fruit.js
 # fi
 
-logDir="~/ds"
+logDir="../ds"
 
 # 格式化助力码
 autoHelp(){
