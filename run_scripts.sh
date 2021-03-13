@@ -1,4 +1,5 @@
 LOG="./${1}.log"
+cd ~/scripts
 node $1 >&1 | tee ${LOG}
 
 # 收集助力码
