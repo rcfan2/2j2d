@@ -15,7 +15,7 @@ collectSharecode(){
             echo "${name[i]}""${code[i]}" >> ${LOG}1
         done
     else
-        echo $code > ${LOG}1
+        echo $code | awk '{for(i=1;i<=NF;i++)print $i}' > ${LOG}1
     fi
 }
 collectSharecode ${LOG}
