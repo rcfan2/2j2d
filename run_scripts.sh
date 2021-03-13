@@ -19,8 +19,7 @@ logDir="~/ds"
 autoHelp(){
 # $1 脚本文件
 # $2 助力码文件所在
-    SGMH_SHARECODES=(`cat "$2" | while read LINE; do echo $LINE; done | awk -F "】" '{print $2}'`)
-    sc_list=($1)
+    sc_list=(`cat "$2" | while read LINE; do echo $LINE; done | awk -F "】" '{print $2}'`)
     f_shcode=""
     for ee in `seq 1 ${#sc_list[*]}`
     do 
