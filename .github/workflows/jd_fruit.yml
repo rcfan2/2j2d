@@ -41,11 +41,9 @@ jobs:
       - name: '运行 【东东农场】'
         run: |
           cp -f run_scripts.sh ~/run_scripts.sh && chmod 755 ~/run_scripts.sh
-          cd  ~/scripts
-          sed -i "s/let shareCodes =/let shareCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
-          sed -i "1i\let shareCodes = ['$MY_SHARECODES']" ./jd_fruit.js
           bash ~/run_scripts.sh jd_fruit.js
         env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
