@@ -43,7 +43,8 @@ jobs:
           cd  ~/scripts
           sed -i "s/let shareCodes =/let shareCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
           sed -i "1i\let shareCodes = ['$MY_SHARECODES']" ./jd_fruit.js
-          node ./jd_fruit.js
+          cp -f run_scripts.sh ~/run_scripts.sh && chmod 755 ~/run_scripts.sh
+          bash ~/run_scripts.sh jd_fruit.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
