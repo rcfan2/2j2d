@@ -15,7 +15,7 @@ collectSharecode(){
             echo "${name[i]}""${code[i]}" >> ${LOG}1
         done
     else
-        echo $code >> ${LOG}1
+        echo $code > ${LOG}1
     fi
 }
 collectSharecode ${LOG}
