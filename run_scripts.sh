@@ -29,7 +29,7 @@ autoHelp(){
         unset sc_list[0]
         sc_list=(${sc_list[*]})
 #         f_shcode="$f_shcode""'""`echo ${sc_list[*]:0} | awk '{for(i=1;i<=NF;i++) {if(i==NF) printf $i"&";else printf $i"@"}}'`"",'\n"
-        f_shcode="$f_shcode""'""`echo ${sc_list[*]:0} | awk '{for(i=1;i<=NF;i++) {if(i==NF) printf $i"@";else printf $i}}'`"",'\n"
+        f_shcode="$f_shcode""'""`echo ${sc_list[*]:0} | awk '{for(i=1;i<=NF;i++) {if(i==NF) printf $i"@";else printf $i}}'`""',""\n"
     done
     echo $f_shcode
 #     sed -i "2i\process.env.${1} = $f_shcode" "./$1"
@@ -39,8 +39,6 @@ autoHelp(){
 
 echo "替换助力码"
 [ -e "${logDir}/${SCRIPT_NAME}.log" ] && autoHelp "${1}" "${logDir}/${SCRIPT_NAME}.log"
-echo "${logDir}/${SCRIPT_NAME}.log"
-cat "${logDir}/${SCRIPT_NAME}.log"
 echo "开始运行"
 node $1 >&1 | tee ${LOG}
 cat "$1"
