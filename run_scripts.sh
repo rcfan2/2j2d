@@ -1,7 +1,6 @@
 SCRIPT_NAME=`echo "${1}" | awk -F "." '{print $1}'`
-LOG="~/${SCRIPT_NAME}.log"
+LOG="./${SCRIPT_NAME}.log"
 cd ~/scripts
-touch "$LOG"
 node $1 >&1 | tee ${LOG}
 
 # 收集助力码
@@ -32,7 +31,7 @@ echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHU
 sudo git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 
 echo "强制覆盖原文件"
-mv -v ~/${LOG}1 ./${LOG}
+mv -v ~/scripts/${LOG}1 ./${LOG}
 git config --global user.email "tracefish@qq.com"
 git config --global user.name "tracefish"
 git add .
