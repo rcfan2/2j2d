@@ -29,9 +29,8 @@ autoHelp(){
         unset sc_list[0]
         sc_list=(${sc_list[*]})
 #         f_shcode="$f_shcode""'""`echo ${sc_list[*]:0} | awk '{for(i=1;i<=NF;i++) {if(i==NF) printf $i"&";else printf $i"@"}}'`"",'\n"
-        f_shcode="$f_shcode""'""`echo ${sc_list[*]:0} | awk '{for(i=1;i<=NF;i++) {if(i==NF) printf $i"@";else printf $i}}'`""',""\n"
+        f_shcode="$f_shcode""'""`echo ${sc_list[*]:0} | awk '{for(i=1;i<=NF;i++) {if(i==NF) printf $i;else printf $i"@"}}'`""',""\n"
     done
-    echo $f_shcode
 #     sed -i "2i\process.env.${1} = $f_shcode" "./$1"
     sed -i "s/let shareCodes = \[/let shareCodes = \[\n${f_shcode}/g" "./$sr_file"
 
