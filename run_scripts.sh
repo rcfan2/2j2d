@@ -1,4 +1,4 @@
-LOG="./`echo "${1}" | awk -F "." '{print $1}'`.log"
+LOG="/`echo "${1}" | awk -F "." '{print $1}'`.log"
 cd ~/scripts
 node $1 >&1 | tee ${LOG}
 
