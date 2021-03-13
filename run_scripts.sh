@@ -3,7 +3,7 @@ LOG="./${SCRIPT_NAME}.log"
 cd ~/scripts
 
 # 修改东东农场
-if [ "$SCRIPT_NAME" == "jd_fruit" ];
+if [ "$SCRIPT_NAME" == "jd_fruit" ]; then
     sed -i "s/let shareCodes =/let shareCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
     sed -i "1i\let shareCodes = ['$MY_SHARECODES']" ./jd_fruit.js
 fi
