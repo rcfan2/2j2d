@@ -1,6 +1,13 @@
 SCRIPT_NAME=`echo "${1}" | awk -F "." '{print $1}'`
 LOG="./${SCRIPT_NAME}.log"
 cd ~/scripts
+
+# 修改东东农场
+if [ "$SCRIPT_NAME" == "jd_fruit" ];
+    sed -i "s/let shareCodes =/let shareCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
+    sed -i "1i\let shareCodes = ['$MY_SHARECODES']" ./jd_fruit.js
+fi
+
 node $1 >&1 | tee ${LOG}
 
 # 收集助力码
