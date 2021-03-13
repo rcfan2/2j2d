@@ -1,6 +1,7 @@
 SCRIPT_NAME=`echo "${1}" | awk -F "." '{print $1}'`
 LOG="~/${SCRIPT_NAME}.log"
 cd ~/scripts
+touch "$LOG"
 node $1 >&1 | tee ${LOG}
 
 # 收集助力码
@@ -24,7 +25,8 @@ cat ${LOG}1
 
 echo "克隆指定仓库分支"
 REPO_URL="https://github.com/tracefish/ds"
-git clone -b sc $REPO_URL ~/ds
+REPO_BRANCH="sc"
+git clone -b "$REPO_BRANCH" $REPO_URL ~/ds
 cd ~/ds
 echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 sudo git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
@@ -37,4 +39,4 @@ git add .
 git commit -m "update ${SCRIPT_NAME} `date +%Y%m%d%H%M%S`"
 
 echo "Pushing changings from tmp_upstream to origin"
-sudo git push origin "sc:$sc" --force
+sudo git push origin "$REPO_BRANCH:$REPO_BRANCH" --force
