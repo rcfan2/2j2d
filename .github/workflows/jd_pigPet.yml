@@ -40,8 +40,8 @@ jobs:
           cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
       - name: '运行 【金融养猪】'
         run: |
-          cd  ~/scripts
-          node ./jd_pigPet.js
+          cp -f run_scripts.sh ~/run_scripts.sh && chmod 755 ~/run_scripts.sh
+          bash ~/run_scripts.sh jd_pigPet.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
