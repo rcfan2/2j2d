@@ -81,8 +81,8 @@ cat ${LOG}1
 echo "上传助力码文件"
 cd ~/ds
 echo "拉取最新源码"
-git config user.email "tracefish@qq.com"
-git config user.name "tracefish"
+git config --global user.email "tracefish@qq.com"
+git config --global user.name "tracefish"
 git pull
 
 echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
