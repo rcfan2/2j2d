@@ -34,6 +34,7 @@ autoHelp(){
 
 echo "替换助力码"
 [ -e "${logDir}/${SCRIPT_NAME}.log" ] && autoHelp "${1}" "${logDir}/${SCRIPT_NAME}.log"
+[ "$1" = "jd_plantBean.js" ] && cat $1 && exit
 echo "开始运行"
 node $1 >&1 | tee ${LOG}
 cat "$1"
