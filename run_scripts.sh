@@ -28,6 +28,7 @@ autoHelp(){
 #     sed -i "2i\process.env.${1} = $f_shcode" "./$1"
     [ -n "$MY_SHARECODES" ] && f_shcode="$f_shcode""'$MY_SHARECODES',\n"
     sed -i "s/let shareCodes = \[/let shareCodes = \[\n${f_shcode}/g" "./$sr_file"
+    sed -i "s/const inviteCodes = \[/const inviteCodes = \[\n${f_shcode}/g" "./$sr_file"
 
 }
 
