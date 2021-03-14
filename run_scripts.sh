@@ -56,7 +56,7 @@ echo "替换助力码"
 
 echo "开始运行"
 node $1 >&1 | tee ${LOG}
-cat "$1"
+
 # 收集助力码
 collectSharecode(){
     echo "${1}：收集新助力码"
