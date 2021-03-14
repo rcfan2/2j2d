@@ -43,8 +43,8 @@ jobs:
       - name: '运行 【京东极速版红包】'
         run: |
           set -e
-          cp -f concurrency.sh ~/concurrency.sh && chmod 755 ~/concurrency.sh
-          bash ~/concurrency.sh jd_speed_redpocke.js 00:00:00
+          cp -f con_timer_by_min.sh ~/con_timer_by_min.sh && chmod 755 ~/con_timer_by_min.sh
+          bash ~/con_timer_by_min.sh jd_speed_redpocke.js 01
         env:
           JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
