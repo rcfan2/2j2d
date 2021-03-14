@@ -83,7 +83,7 @@ cd ~/ds
 echo "拉取最新源码"
 git config --global user.email "tracefish@qq.com"
 git config --global user.name "tracefish"
-git pull
+git pull origin "$REPO_BRANCH:$REPO_BRANCH"
 
 echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 sudo git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
