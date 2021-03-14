@@ -1,15 +1,16 @@
 #!/bin/bash
 # 多账号并发，默认在零点准时触发
 # 变量：要运行的脚本$SCRIPT
-# $2 小于等于五分钟，需要设置定时在上一个小时触发
+# $2 小于等于十分钟，需要设置定时在上一个小时触发
 SCRIPT=$1
 min=${2}
 echo "设置时区"
 sudo rm -f /etc/localtime
 sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 hour=`date +%H`
-if [ $min -le 5 ]; then
+if [ $min -le 10 ]; then
   hour = $((hour + 1))
+  [ "$hour" = "24" ] && hour="00"
 fi
 timer="${hour}:${min}:00"
 
