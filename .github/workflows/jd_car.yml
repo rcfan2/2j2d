@@ -36,12 +36,9 @@ jobs:
           persist-credentials: false
       - name: Init Env
         run: |
-          git clone -b old https://github.com/tracefish/ds.git ~/scripts
-          cd  ~/scripts
-          npm install
+          cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
       - name: '运行 【京东汽车兑换】'
         run: |
-          set -e
           cp -f concurrency_timer.sh ~/concurrency_timer.sh && chmod 755 ~/concurrency_timer.sh
           bash ~/concurrency_timer.sh jd_car_exchange.js
         env:
