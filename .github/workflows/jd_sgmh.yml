@@ -40,13 +40,10 @@ jobs:
           cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
       - name: '运行 【闪购盲盒】'
         run: |
-          cd  ~/scripts
-          sed -i "s/const inviteCodes =/const inviteCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
-          node ./jd_get_share_code.js > ~/sharecode.log
-          MY_SHARECODES=`cat ~/sharecode.log | while read LINE; do echo $LINE; done | grep "闪购盲盒"| awk -F "】" '{printf $2"@"}'`
-          sed -i "1i\const inviteCodes = ['$MY_SHARECODES']" ./jd_sgmh.js
-          node ./jd_sgmh.js
+          cp -f run_scripts.sh ~/run_scripts.sh && chmod 755 ~/run_scripts.sh
+          bash ~/run_scripts.sh jd_sgmh.js
         env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           MARKET_COIN_TO_BEANS: ${{ secrets.MARKET_COIN_TO_BEANS }}
@@ -62,12 +59,9 @@ jobs:
 
       - name: '运行【现金】'
         run: |
-          cd  ~/scripts
-          sed -i "s/const inviteCodes =/const inviteCodesss =/g" `ls -l |grep -v ^d|awk '{print $9}'`
-          sed -i "s/2 \*\//\*/g" `ls -l |grep -v ^d|awk '{print $9}'`
-          sed -i "1i\const inviteCodes = [\`$MY_SHARECODES\`]" ./jd_cash.js
-          node ./jd_cash.js
+          bash ~/run_scripts.sh jd_cash.js
         env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           MARKET_COIN_TO_BEANS: ${{ secrets.MARKET_COIN_TO_BEANS }}
