@@ -80,14 +80,16 @@ cat ${LOG}1
 
 echo "上传助力码文件"
 cd ~/ds
+echo "拉取最新源码"
+git config --global user.email "tracefish@qq.com"
+git config --global user.name "tracefish"
 git pull
+
 echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 sudo git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 
 echo "强制覆盖原文件"
 mv -v ~/scripts/${LOG}1 ${LOG}
-git config --global user.email "tracefish@qq.com"
-git config --global user.name "tracefish"
 git add .
 git commit -m "update ${SCRIPT_NAME} `date +%Y%m%d%H%M%S`"
 
