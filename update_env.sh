@@ -1,4 +1,8 @@
 #!/usr/bin/env sh
+echo "设置时区"
+sudo rm -f /etc/localtime
+sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 echo "拉取源码"
 git clone -b jd https://github.com/tracefish/ds.git ~/scripts
 cd  ~/scripts
