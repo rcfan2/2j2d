@@ -80,6 +80,7 @@ cat ${LOG}1
 
 echo "上传助力码文件"
 cd ~/ds
+git pull
 echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 sudo git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 
