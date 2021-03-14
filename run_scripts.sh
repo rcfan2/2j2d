@@ -84,7 +84,7 @@ echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHU
 sudo git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 
 echo "强制覆盖原文件"
-mv -v ~/scripts/${LOG}1 ./${LOG}
+mv -v ~/scripts/${LOG}1 ${LOG}
 git config --global user.email "tracefish@qq.com"
 git config --global user.name "tracefish"
 git add .
