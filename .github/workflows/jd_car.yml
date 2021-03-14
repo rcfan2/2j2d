@@ -5,8 +5,8 @@ name: jd_car
 
 on:
   workflow_dispatch:
- # schedule:
-  #  - cron: '40 15 * * *'
+  schedule:
+    - cron: '50 15 * * *'
   #watch:
    # types: started
   repository_dispatch:
@@ -34,6 +34,25 @@ jobs:
       - uses: actions/checkout@v2
         with:
           persist-credentials: false
-      - name: run scripts
+      - name: Init Env
         run: |
-          cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
+          git clone -b old https://github.com/tracefish/ds.git ~/scripts
+          cd  ~/scripts
+          npm install
+      - name: '运行 【京东汽车兑换】'
+        run: |
+          set -e
+          cp -f concurrency_timer.sh ~/concurrency_timer.sh && chmod 755 ~/concurrency_timer.sh
+          bash ~/concurrency_timer.sh jd_car_exchange.js
+        env:
+          JD_COOKIES: ${{ secrets.JD_COOKIE }}
+          JD_DEBUG: ${{ secrets.JD_DEBUG }}
+          MARKET_REWARD_NOTIFY: ${{ secrets.MARKET_REWARD_NOTIFY }}
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
+          BARK_PUSH: ${{ secrets.BARK_PUSH }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          BARK_SOUND: ${{ secrets.BARK_SOUND }}
+          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+          IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
