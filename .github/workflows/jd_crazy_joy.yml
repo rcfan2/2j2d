@@ -40,9 +40,10 @@ jobs:
           cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
       - name: '运行 【疯狂的Joy】'
         run: |
-          cd  ~/scripts
-          node ./jd_crazy_joy.js
+          cp -f run_scripts.sh ~/run_scripts.sh && chmod 755 ~/run_scripts.sh
+          bash ~/run_scripts.sh jd_crazy_joy.js
         env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
@@ -53,6 +54,6 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
-          JDJOY_HELPSELF: "true"
+          JDJOY_HELPSELF: ${{ secrets.JDJOY_HELPSELF }}
           JDJOY_APPLYJDBEAN: 2000
           JDJOY_SHARECODES: ${{ secrets.JDJOY_SHARECODES }}
