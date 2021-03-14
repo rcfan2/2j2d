@@ -29,7 +29,26 @@ autoHelp(){
     [ -n "$MY_SHARECODES" ] && f_shcode="$f_shcode""'$MY_SHARECODES',\n"
     sed -i "s/let shareCodes = \[/let shareCodes = \[\n${f_shcode}/g" "./$sr_file"
     sed -i "s/const inviteCodes = \[/const inviteCodes = \[\n${f_shcode}/g" "./$sr_file"
-
+# 修改种豆得豆
+    if [ "$1" = "jd_plantBean.js" ]; then
+        sed -i "s/let PlantBeanShareCodes = \[/let PlantBeanShareCodes = \[\n${f_shcode}/g" "./jdPlantBeanShareCodes.js"
+    fi
+# 修改东东萌宠
+    if [ "$1" = "jd_pet.js" ]; then
+        sed -i "s/let PetShareCodes = \[/let PetShareCodes = \[\n${f_shcode}/g" "./jdPetShareCodes.js"
+    fi
+# 修改东东农场
+    if [ "$1" = "jd_fruit.js" ]; then
+        sed -i "s/let FruitShareCodes = \[/let FruitShareCodes = \[\n${f_shcode}/g" "./jdFruitShareCodes.js"
+    fi
+# 修改京喜工厂
+    if [ "$1" = "jd_dreamFactory.js" ]; then
+        sed -i "s/let shareCodes = \[/let shareCodes = \[\n${f_shcode}/g" "./jdDreamFactoryShareCodes.js"
+    fi
+# 修改东东工厂
+    if [ "$1" = "jd_jdfactory.js" ]; then
+        sed -i "s/let shareCodes = \[/let shareCodes = \[\n${f_shcode}/g" "./jdFactoryShareCodes.js"
+    fi
 }
 
 echo "替换助力码"
