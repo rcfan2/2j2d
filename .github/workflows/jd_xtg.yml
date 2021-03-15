@@ -42,7 +42,7 @@ jobs:
           #bash ~/con_timer_by_min.sh jd_xtg.js 1
           bash ~/run_scripts.sh jd_xtg.js
         env:
-          JD_COOKIE: ${{ secrets.JD_COOKIE }}
+          JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
