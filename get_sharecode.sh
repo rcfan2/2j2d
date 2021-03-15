@@ -20,8 +20,8 @@ done
 
 # 助力码
 code_aboard(){
-  format_aborad_code="$1"
-  aboard_cipher="$1"
+  format_aborad_code="$1 "
+  aboard_cipher="$1 "
   tn=""
   sc_list=(`sed -n '/'码】'.*/'p ${2} | awk -F "】" '{print $2}'`)
   for i in `seq 0 $((${#sc_list[*]}-1))`
@@ -29,11 +29,10 @@ code_aboard(){
     if [ "$((i*5))"x != "$tn"x ]; then
       format_aborad_code="$format_aborad_code""${sc_list[$i]}&"
     else
+      echo "$format_aborad_code"
       format_aborad_code="$format_aborad_code""${sc_list[$i]}"
     fi
-    echo "$format_aborad_code"
   done
-  
 }
 # echo "开始更新助力码"
 # cd  ~/scripts
