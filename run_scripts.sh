@@ -8,7 +8,6 @@ git clone -b "$REPO_BRANCH" $REPO_URL ~/ds
 cd ~/scripts
 
 logDir="../ds"
-
 # 格式化助力码
 autoHelp(){
 # $1 脚本文件
@@ -22,30 +21,28 @@ autoHelp(){
         sc_list+=(${sc_list[0]})
         unset sc_list[0]
         sc_list=(${sc_list[*]})
-#         f_shcode="$f_shcode""'""`echo ${sc_list[*]:0} | awk '{for(i=1;i<=NF;i++) {if(i==NF) printf $i"&";else printf $i"@"}}'`"",'\n"
         f_shcode="$f_shcode""'""`echo ${sc_list[*]:0} | awk '{for(i=1;i<=NF;i++) {if(i==NF) printf $i;else printf $i"@"}}'`""',""\n"
     done
-#     sed -i "2i\process.env.${1} = $f_shcode" "./$1"
     [ -n "$MY_SHARECODES" ] && f_shcode="$f_shcode""'$MY_SHARECODES',\n"
     sed -i "s/let shareCodes = \[/let shareCodes = \[\n${f_shcode}/g" "./$sr_file"
     sed -i "s/const inviteCodes = \[/const inviteCodes = \[\n${f_shcode}/g" "./$sr_file"
-# 修改种豆得豆
+    # 修改种豆得豆
     if [ "$1" = "jd_plantBean.js" ]; then
         sed -i "s/let PlantBeanShareCodes = \[/let PlantBeanShareCodes = \[\n${f_shcode}/g" "./jdPlantBeanShareCodes.js"
     fi
-# 修改东东萌宠
+    # 修改东东萌宠
     if [ "$1" = "jd_pet.js" ]; then
         sed -i "s/let PetShareCodes = \[/let PetShareCodes = \[\n${f_shcode}/g" "./jdPetShareCodes.js"
     fi
-# 修改东东农场
+    # 修改东东农场
     if [ "$1" = "jd_fruit.js" ]; then
         sed -i "s/let FruitShareCodes = \[/let FruitShareCodes = \[\n${f_shcode}/g" "./jdFruitShareCodes.js"
     fi
-# 修改京喜工厂
+    # 修改京喜工厂
     if [ "$1" = "jd_dreamFactory.js" ]; then
         sed -i "s/let shareCodes = \[/let shareCodes = \[\n${f_shcode}/g" "./jdDreamFactoryShareCodes.js"
     fi
-# 修改东东工厂
+    # 修改东东工厂
     if [ "$1" = "jd_jdfactory.js" ]; then
         sed -i "s/let shareCodes = \[/let shareCodes = \[\n${f_shcode}/g" "./jdFactoryShareCodes.js"
     fi
@@ -53,14 +50,21 @@ autoHelp(){
 
 echo "替换助力码"
 [ -e "${logDir}/${SCRIPT_NAME}.log" ] && autoHelp "${1}" "${logDir}/${SCRIPT_NAME}.log"
-[ -n "$SYNCURL" ] && echo "下载脚本" && curl "$SYNCURL" > "./$1"
-sed -i "s/indexOf('GITHUB')/indexOf('GOGOGOGO')/g" `ls -l |grep -v ^d|awk '{print $9}'`
-sed -i 's/indexOf("GITHUB")/indexOf("GOGOGOGO")/g' `ls -l |grep -v ^d|awk '{print $9}'`
+if [ -n "$SYNCURL" ]; then
+    echo "下载脚本"
+    curl "$SYNCURL" > "./$1"
+    # 外链脚本替换
+    sed -i "s/indexOf('GITHUB')/indexOf('GOGOGOGO')/g" `ls -l |grep -v ^d|awk '{print $9}'`
+    sed -i 's/indexOf("GITHUB")/indexOf("GOGOGOGO")/g' `ls -l |grep -v ^d|awk '{print $9}'`
+fi
+
+# 支持并行的cookie
 if [ -n "$JD_COOKIES" ]; then
   echo "修改cookie"
   sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js
   sed -i "1i\process.env.JD_COOKIE='$JD_COOKIES'" ./jdCookie.js
 fi
+
 echo "开始运行"
 node $1 >&1 | tee ${LOG}
 
