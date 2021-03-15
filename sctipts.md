@@ -20,6 +20,10 @@ jd_blueCoin.js
 ```
 jd_bookshop.js
 ```
+* jd_car.yml
+```
+jd_car_exchange.js
+```
 * jd_club_lottery.yml
 ```
 jd_club_lottery.js
@@ -43,10 +47,6 @@ jd_daily_egg.js
 * jd_dreamFactory.yml
 ```
 jd_dreamFactory.js
-```
-* jd_firecrackers.yml
-```
-jd_firecrackers.js
 ```
 * jd_fruit.yml
 ```
@@ -77,6 +77,10 @@ jd_joy_feedPets.js
 ```
 jd_joy_reward.js
 ```
+* jd_joy_run.yml
+```
+jd_joy_run.js
+```
 * jd_joy_steal.yml
 ```
 jd_joy_steal.js
@@ -88,6 +92,10 @@ jd_jxd.js
 * jd_live.yml
 ```
 jd_live.js
+```
+* jd_live_redrain.yml
+```
+jd_live_redrain.js
 ```
 * jd_lotteryMachine.yml
 ```
@@ -127,7 +135,6 @@ jd_rankingList.js
 ```
 * jd_sgmh.yml
 ```
-jd_get_share_code.js
 jd_sgmh.js
 jd_cash.js
 ```
