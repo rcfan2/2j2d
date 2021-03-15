@@ -9,7 +9,7 @@ sudo rm -f /etc/localtime
 sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 hour=`date +%H`
 if [ $min -le 10 ]; then
-  hour = $((hour + 1))
+  hour=$((hour + 1))
   [ "$hour" = "24" ] && hour="00"
 fi
 timer="${hour}:${min}:00"
