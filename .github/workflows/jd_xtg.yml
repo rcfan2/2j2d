@@ -1,4 +1,4 @@
-name: 星推官并行
+name: 星推官
 
 on:
   workflow_dispatch:
@@ -38,7 +38,9 @@ jobs:
       - name: '运行 【星推官】'
         run: |
           cp -f con_timer_by_min.sh ~/con_timer_by_min.sh && chmod 755 ~/con_timer_by_min.sh
+          cp -f run_scripts.sh ~/run_scripts.sh && chmod 755 ~/run_scripts.sh
           bash ~/con_timer_by_min.sh jd_xtg.js 1
+          bash ~/run_scripts.sh jd_xtg.js
         env:
           JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
