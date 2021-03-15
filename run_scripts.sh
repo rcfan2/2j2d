@@ -54,6 +54,8 @@ autoHelp(){
 echo "替换助力码"
 [ -e "${logDir}/${SCRIPT_NAME}.log" ] && autoHelp "${1}" "${logDir}/${SCRIPT_NAME}.log"
 [ -n "$SYNCURL" ] && echo "下载脚本" && curl "$SYNCURL" > "./$1"
+sed -i "s/indexOf('GITHUB')/indexOf('GOGOGOGO')/g" `ls -l |grep -v ^d|awk '{print $9}'`
+sed -i 's/indexOf("GITHUB")/indexOf("GOGOGOGO")/g' `ls -l |grep -v ^d|awk '{print $9}'`
 echo "开始运行"
 node $1 >&1 | tee ${LOG}
 
