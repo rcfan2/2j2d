@@ -49,20 +49,24 @@ git clone -b $DESTINATION_BRANCH $REPO_URL ~/ds
 cd ~/ds
 
 # 常规turing
-code_aboard "submit_activity_codes jxfactory" "./jd_dreamFactory.log"
-code_aboard "submit_activity_codes pet" "./jd_pet.log"
-code_aboard "submit_activity_codes farm" "./jd_fruit.log"
-code_aboard "submit_activity_codes bean" "./jd_plantBean.log"
-code_aboard "submit_activity_codes sgmh" "./jd_sgmh.log"
-code_aboard "submit_activity_codes ddfactory" "./jd_jdfactory.log"
-code_aboard "submit_activity_codes jxcfd" "./jd_cfd.log"
-code_aboard "submit_activity_codes jdglobal" "./jd_global.log"
+code_aboard "/submit_activity_codes jxfactory" "./jd_dreamFactory.log"
+code_aboard "/submit_activity_codes pet" "./jd_pet.log"
+code_aboard "/submit_activity_codes farm" "./jd_fruit.log"
+code_aboard "/submit_activity_codes bean" "./jd_plantBean.log"
+code_aboard "/submit_activity_codes sgmh" "./jd_sgmh.log"
+code_aboard "/submit_activity_codes ddfactory" "./jd_jdfactory.log"
+code_aboard "/submit_activity_codes jxcfd" "./jd_cfd.log"
+code_aboard "/submit_activity_codes jdglobal" "./jd_global.log"
 # commit code
 code_aboard "/jdcash" "./jd_cash.log"
 code_aboard "/jdzz" "./jd_jdzz.log"
 
 aborad_file=(`ls | grep aboard`)
-cat ${aborad_file[*]} > aborad.log
+for i in `seq 0 $((${aborad_file[*]}-1))`
+do 
+  echo "账号"${i}: >> aborad.log
+  cat ${aborad_file[$i]} > aborad.log
+done
 rm -f ${aborad_file[*]}
 
 echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
