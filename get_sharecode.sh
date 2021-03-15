@@ -27,7 +27,6 @@ code_aboard(){
   sc_list=(`sed -n '/'码】'.*/'p ${2} | awk -F "】" '{print $2}'`)
   for i in `seq 0 $((${#sc_list[*]}-1))`
   do
-    echo "$tn"
     if [ "$((i/5))"x = "$tn"x ]; then
       format_aborad_code="$format_aborad_code""&${sc_list[$i]}"
     else
