@@ -182,6 +182,10 @@ jd_super_box.js
 jd_unsubscribe.js
 jd_unbind.js
 ```
+* jd_xtg.yml
+```
+jd_xtg.js
+```
 * jx_cfd.yml
 ```
 jd_cfd.js
