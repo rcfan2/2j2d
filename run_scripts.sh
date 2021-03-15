@@ -61,7 +61,6 @@ fi
 # 支持并行的cookie
 if [ -n "$JD_COOKIES" ]; then
   echo "修改cookie"
-  sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js
   sed -i "1i\process.env.JD_COOKIE='$JD_COOKIES'" ./jdCookie.js
 fi
 
