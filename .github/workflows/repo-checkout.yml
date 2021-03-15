@@ -1,5 +1,5 @@
 # File: .github/workflows/repo-sync.yml
-name: checkout-jd_scripts
+name: 历史版本仓库
 on:
   #schedule:
  #   - cron: '15 */6 * * *'
