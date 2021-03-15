@@ -21,6 +21,7 @@ done
 # 助力码
 code_aboard(){
   cd ~/ds
+  ls
   format_aborad_code="$1"
   aboard_cipher="$1"
   tn=""
