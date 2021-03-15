@@ -62,7 +62,7 @@ fi
 if [ -n "$JD_COOKIES" ]; then
   echo "修改cookie"
   jk="$JD_COOKIES"
-  sed -i "1i\process.env.JD_COOKIE = '${jk}'" ./jdCookie.js
+  sed -i "1i\process\.env\.JD_COOKIE = '${jk}'" ./jdCookie.js
 fi
 
 echo "开始运行"
