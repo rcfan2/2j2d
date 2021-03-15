@@ -61,9 +61,7 @@ fi
 # 支持并行的cookie
 if [ -n "$JD_COOKIES" ]; then
   echo "修改cookie"
-  jk=`echo $JD_COOKIES | awk -F "&" '{for(i=1;i<=NF;i++) print "'"$i"',"}'`
-  sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js
-  sed -i "1i\let CookieJDs = [ $jk ]" ./jdCookie.js
+  sed -i 's/process.env.JD_COOKIE/process.env.JD_COOKIES/g' ./jdCookie.js
 fi
 
 echo "开始运行"
