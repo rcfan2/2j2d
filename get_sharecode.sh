@@ -56,14 +56,15 @@ code_aboard "submit_activity_codes farm" "./jd_fruit.log"
 code_aboard "submit_activity_codes bean" "./jd_plantBean.log"
 code_aboard "submit_activity_codes sgmh" "./jd_sgmh.log"
 code_aboard "submit_activity_codes ddfactory" "./jd_jdfactory.log"
-code_aboard "submit_activity_codes jxcfd" "./jd_cash.log"
-code_aboard "submit_activity_codes jdglobal" "./jd_cash.log"
+code_aboard "submit_activity_codes jxcfd" "./jd_cfd.log"
+code_aboard "submit_activity_codes jdglobal" "./jd_global.log"
 # commit code
 code_aboard "/jdcash" "./jd_cash.log"
 code_aboard "/jdzz" "./jd_jdzz.log"
 
 aborad_file=(`ls | grep aboard`)
 cat ${aborad_file[*]} > aborad.log
+rm -f ${aborad_file[*]}
 
 echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 sudo git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
