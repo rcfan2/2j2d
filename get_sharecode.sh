@@ -3,7 +3,7 @@
 #set -e
 SC_LOG="sharecode.log"
 AB_LOG="aboard.log"
-LOCATION_LOG="sctipts.md"
+LOCATION_LOG="scripts.md"
 echo "获得本目录下各脚本位置"
 git clone $REPO_URL -b $BRANCH ~/repo
 cd ~/repo/.github/workflows
@@ -37,13 +37,7 @@ code_aboard(){
   done
   echo "$format_aborad_code" >> ./aboard${tn}
 }
-# echo "开始更新助力码"
-# cd  ~/scripts
-# node ./jd_get_share_code.js > ~/$SC_LOG
-# sed -i 's/京东农场/东东农场/g' ~/$SC_LOG
-# sed -i 's/种豆得豆/京东种豆得豆/g' ~/$SC_LOG
-# sed -i 's/京东萌宠/东东萌宠/g' ~/$SC_LOG
-# cat ~/$SC_LOG
+
 echo "克隆指定仓库分支"
 git clone -b $DESTINATION_BRANCH $REPO_URL ~/ds
 cd ~/ds
