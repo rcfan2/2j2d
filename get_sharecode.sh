@@ -26,14 +26,16 @@ code_aboard(){
   sc_list=(`sed -n '/'码】'.*/'p ${2} | awk -F "】" '{print $2}'`)
   for i in `seq 0 $((${#sc_list[*]}-1))`
   do
-    if [ "$((i*5))"x != "$tn"x ]; then
-      format_aborad_code="$format_aborad_code""${sc_list[$i]}&"
+    echo "$tn"
+    if [ "$((i/5))"x = "$tn"x ]; then
+      format_aborad_code="$format_aborad_code""&${sc_list[$i]}"
     else
-      echo "$format_aborad_code"
-      format_aborad_code="$format_aborad_code""${sc_list[$i]}"
+      [ -n "$tn" ] && echo "$format_aborad_code" >> ./aboard${tn}
+      format_aborad_code="$aboard_cipher""${sc_list[$i]}"
     fi
-    tn="$((i/5))"
+  tn="$((i/5))"
   done
+  echo "$format_aborad_code" >> ./aboard${tn}
 }
 # echo "开始更新助力码"
 # cd  ~/scripts
