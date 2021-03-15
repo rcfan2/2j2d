@@ -18,6 +18,21 @@ for file in `ls ./`; do
   fi
 done
 
+code_aboard(){
+  format_aborad_code="$1"
+  aboard_cipher="$1"
+  tn=""
+  sc_list="sed -n '/'码】'.*/'p ${2}"
+  for i in `seq 0 $((${#sc_list[*]}-1))`
+  do
+    if [ "$((i*5))"x != "$tn"x ]; then
+      format_aborad_code="format_aborad_code""${sc_list[$i]}&"
+    else
+      format_aborad_code="format_aborad_code""${sc_list[$i]}"
+    fi
+  done
+}
+code_aboard "jdcash" "jd_cash.log"
 echo "开始更新助力码"
 cd  ~/scripts
 #node ./jd_get_share_code.js > ~/$SC_LOG
