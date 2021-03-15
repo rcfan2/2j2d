@@ -3,7 +3,7 @@ name: 星推官并行
 on:
   workflow_dispatch:
   schedule:
-    - cron: 1 16 * * *
+    - cron: 50 15 * * *
   #watch:
    # types: started
   repository_dispatch:
@@ -37,8 +37,8 @@ jobs:
           cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
       - name: '运行 【星推官】'
         run: |
-          cp -f concurrency.sh ~/concurrency.sh && chmod 755 ~/concurrency.sh
-          bash ~/concurrency.sh jd_xtg.js
+          cp -f con_timer_by_min.sh ~/con_timer_by_min.sh && chmod 755 ~/con_timer_by_min.sh
+          bash ~/con_timer_by_min.sh jd_xtg.js 1
         env:
           JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
