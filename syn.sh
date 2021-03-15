@@ -25,3 +25,6 @@ echo "Pushing changings from tmp_upstream to origin"
 sudo git push origin "refs/remotes/origin/${SOURCE_BRANCH}:refs/heads/${DESTINATION_BRANCH}" --force
 
 git remote --verbose
+
+# echo "添加新活动"
+# ls ``
