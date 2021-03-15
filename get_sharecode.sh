@@ -20,18 +20,16 @@ done
 
 # 助力码
 code_aboard(){
-  cd ~/ds
-  ls
   format_aborad_code="$1"
   aboard_cipher="$1"
   tn=""
-  sc_list=(`sed -n '/'码】'.*/'p ${2}`)
+  sc_list=(`sed -n '/'码】'.*/'p ${2} | awk -F "】" '{print $2}'`)
   for i in `seq 0 $((${#sc_list[*]}-1))`
   do
     if [ "$((i*5))"x != "$tn"x ]; then
-      format_aborad_code="format_aborad_code""${sc_list[$i]}&"
+      format_aborad_code="$format_aborad_code""${sc_list[$i]}&"
     else
-      format_aborad_code="format_aborad_code""${sc_list[$i]}"
+      format_aborad_code="$format_aborad_code""${sc_list[$i]}"
     fi
     echo "$format_aborad_code"
   done
