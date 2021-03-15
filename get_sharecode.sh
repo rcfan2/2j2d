@@ -2,6 +2,7 @@
 
 #set -e
 SC_LOG="sharecode.log"
+AB_LOG="aboard.log"
 LOCATION_LOG="sctipts.md"
 echo "获得本目录下各脚本位置"
 git clone $REPO_URL -b $BRANCH ~/repo
@@ -47,13 +48,28 @@ code_aboard(){
 echo "克隆指定仓库分支"
 git clone -b $DESTINATION_BRANCH $REPO_URL ~/ds
 cd ~/ds
-code_aboard "jdcash" "./jd_cash.log"
+
+# 常规turing
+code_aboard "submit_activity_codes jxfactory" "./jd_dreamFactory.log"
+code_aboard "submit_activity_codes pet" "./jd_pet.log"
+code_aboard "submit_activity_codes farm" "./jd_fruit.log"
+code_aboard "submit_activity_codes bean" "./jd_plantBean.log"
+code_aboard "submit_activity_codes sgmh" "./jd_sgmh.log"
+code_aboard "submit_activity_codes ddfactory" "./jd_jdfactory.log"
+code_aboard "submit_activity_codes jxcfd" "./jd_cash.log"
+code_aboard "submit_activity_codes jdglobal" "./jd_cash.log"
+# commit code
+code_aboard "/jdcash" "./jd_cash.log"
+code_aboard "/jdzz" "./jd_jdzz.log"
+
+aborad_file=(`ls | grep aboard`)
+cat ${aborad_file[*]} > aborad.log
 
 echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 sudo git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 
 echo "强制覆盖原文件"
-mv -f ~/sharecode.log ./$SC_LOG
+mv -f ~/aborad.log ./$AB_LOG
 mv -v ~/$LOCATION_LOG ./$LOCATION_LOG
 git config --global user.email "tracefish@qq.com"
 git config --global user.name "tracefish"
