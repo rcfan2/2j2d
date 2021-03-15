@@ -10,4 +10,5 @@ al_list=(${ex_list[*]} ${ig_list[*]})
 echo "${al_list[*]}"
 grep_list=`echo ${al_list[*]} | awk '{for(i=1;i<=NF;i++) print $i".*"}'`
 git checkout jd
-cat ./docker/crontab_list.sh | grep "jd"| grep -Ev "$grep_list"
+non_list=(`cat ./docker/crontab_list.sh | grep "jd"| grep -Ev "$grep_list"`)
+echo "$non_list"
