@@ -65,7 +65,7 @@ aborad_file=(`ls | grep aboard`)
 for i in `seq 0 $((${#aborad_file[*]}-1))`
 do 
   echo "账号"${i}: >> aborad.log
-  cat ${aborad_file[$i]} > aborad.log
+  cat ${aborad_file[$i]} >> aborad.log
 done
 rm -f ${aborad_file[*]}
 
