@@ -20,6 +20,7 @@ done
 
 # 助力码
 code_aboard(){
+  cd ~/ds
   format_aborad_code="$1"
   aboard_cipher="$1"
   tn=""
@@ -45,7 +46,7 @@ cd  ~/scripts
 echo "克隆指定仓库分支"
 git clone -b $DESTINATION_BRANCH $REPO_URL ~/ds
 cd ~/ds
-code_aboard "jdcash" "~/ds/jd_cash.log"
+code_aboard "jdcash" "./jd_cash.log"
 
 echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 sudo git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
