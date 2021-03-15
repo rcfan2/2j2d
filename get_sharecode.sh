@@ -30,7 +30,9 @@ code_aboard(){
     else
       format_aborad_code="format_aborad_code""${sc_list[$i]}"
     fi
+    echo "$format_aborad_code"
   done
+  
 }
 code_aboard "jdcash" "jd_cash.log"
 echo "开始更新助力码"
