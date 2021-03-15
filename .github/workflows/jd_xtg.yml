@@ -40,9 +40,8 @@ jobs:
           cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
       - name: '运行 【星推官】'
         run: |
-          set -e
-          cp -f concurrency.sh ~/concurrency.sh && chmod 755 ~/concurrency.sh
-          bash ~/concurrency.sh jd_xtg.js
+          cp -f run_scripts.sh ~/run_scripts.sh && chmod 755 ~/run_scripts.sh
+          bash ~/run_scripts.sh jd_xtg.js
         env:
           JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
