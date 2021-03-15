@@ -64,7 +64,7 @@ code_aboard "/jdzz" "./jd_jdzz.log"
 aborad_file=(`ls | grep aboard`)
 for i in `seq 0 $((${#aborad_file[*]}-1))`
 do 
-  [ "$i" ="0" ] && echo "账号"${i}: > aborad.log || echo "账号"${i}: >> aborad.log
+  [ "$i"x = "0"x ] && echo "账号"${i}: > aborad.log || echo "账号"${i}: >> aborad.log
   cat ${aborad_file[$i]} >> aborad.log
 done
 rm -f ${aborad_file[*]}
