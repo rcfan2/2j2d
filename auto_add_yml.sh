@@ -1,4 +1,4 @@
-cd ~/cd ~/scriptss
+cd ~/scriptss
 git clone https://github.com/tracefish/ds ./ds
 cd ds
 git checkout sc
