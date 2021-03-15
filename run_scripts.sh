@@ -59,7 +59,7 @@ sed -i 's/indexOf("GITHUB")/indexOf("GOGOGOGO")/g' `ls -l |grep -v ^d|awk '{prin
 if [ -n "$JD_COOKIES" ]; then
   echo "修改cookie"
   sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js
-  sed -i "1i\let CookieJDs = [ '$JD_COOKIES', ]" ./jdCookie.js
+  sed -i "1i\process.env.JD_COOKIE='$JD_COOKIES'" ./jdCookie.js
 fi
 echo "开始运行"
 node $1 >&1 | tee ${LOG}
