@@ -41,7 +41,7 @@ jobs:
       - name: '运行 【摇京豆脚本】'
         run: |
           cp -f run_scripts.sh ~/run_scripts.sh && chmod 755 ~/run_scripts.sh
-          bash ~/run_scripts.sh jd_shakeBean.js
+          bash ~/run_scripts.sh jd_club_lottery.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
@@ -53,4 +53,3 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
-          SYNCURL: "https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_shakeBean.js"
