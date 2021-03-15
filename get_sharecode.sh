@@ -25,7 +25,7 @@ code_aboard(){
   format_aborad_code="$1"
   aboard_cipher="$1"
   tn=""
-  sc_list=(`"sed -n '/'码】'.*/'p ${2}"`)
+  sc_list=(`sed -n '/'码】'.*/'p ${2}`)
   for i in `seq 0 $((${#sc_list[*]}-1))`
   do
     if [ "$((i*5))"x != "$tn"x ]; then
