@@ -53,7 +53,7 @@ autoHelp(){
 
 echo "替换助力码"
 [ -e "${logDir}/${SCRIPT_NAME}.log" ] && autoHelp "${1}" "${logDir}/${SCRIPT_NAME}.log"
-
+[ -n "$SYNCURL" ] && echo "下载脚本" && curl "$SYNCURL" > "./$1"
 echo "开始运行"
 node $1 >&1 | tee ${LOG}
 
