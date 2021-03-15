@@ -56,6 +56,11 @@ echo "替换助力码"
 [ -n "$SYNCURL" ] && echo "下载脚本" && curl "$SYNCURL" > "./$1"
 sed -i "s/indexOf('GITHUB')/indexOf('GOGOGOGO')/g" `ls -l |grep -v ^d|awk '{print $9}'`
 sed -i 's/indexOf("GITHUB")/indexOf("GOGOGOGO")/g' `ls -l |grep -v ^d|awk '{print $9}'`
+if [ -n "$JD_COOKIE" ]; then
+  echo "修改cookie"
+  sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js
+  sed -i "1i\let CookieJDs = [ '$JD_COOKIE', ]" ./jdCookie.js
+fi
 echo "开始运行"
 node $1 >&1 | tee ${LOG}
 
