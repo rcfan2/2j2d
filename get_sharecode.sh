@@ -33,6 +33,7 @@ code_aboard(){
       format_aborad_code="$format_aborad_code""${sc_list[$i]}"
     fi
     tn="$((i/5))"
+    echo $tn
   done
 }
 # echo "开始更新助力码"
