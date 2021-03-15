@@ -18,11 +18,12 @@ for file in `ls ./`; do
   fi
 done
 
+# 助力码
 code_aboard(){
   format_aborad_code="$1"
   aboard_cipher="$1"
   tn=""
-  sc_list=`"sed -n '/'码】'.*/'p ${2}"`
+  sc_list=(`"sed -n '/'码】'.*/'p ${2}"`)
   for i in `seq 0 $((${#sc_list[*]}-1))`
   do
     if [ "$((i*5))"x != "$tn"x ]; then
@@ -34,7 +35,6 @@ code_aboard(){
   done
   
 }
-code_aboard "jdcash" "jd_cash.log"
 echo "开始更新助力码"
 cd  ~/scripts
 #node ./jd_get_share_code.js > ~/$SC_LOG
@@ -45,6 +45,7 @@ cd  ~/scripts
 echo "克隆指定仓库分支"
 git clone -b $DESTINATION_BRANCH $REPO_URL ~/ds
 cd ~/ds
+code_aboard "jdcash" "./jd_cash.log"
 
 echo "Resetting origin to: https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
 sudo git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
