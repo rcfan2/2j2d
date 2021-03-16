@@ -23,7 +23,7 @@ done
 code_aboard(){
   format_aborad_code="$1 "
   aboard_cipher="$1 "
-  satisfy_num=$((3-0))
+  satisfy_num=$(($3-0))
   echo "$satisfy_num"
   tn=""
   sc_list=(`sed -n '/'码】'.*/'p ${2} | awk -F "】" '{print $2}'`)
