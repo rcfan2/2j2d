@@ -18,7 +18,13 @@ echo "开始多账号并发"
 IFS=$'\n'
 num=0
 [ "$timer" = "00:00:00" ] && nextdate=`date +%s%N -d "+1 day $timer"` || nextdate=`date +%s%N -d "$timer"`
-JK_LIST=(`echo "$JD_COOKIES" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'`)
+if [ -n "$JD_COOKIE" ]; then
+  echo "修改cookie"
+  sed -i 's/process.env.JD_COOKIE/process.env.JD_COOKIES/g' ./jdCookie.js
+  JK_LIST=(`echo "$JD_COOKIE" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'`)
+else
+  JK_LIST=(`echo "$JD_COOKIES" | awk -F "&" '{for(i=1;i<=NF;i++) print $i}'`)
+fi
 num=0
 for jk in ${JK_LIST[*]}
 do 
