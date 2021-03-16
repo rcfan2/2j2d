@@ -55,6 +55,7 @@ code_aboard "/submit_activity_codes jdglobal" "./jd_global.log"
 # commit code
 code_aboard "/jdcash" "./jd_cash.log"
 code_aboard "/jdzz" "./jd_jdzz.log"
+code_aboard "/jdcrazyjoy" "./jd_crazy_joy.log" 7
 
 aborad_file=(`ls | grep aboard`)
 for i in `seq 0 $((${#aborad_file[*]}-1))`
