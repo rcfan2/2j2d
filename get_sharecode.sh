@@ -25,6 +25,7 @@ code_aboard(){
   aboard_cipher="$1 "
   tn=""
   sc_list=(`sed -n '/'码】'.*/'p ${2} | awk -F "】" '{print $2}'`)
+  [ -n "$3" -a ${#sc_list[*]} -ge $3 ] && return
   for i in `seq 0 $((${#sc_list[*]}-1))`
   do
     if [ "$((i/5))"x = "$tn"x ]; then
@@ -44,7 +45,7 @@ cd ~/ds
 
 # 常规turing
 code_aboard "/submit_activity_codes jxfactory" "./jd_dreamFactory.log"
-code_aboard "/submit_activity_codes pet" "./jd_pet.log"
+code_aboard "/submit_activity_codes pet" "./jd_pet.log" 6
 code_aboard "/submit_activity_codes farm" "./jd_fruit.log"
 code_aboard "/submit_activity_codes bean" "./jd_plantBean.log"
 code_aboard "/submit_activity_codes sgmh" "./jd_sgmh.log"
