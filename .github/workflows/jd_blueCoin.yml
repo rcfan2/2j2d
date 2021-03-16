@@ -37,9 +37,7 @@ jobs:
           persist-credentials: false
       - name: Init Env
         run: |
-          git clone -b old https://github.com/tracefish/ds.git ~/scripts
-          cd  ~/scripts
-          npm install
+           cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
       - name: '运行 【京小超兑换奖品】'
         run: |
           set -e
