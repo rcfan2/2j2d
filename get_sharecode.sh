@@ -23,9 +23,11 @@ done
 code_aboard(){
   format_aborad_code="$1 "
   aboard_cipher="$1 "
+  satisfy_num=$((3-0))
+  echo "$satisfy_num"
   tn=""
   sc_list=(`sed -n '/'码】'.*/'p ${2} | awk -F "】" '{print $2}'`)
-  [ "$3"x != ""x -a "${#sc_list[*]}" -ge "$3" ] && echo "该活动循环助力已经可以满足主力要求了" && return
+  [ "$3"x != ""x -a ${#sc_list[*]} -ge $3 ] && echo "该活动循环助力已经可以满足主力要求了" && return
   for i in `seq 0 $((${#sc_list[*]}-1))`
   do
     if [ "$((i/5))"x = "$tn"x ]; then
@@ -55,7 +57,7 @@ code_aboard "/submit_activity_codes jdglobal" "./jd_global.log"
 # commit code
 code_aboard "/jdcash" "./jd_cash.log"
 code_aboard "/jdzz" "./jd_jdzz.log"
-code_aboard "/jdcrazyjoy" "./jd_crazy_joy.log" 7
+code_aboard "/jdcrazyjoy" "./jd_crazy_joy.log"
 
 aborad_file=(`ls | grep aboard`)
 for i in `seq 0 $((${#aborad_file[*]}-1))`
