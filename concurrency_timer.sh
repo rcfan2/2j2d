@@ -29,7 +29,7 @@ do
   delay=`echo "scale=3;$((nextdate-now))/1000000000" | bc`
   int_delay=`echo $delay | awk -F "$delay" '{print $1}'`
   (if [ $nextdate -gt $now ];then 
-    [ $int_delay -le 3600 ] && echo "未到当天${timer}，等待${delay}秒" && sleep $delay || echo "未到当天${timer}，但超出不远，继续运行"
+    [ $((int_delay - 0)) -le 3600 ] && echo "未到当天${timer}，等待${delay}秒" && sleep $delay || echo "未到当天${timer}，但超出不远，继续运行"
   fi
 )&
   cd ~
