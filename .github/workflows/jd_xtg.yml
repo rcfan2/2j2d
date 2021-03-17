@@ -37,9 +37,9 @@ jobs:
           cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
       - name: '运行 【星推官】'
         run: |
-          cp -f con_timer_by_min.sh ~/con_timer_by_min.sh && chmod 755 ~/con_timer_by_min.sh
+          cp -f concurrency_timer.sh ~/concurrency_timer.sh && chmod 755 ~/concurrency_timer.sh
           cp -f run_scripts.sh ~/run_scripts.sh && chmod 755 ~/run_scripts.sh
-          bash ~/con_timer_by_min.sh jd_xtg.js 1
+          bash ~/concurrency_timer.sh jd_xtg.js
           bash ~/run_scripts.sh jd_xtg.js
         env:
           JD_COOKIES: ${{ secrets.JD_COOKIE }}
