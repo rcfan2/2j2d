@@ -46,7 +46,7 @@ jobs:
           #bash ~/con_timer_by_min.sh jd_speed_redpocke.js 02
           cp -f run_scripts.sh ~/run_scripts.sh && chmod 755 ~/run_scripts.sh
           bash ~/run_scripts.sh jd_speed_redpocke.js
-          bash ~/con_timer_by_min.sh jd_speed_redpocke.js 02env:
+        env:
           JD_COOKIES: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
