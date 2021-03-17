@@ -25,8 +25,10 @@ do
   cd ~/scripts${num}
   sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js
   sed -i "1i\let CookieJDs = [ '$jk', ]" ./jdCookie.js
-  now=`date +%s%N` && delay=`echo "scale=3;$((nextdate-now))/1000000000" | bc`
-  ([ $nextdate -gt $now -a $((delay/1)) -le 3600 ] && echo "未到当天${timer}，等待${delay}秒" && sleep $delay || echo "未到当天${timer}，但超出不远，继续运行") &
+  now=`date +%s%N`
+  delay=`echo "scale=3;$((nextdate-now))/1000000000" | bc`
+  int_delay=`echo $delay | awk -F "$delay" '{print $1}'`
+  ([ $nextdate -gt $now -a $int_delay -le 3600 ] && echo "未到当天${timer}，等待${delay}秒" && sleep $delay || echo "未到当天${timer}，但超出不远，继续运行") &
   cd ~
   num=$((num + 1))
 done
