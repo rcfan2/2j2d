@@ -13,7 +13,7 @@ if [ $min -le 10 ]; then
   [ "$hour" = "24" ] && hour="00"
 fi
 timer="${hour}:${min}:00"
-
+echo "当前时间: `date`"
 echo "开始多账号并发"
 IFS=$'\n'
 num=0
