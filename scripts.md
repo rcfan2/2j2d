@@ -19,14 +19,12 @@ jd_blueCoin.js
 * jd_bookshop.yml
 ```
 jd_bookshop.js
+jd_live.js
+jd_pigPet.js
 ```
 * jd_car.yml
 ```
 jd_car_exchange.js
-```
-* jd_club_lottery.yml
-```
-jd_club_lottery.js
 ```
 * jd_crazy_joy.yml
 ```
@@ -44,9 +42,11 @@ jd_crazy_joy_coin.js
 ```
 jd_daily_egg.js
 ```
-* jd_dreamFactory.yml
+* jd_factory.yml
 ```
 jd_dreamFactory.js
+jd_jdfactory.js
+jd_moneyTree.js
 ```
 * jd_fruit.yml
 ```
@@ -59,10 +59,6 @@ jd_global.js
 * jd_global_mh.yml
 ```
 jd_global_mh.js
-```
-* jd_jdfactory.yml
-```
-jd_jdfactory.js
 ```
 * jd_jdzz.yml
 ```
@@ -89,10 +85,6 @@ jd_joy_steal.js
 ```
 jd_jxd.js
 ```
-* jd_live.yml
-```
-jd_live.js
-```
 * jd_live_redrain.yml
 ```
 jd_live_redrain.js
@@ -100,10 +92,6 @@ jd_live_redrain.js
 * jd_lotteryMachine.yml
 ```
 jd_lotteryMachine.js
-```
-* jd_moneyTree.yml
-```
-jd_moneyTree.js
 ```
 * jd_necklace.yml
 ```
@@ -116,10 +104,6 @@ jd_nzmh.js
 * jd_pet.yml
 ```
 jd_pet.js
-```
-* jd_pigPet.yml
-```
-jd_pigPet.js
 ```
 * jd_plantBean.yml
 ```
@@ -141,6 +125,7 @@ jd_cash.js
 * jd_shop.yml
 ```
 jd_shop.js
+jd_club_lottery.js
 ```
 * jd_small_home.yml
 ```
