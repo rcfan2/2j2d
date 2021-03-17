@@ -3,7 +3,7 @@ name: ToHelpMyself
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/44 22-22 * * *'
+    - cron: '*/44 21-21 * * *'
   watch:
     types: [started]
 
