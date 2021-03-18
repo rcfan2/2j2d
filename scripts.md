@@ -15,6 +15,9 @@ jd_beauty.js
 * jd_blueCoin.yml
 ```
 jd_blueCoin.js
+jd_shop.js
+jd_club_lottery.js
+jd_jdzz.js
 ```
 * jd_bookshop.yml
 ```
@@ -38,10 +41,6 @@ jd_crazy_joy_bonus.js
 ```
 jd_crazy_joy_coin.js
 ```
-* jd_daily_egg.yml
-```
-jd_daily_egg.js
-```
 * jd_factory.yml
 ```
 jd_dreamFactory.js
@@ -59,10 +58,6 @@ jd_global.js
 * jd_global_mh.yml
 ```
 jd_global_mh.js
-```
-* jd_jdzz.yml
-```
-jd_jdzz.js
 ```
 * jd_joy.yml
 ```
@@ -89,13 +84,10 @@ jd_jxd.js
 ```
 jd_live_redrain.js
 ```
-* jd_lotteryMachine.yml
-```
-jd_lotteryMachine.js
-```
 * jd_necklace.yml
 ```
 jd_necklace.js
+jd_small_home.js
 ```
 * jd_nzmh.yml
 ```
@@ -112,28 +104,22 @@ jd_plantBean.js
 * jd_price.yml
 ```
 jd_price.js
+jd_wish.js
 ```
 * jd_rankingList.yml
 ```
 jd_rankingList.js
+jd_lotteryMachine.js
 ```
 * jd_sgmh.yml
 ```
 jd_sgmh.js
 jd_cash.js
 ```
-* jd_shop.yml
-```
-jd_shop.js
-jd_club_lottery.js
-```
-* jd_small_home.yml
-```
-jd_small_home.js
-```
 * jd_speed.yml
 ```
 jd_speed.js
+jd_daily_egg.js
 ```
 * jd_speed_redpocke.yml
 ```
@@ -166,10 +152,6 @@ jd_super_box.js
 ```
 jd_unsubscribe.js
 jd_unbind.js
-```
-* jd_wish.yml
-```
-jd_wish.js
 ```
 * jd_xtg.yml
 ```
