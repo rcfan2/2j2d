@@ -87,7 +87,7 @@ collectSharecode(){
 
 collectSharecode ${LOG}
 cat ${LOG}1
-
+[ ! -e "${LOG}1" -o -z "$(cat ${LOG}1)" ] && echo "退出脚本" && exit 0
 echo "上传助力码文件"
 cd ~/ds
 echo "拉取最新源码"
