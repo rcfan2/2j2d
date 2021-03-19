@@ -30,7 +30,7 @@ do
   int_delay=`echo $delay | awk -F "." '{print $1}'`
   (if [ $nextdate -gt $now ];then 
     [ $((int_delay - 0)) -le 3600 ] && echo "未到当天${timer}，等待${delay}秒" && sleep $delay || echo "未到当天${timer}，但超出不远，继续运行"
-    node $SCRIPT
+    node $SCRIPT | grep -Ev "pt_pin.*pt_key"
   fi
 )&
   cd ~
