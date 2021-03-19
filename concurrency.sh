@@ -22,7 +22,7 @@ do
   cd ~/scripts${num}
   sed -i 's/let CookieJDs/let CookieJDss/g' ./jdCookie.js
   sed -i "1i\let CookieJDs = [ '$jk', ]" ./jdCookie.js
-  node "./${SCRIPT}" &
+  node "./${SCRIPT}" | grep -Ev "pt_pin|pt_key" &
   cd ~
   # 随机延迟5-12秒
   random_time=$(($RANDOM%12+5))
