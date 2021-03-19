@@ -72,10 +72,6 @@ jd_joy_reward.js
 ```
 jd_joy_run.js
 ```
-* jd_joy_steal.yml
-```
-jd_joy_steal.js
-```
 * jd_jxd.yml
 ```
 jd_jxd.js
@@ -83,6 +79,10 @@ jd_jxd.js
 * jd_live_redrain.yml
 ```
 jd_live_redrain.js
+```
+* jd_mohe.yml
+```
+jd_mohe.js
 ```
 * jd_necklace.yml
 ```
@@ -104,11 +104,11 @@ jd_plantBean.js
 * jd_price.yml
 ```
 jd_price.js
-jd_wish.js
 ```
 * jd_rankingList.yml
 ```
 jd_rankingList.js
+jd_wish.js
 jd_lotteryMachine.js
 ```
 * jd_sgmh.yml
