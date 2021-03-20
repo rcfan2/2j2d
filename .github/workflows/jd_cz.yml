@@ -37,7 +37,26 @@ jobs:
       - name: '运行 【城城分现金】'
         run: |
           cp -f run_scripts.sh ~/run_scripts.sh && chmod 755 ~/run_scripts.sh
-          #bash ~/run_scripts.sh jd_city.js
+          bash ~/run_scripts.sh z_city_cash.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+          JD_COOKIE: ${{ secrets.JD_COOKIE }}
+          JD_DEBUG: ${{ secrets.JD_DEBUG }}
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
+          BARK_PUSH: ${{ secrets.BARK_PUSH }}
+          FRUITSHARECODES: ${{ secrets.FRUITSHARECODES }}
+          FRUIT_BEAN_CARD: ${{ secrets.FRUIT_BEAN_CARD }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          FRUIT_NOTIFY_CONTROL: ${{ secrets.FRUIT_NOTIFY_CONTROL }}
+          BARK_SOUND: ${{ secrets.BARK_SOUND }}
+          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
+          IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
+          SYNCURL: "https://raw.githubusercontent.com/i-chenzhe/qx/main/z_city_cash.js"
+      - name: '运行 【城城分现金】'
+        run: |
+          bash ~/run_scripts.sh jd_city.js
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
@@ -55,7 +74,7 @@ jobs:
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
       - name: '运行 【联想集卡活动】'
         run: |
-          #bash ~/run_scripts.sh z_lenovo.js
+          bash ~/run_scripts.sh z_lenovo.js
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
