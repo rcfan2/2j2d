@@ -65,7 +65,7 @@ if [ -n "$JD_COOKIES" ]; then
 fi
 
 echo "开始运行"
-`node $1 | grep -Ev "pt_pin|pt_key"` >&1 | tee ${LOG}
+(node $1 | grep -Ev "pt_pin|pt_key") >&1 | tee ${LOG}
 
 # 收集助力码
 collectSharecode(){
