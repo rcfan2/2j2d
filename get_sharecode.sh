@@ -53,6 +53,7 @@ code_aboard "/submit_activity_codes sgmh" "./jd_sgmh.log"
 code_aboard "/submit_activity_codes ddfactory" "./jd_jdfactory.log"
 code_aboard "/submit_activity_codes jxcfd" "./jd_cfd.log"
 code_aboard "/submit_activity_codes jdglobal" "./jd_global.log"
+code_aboard "/submit_activity_codes city" "./jd_city.log"
 # commit code
 code_aboard "/jdcash" "./jd_cash.log"
 code_aboard "/jdzz" "./jd_jdzz.log"
