@@ -55,7 +55,7 @@ jobs:
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
       - name: '运行 【联想集卡活动】'
         run: |
-          # bash ~/run_scripts.sh z_lenovo.js
+          bash ~/run_scripts.sh z_lenovo.js
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
