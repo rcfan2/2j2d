@@ -41,6 +41,10 @@ jd_crazy_joy_bonus.js
 ```
 jd_crazy_joy_coin.js
 ```
+* jd_cz.yml
+```
+jd_city.js
+```
 * jd_factory.yml
 ```
 jd_dreamFactory.js
@@ -50,6 +54,7 @@ jd_moneyTree.js
 * jd_fruit.yml
 ```
 jd_fruit.js
+jd_pet.js
 ```
 * jd_global.yml
 ```
@@ -92,10 +97,6 @@ jd_small_home.js
 * jd_nzmh.yml
 ```
 jd_nzmh.js
-```
-* jd_pet.yml
-```
-jd_pet.js
 ```
 * jd_plantBean.yml
 ```
