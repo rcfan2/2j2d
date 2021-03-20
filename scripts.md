@@ -29,10 +29,6 @@ jd_pigPet.js
 ```
 jd_car_exchange.js
 ```
-* jd_crazy_joy.yml
-```
-jd_crazy_joy.js
-```
 * jd_crazy_joy_bonus.yml
 ```
 jd_crazy_joy_bonus.js
@@ -44,6 +40,7 @@ jd_crazy_joy_coin.js
 * jd_cz.yml
 ```
 jd_city.js
+jd_entertainment.js
 ```
 * jd_factory.yml
 ```
@@ -161,4 +158,8 @@ jd_xtg.js
 * jx_cfd.yml
 ```
 jd_cfd.js
+```
+* jx_sign.yml
+```
+jd_crazy_joy.js
 ```
