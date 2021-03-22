@@ -112,7 +112,7 @@ jobs:
           SYNCURL: "https://raw.githubusercontent.com/i-chenzhe/qx/main/jd_entertainment.js"
       - name: '运行 【美的家电节】'
         run: |
-          #bash ~/run_scripts.sh z_unionPoster.js
+          bash ~/run_scripts.sh z_unionPoster.js
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
