@@ -6,7 +6,7 @@ name: ICZ大佬脚本
 on:
   workflow_dispatch:
   schedule:
-    - cron: '11 1 * * *'
+    - cron: '0 1,12 * * *'
   watch:
     types: started
   repository_dispatch:
