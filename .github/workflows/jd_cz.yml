@@ -34,10 +34,10 @@ jobs:
       - name: Init Env
         run: |
           cp -f update_env.sh ~/update_env.sh && chmod 755 ~/update_env.sh && ~/update_env.sh
-      - name: '运行 【城城分现金】'
+      - name: '运行 【浪姐】'
         run: |
           cp -f run_scripts.sh ~/run_scripts.sh && chmod 755 ~/run_scripts.sh
-          bash ~/run_scripts.sh z_city_cash.js
+          bash ~/run_scripts.sh z_sister.js
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
@@ -53,7 +53,7 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
-          SYNCURL: "https://raw.githubusercontent.com/i-chenzhe/qx/main/z_city_cash.js"
+          SYNCURL: "https://raw.githubusercontent.com/i-chenzhe/qx/main/z_sister.js"
       - name: '运行 【城城分现金】'
         run: |
           bash ~/run_scripts.sh jd_city.js
