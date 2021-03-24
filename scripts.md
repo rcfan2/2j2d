@@ -114,6 +114,11 @@ jd_lotteryMachine.js
 jd_sgmh.js
 jd_cash.js
 ```
+* jd_shy.yml
+```
+jd_jdaxc.js
+jd_xxl_gh.js
+```
 * jd_speed.yml
 ```
 jd_speed.js
