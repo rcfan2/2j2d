@@ -6,7 +6,7 @@ name: SHY大佬脚本
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 1,12 * * *'
+    - cron: '0 1-23/2 * * *'
   watch:
     types: started
   repository_dispatch:
