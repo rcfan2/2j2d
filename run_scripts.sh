@@ -49,8 +49,6 @@ autoHelp(){
     fi
 }
 
-echo "替换助力码"
-[ -e "${logDir}/${SCRIPT_NAME}.log" ] && autoHelp "${1}" "${logDir}/${SCRIPT_NAME}.log"
 if [ -n "$SYNCURL" ]; then
     echo "下载脚本"
     curl "$SYNCURL" > "./$1"
@@ -58,6 +56,8 @@ if [ -n "$SYNCURL" ]; then
     sed -i "s/indexOf('GITHUB')/indexOf('GOGOGOGO')/g" `ls -l |grep -v ^d|awk '{print $9}'`
     sed -i 's/indexOf("GITHUB")/indexOf("GOGOGOGO")/g' `ls -l |grep -v ^d|awk '{print $9}'`
 fi
+echo "替换助力码"
+[ -e "${logDir}/${SCRIPT_NAME}.log" ] && autoHelp "${1}" "${logDir}/${SCRIPT_NAME}.log"
 
 # 支持并行的cookie
 if [ -n "$JD_COOKIES" ]; then
