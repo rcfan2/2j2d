@@ -2,7 +2,7 @@
 name: 🔄自动同步🔄
 on:
   schedule:
-    - cron: '0/20 1,2,11-14,16 * * *'
+    - cron: '0/20 1-4,11-16 * * *'
   workflow_dispatch:
   watch:
     types: started
@@ -24,7 +24,7 @@ jobs:
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
-          source_repo: "https://github.com/ZXCVB185/6.git"
+          source_repo: "https://github.com/MXKecetyCN/Scalloped-Wool.git"
           source_branch: "main"
           destination_branch: "main"
           github_token: ${{ github.event.client_payload.PAT || secrets.PAT }}
@@ -33,8 +33,8 @@ jobs:
         uses: Yikun/hub-mirror-action@master
         if: env.dst_key
         with:
-          src: github/shuye72
-          dst: gitee/shuye72
-          static_list: "MyActions"
+          src: github/MXKecetyCN
+          dst: gitee/MXKecetyCN
+          static_list: "Scalloped-Wool"
           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
