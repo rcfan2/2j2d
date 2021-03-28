@@ -1,7 +1,7 @@
 SCRIPT_NAME=`echo "${1}" | awk -F "." '{print $1}'`
 LOG="./${SCRIPT_NAME}.log"
 
-REPO_URL="https://github.com/tracefish/ds"
+REPO_URL="https://github.com/jake3737/2j2d"
 REPO_BRANCH="sc"
 [ ! -d "~/ds" ] && git clone -b "$REPO_BRANCH" $REPO_URL ~/ds
 
